@@ -37,6 +37,6 @@ AR[15]      15
 
 WE          6
 
-CLK         31
+CLK         94
 
-RESET       30
+RESET       95
