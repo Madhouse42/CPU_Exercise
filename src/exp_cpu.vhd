@@ -18,9 +18,11 @@ architecture behav of exp_cpu is
 signal t1,t3: std_logic;
 signal pc,pc_inc,IR: std_logic_vector(15 downto 0);
 	--decoder_unit out
-signal SR,DR: std_logic_vector(1 downto 0);
-signal op_code:	std_logic_vector(2 downto 0);
-signal zj_instruct,cj_instruct,lj_instruct: std_logic;
+signal SR,DR: std_logic_vector(3 downto 0);
+signal op_code:	std_logic_vector(4 downto 0);
+signal jz_instruct,jc_instruct,
+       jmp_instruct,jnz_instruct,
+       jnc_instruct,jr_instruct: std_logic;
 signal DRWr,Mem_Write,dw_instruct,change_z:  std_logic;
 signal change_c,sel_memdata: std_logic;
 signal r_sjmp_addr: std_logic_vector(15 downto 0);
@@ -37,7 +39,7 @@ G_INSTRU_FETCH:  instru_fetch port map
 	   (reset => reset,
 		clk => clk,		
 		data_read => data_read,  --存储器读出的数
-		lj_instruct => lj_instruct, --来自decoder的长转移指令标志
+		jmp_instruct => jmp_instruct, --来自decoder的长转移指令标志
 		DW_instruct => DW_instruct, --来自decoder的双字指令标志
 		c_z_j_flag => c_z_j_flag, --为1时进行条件转移，来自EXE
 		sjmp_addr => sjmp_addr, --条件转移指令的转移地址，来自EXE
@@ -53,9 +55,11 @@ G_DECODER:	decoder_unit port map
 		SR => SR,   --源寄存器号
 		DR => DR,	--目的寄存器号
 		op_code => op_code,  --ALU运算的操作码
-		zj_instruct => zj_instruct, --为1时是如果Z=0则转移指令
-		cj_instruct => cj_instruct, --为1时是如果C=0则转移指令
-		lj_instruct => lj_instruct, --为1时是无条件长转移指令
+		jnz_instruct => jnz_instruct, --为1时是如果Z=0则转移指令
+		jnc_instruct => jnc_instruct, --为1时是如果C=0则转移指令
+		jmp_instruct => jmp_instruct, --为1时是无条件长转移指令
+        jz_instruct => jz_instruct,
+        jc_instruct => jc_instruct,
 		DRWr => DRWr,  --为1时在t3下降沿写DR寄存器,送往regfile
 		Mem_Write => Mem_Write,  --为1时对存储器进行写操作。
 		dw_instruct => dw_instruct, --为1时是双字指令
@@ -64,13 +68,16 @@ G_DECODER:	decoder_unit port map
 		sel_memdata => sel_memdata,  --为1时存储器的读出数据作为写入DR的数据
 		r_sjmp_addr => r_sjmp_addr --相对转移地址
 		);
-		
+
 G_EXE:	exe_unit port map
 		(
 	  	t1 => t1,
 		op_code => op_code, --ALU运算的操作码，来自decoder
-		zj_instruct => zj_instruct, --为1时是如果Z=1则转移指令，来自decoder
-	  	cj_instruct => cj_instruct, --为1时是如果C=1则转移指令，来自decoder
+		jnz_instruct => jnz_instruct, --为1时是如果Z=1则转移指令，来自decoder
+	  	jnc_instruct => jnc_instruct, --为1时是如果C=1则转移指令，来自decoder
+        jc_instruct => jc_instruct,
+        jr_instruct => jr_instruct,
+        jz_instruct => jz_instruct,
 	    pc => pc,  --来自instru_fetch
 		pc_inc => pc_inc, --来自instru_fetch
 		c_in => c_out,--以前指令产生的进位C，来自regfile

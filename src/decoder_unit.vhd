@@ -6,12 +6,15 @@ use work.exp_cpu_components.all;
 
 entity decoder_unit is
     port (IR : in std_logic_vector (15 downto 0);
-          SR : out std_logic_vector (1 downto 0);
-          DR : out std_logic_vector (1 downto 0);
+          SR : out std_logic_vector (3 downto 0);
+          DR : out std_logic_vector (3 downto 0);
           op_code : out std_logic_vector (4 downto 0);
-          zj_instruct : out std_logic;
-          cj_instruct : out std_logic;
-          lj_instruct : out std_logic;
+          jr_instruct : out std_logic;
+          jnz_instruct : out std_logic;
+          jnc_instruct : out std_logic;
+          jmp_instruct : out std_logic;
+          jz_instruct : out std_logic;
+          jc_instruct : out std_logic;
           DRWr : buffer std_logic;
           mem_write : out std_logic;
           dw_instruct : buffer std_logic;
@@ -35,9 +38,12 @@ begin
                 (not ir (14)) and
                 (not ir (13)); -- 所有000开头的都是运算指令
                                -- 所有运算指令都改变zf
-    change_c <= change_z and
+    change_c <= (not ir (15)) and
+                (not ir (14)) and
+                (not ir (13)) and
                 ((not ir (0)) or -- 不是逻辑运算
-                 ((not ir (12)) and ir (2))); -- 12位为0，并且hascarry
+                 ((not ir (12)) and
+                  ir (2))); -- 12位为0，并且hascarry
 
     DRWr_proc : process (ir)
     begin
@@ -80,24 +86,30 @@ begin
 
     instruct_proc : process (ir)
     begin
-        case ir (15 downto 12) is
-            when "0100" =>
-                zj_instruct <= '0';
-                cj_instruct <= '0';
-                lj_instruct <= '1';
-            when "" =>
-                zj_instruct <= '0';
-                cj_instruct <= '1';
-                lj_instruct <= '0';
-            when "1010" =>
-                zj_instruct <= '1';
-                cj_instruct <= '0';
-                lj_instruct <= '0';
-            when others =>
-                zj_instruct <= '0';
-                cj_instruct <= '0';
-                lj_instruct <= '0';
-        end case;
+        if ir (15 downto 12) = "0100" then
+            jmp_instruct <= '0';
+            jc_instruct <= '0';
+            jnc_instruct <= '0';
+            jz_instruct <= '0';
+            jnz_instruct <= '0';
+            jr_instruct <= '0';
+            case ir (10 downto 7) is
+                when "0000" =>
+                    jr_instruct <= '1';
+                when "0100" =>
+                    jc_instruct <= '1';
+                when "0101" =>
+                    jnc_instruct <= '1';
+                when "0010" =>
+                    jz_instruct <= '1';
+                when "0011" =>
+                    jnz_instruct <= '1';
+                when "1111" =>
+                    jmp_instruct <= '1';
+				when others =>
+					null;
+            end case;
+        end if;
     end process;
 end behavioral;
 

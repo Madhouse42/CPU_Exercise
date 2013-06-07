@@ -8,8 +8,11 @@ entity exe_unit is
 	port(
 	  	t1: in std_logic;
 		op_code:	in std_logic_vector(4 downto 0);
-		zj_instruct: in std_logic;
-	  	cj_instruct: in std_logic;
+		jz_instruct: in std_logic;
+	  	jc_instruct: in std_logic;
+        jnz_instruct: in std_logic;
+        jnc_instruct: in std_logic;
+        jr_instruct: in std_logic;
 	    pc: in std_logic_vector(15 downto 0);
 		pc_inc:	in std_logic_vector(15 downto 0);
 		c_in: in std_logic;  --以前指令产生的进位C
@@ -34,7 +37,11 @@ signal A,B :std_logic_vector(15 downto 0);
 signal result_t:  std_logic_vector(16 downto 0);
 
 begin
-c_z_j_flag <= ((not c_in) and cj_instruct) or ((not z_in) and zj_instruct);
+c_z_j_flag <= (c_in and jc_instruct) or
+              (z_in and jz_instruct) or
+              ((not c_in) and jnc_instruct) or
+              ((not z_in) and jnz_instruct) or
+              jr_instruct;
 A <= DR_data;
 B <= SR_data;
 sjmp_addr <= pc_inc + r_sjmp_addr;	
@@ -72,21 +79,23 @@ begin
         when "10110" => -- sbb
             result_t <= ('0' & A) - ('0' & B) - c_in;
         when "11110" => -- shl dr
-            result_t <= A (6 downto 0) & '0';
+            result_t <= A & '0';
         when "11111" => -- shr dr
-            result_t <= '0' & A (7 downto 1);
+            result_t <= "00" & A(15 downto 1);
         when "10001" => -- and
-            result_t <= A and B;
+            result_t <= '0' & (A and B);
         when "00001" => -- test
-            result_t <= A and B;
+            result_t <= '0' & (A and B);
         when "10011" => -- or
-            result_t <= A or B;
+            result_t <= '0' & (A or B);
         when "10111" => -- xor
-            result_t <= A xor B;
+            result_t <= '0' & (A xor B);
         when "11001" => -- not
-            result_t <= not A;
+            result_t <= '0' & (not A);
         when "11011" => -- mvrr
-            result_t <= B;
+            result_t <= c_in & B;
+		when others =>
+			null;
 	end case;
 end process;
 result <= result_t(15 downto 0);

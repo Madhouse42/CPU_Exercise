@@ -14,21 +14,22 @@ package exp_cpu_components is
     component mux_4_to_1
     port (input0, input1,
           input2, input3 : in std_logic_vector (15 downto 0);
-          sel : in std_logic_vector (1 downto 0);
+          sel : in std_logic_vector (3 downto 0);
           output : out std_logic_vector (15 downto 0));
     end component;
 
     component decoder_2_to_4
-    port (sel : in std_logic_vector (1 downto 0);
+    port (sel : in std_logic_vector (3 downto 0);
           sel00 : out std_logic;
           sel01 : out std_logic;
           sel02 : out std_logic;
-          sel03 : out std_logic);
+          sel03 : out std_logic;
+		  sel04 : out std_logic);
     end component;
 
     component regfile
-    port (dr : in std_logic_vector (1 downto 0);
-          sr : in std_logic_vector (1 downto 0);
+    port (dr : in std_logic_vector (3 downto 0);
+          sr : in std_logic_vector (3 downto 0);
           reset : in std_logic;
           write : in std_logic;
           clk : in std_logic;
@@ -47,7 +48,7 @@ package exp_cpu_components is
     port (reset : in std_logic;
           clk : in std_logic;
           data_read : in std_logic_vector (15 downto 0);
-          lj_instruct : in std_logic;
+          jmp_instruct : in std_logic;
           dw_instruct : in std_logic;
           c_z_j_flag : in std_logic;
           sjmp_addr : in std_logic_vector (15 downto 0);
@@ -59,12 +60,15 @@ package exp_cpu_components is
 
     component decoder_unit
     port (ir : in std_logic_vector (15 downto 0);
-          sr : out std_logic_vector (1 downto 0);
-          dr : out std_logic_vector (1 downto 0);
-          op_code : out std_logic_vector (2 downto 0);
-          zj_instruct : out std_logic;
-          cj_instruct : out std_logic;
-          lj_instruct : out std_logic;
+          sr : out std_logic_vector (3 downto 0);
+          dr : out std_logic_vector (3 downto 0);
+          op_code : out std_logic_vector (4 downto 0);
+          jmp_instruct : out std_logic;
+          jr_instruct : out std_logic;
+          jc_instruct : out std_logic;
+          jz_instruct : out std_logic;
+          jnc_instruct : out std_logic;
+          jnz_instruct : out std_logic;
           drwr : buffer std_logic;
           mem_write : out std_logic;
           dw_instruct : buffer std_logic;
@@ -76,9 +80,12 @@ package exp_cpu_components is
 
     component exe_unit
     port (t1 : in std_logic;
-          op_code : in std_logic_vector (2 downto 0);
-          zj_instruct : in std_logic;
-          cj_instruct : in std_logic;
+          op_code : in std_logic_vector (4 downto 0);
+          jnc_instruct : in std_logic;
+          jnz_instruct : in std_logic;
+          jz_instruct : in std_logic;
+          jc_instruct : in std_logic;
+          jr_instruct : in std_logic;
           pc : in std_logic_vector (15 downto 0);
           pc_inc : in std_logic_vector (15 downto 0);
           c_in : in std_logic;

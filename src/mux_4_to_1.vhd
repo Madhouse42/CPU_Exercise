@@ -4,7 +4,7 @@ use ieee.std_logic_1164.all;
 entity mux_4_to_1 is
     port (input0, input1,
           input2, input3 : in std_logic_vector(15 downto 0);
-          sel : in std_logic_vector(1 downto 0);
+          sel : in std_logic_vector(3 downto 0);
           output : out std_logic_vector(15 downto 0));
 end mux_4_to_1;
 
@@ -13,14 +13,16 @@ begin
     mux : process(sel, input0, input1, input2, input3)
     begin
         case sel is
-            when "00" =>
+            when "0001" =>
                 output <= input0;
-            when "01" =>
+            when "0010" =>
                 output <= input1;
-            when "10" =>
+            when "0100" =>
                 output <= input2;
-            when "11" =>
+            when "1000" =>
                 output <= input3;
+			when others =>
+				null;
         end case;
     end process;
 end behavioral;

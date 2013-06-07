@@ -3,8 +3,8 @@ use ieee.std_logic_1164.all;
 use work.exp_cpu_components.all;
 
 entity regfile is
-Port (  DR: 	  in std_logic_vector(1 downto 0);  --目的寄存器号
-		SR: 	  in std_logic_vector(1 downto 0);  --源寄存器号   
+Port (  DR: 	  in std_logic_vector(3 downto 0);  --目的寄存器号
+		SR: 	  in std_logic_vector(3 downto 0);  --源寄存器号   
 		reset: 	  in std_logic;
 		write: 	  in std_logic;	--写寄存器信号                           
 		clk:	  in std_logic;	
@@ -23,8 +23,8 @@ end regfile;
 
 architecture struct of regfile is
 
-signal reg00, reg01, reg02,reg03: std_logic_vector(15 downto 0);
-signal sel00, sel01, sel02, sel03: std_logic;
+signal reg00, reg01, reg02,reg03, reg04: std_logic_vector(15 downto 0);
+signal sel00, sel01, sel02, sel03, sel04: std_logic;
 
 begin
 z_c_proc: process(reset,clk)  --对指令执行结束后的z、c标志进行处理
@@ -76,6 +76,15 @@ Areg03: reg port map(				--寄存器R3
 		write		=> write,
 	    sel			=> sel03,	
 		q_output	=> reg03
+		);
+		
+Areg04: reg port map(				--寄存器R3
+		reset		=> reset,
+		d_input		=> d_input,
+		clk			=> clk,		
+		write		=> write,
+	    sel			=> sel04,	
+		q_output	=> reg04
 		);
 
 des_decoder: decoder_2_to_4 port map(	--2 — 4译码器
