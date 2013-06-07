@@ -8,7 +8,7 @@ entity decoder_unit is
     port (IR : in std_logic_vector (15 downto 0);
           SR : out std_logic_vector (1 downto 0);
           DR : out std_logic_vector (1 downto 0);
-          op_code : out std_logic_vector (2 downto 0);
+          op_code : out std_logic_vector (4 downto 0);
           zj_instruct : out std_logic;
           cj_instruct : out std_logic;
           lj_instruct : out std_logic;
@@ -23,21 +23,27 @@ end decoder_unit;
 
 architecture behavioral of decoder_unit is
 begin
-    sr <= ir (9 downto 8);
-    dr <= ir (11 downto 10);
-    sel_memdata <= ir (15) and ir (14) and (not ir (13));
-    change_z <= not ir (15) and ir (1);
-    change_c <= not ir (15) and ir (2);
+    sr <= ir (7 downto 4);
+    dr <= ir (3 downto 0);
+
+    sel_memdata <= ir (15) and
+                   (not ir (14)) and
+                   (not ir (13)) and
+                   (not ir (12));
+
+    change_z <= (not ir (15)) and
+                (not ir (14)) and
+                (not ir (13)); -- 所有000开头的都是运算指令
+                               -- 所有运算指令都改变zf
+    change_c <= change_z and
+                ((not ir (0)) or -- 不是逻辑运算
+                 ((not ir (12)) and ir (2))); -- 12位为0，并且hascarry
 
     DRWr_proc : process (ir)
     begin
-        if ir (15) = '0' then
-            if ir (0) = '1' then
-                DRWr <= '1';
-            else
-                DRWr <= '0';
-            end if;
-        elsif ir (14) = '1' and ir (13) = '0' then
+        if ir (15 downto 13) = "000" then
+            DRWr <= ir (12);
+        elsif ir (15 downto 13) = "100" then
             DRWr <= '1';
         else
             DRWr <= '0';
@@ -55,36 +61,31 @@ begin
 
     m_instruct : process (ir)
     begin
-        case ir (15 downto 12) is
-            when "1000" | "1100" =>
-                mem_write <= '1';
-                dw_instruct <= '0';
-            when "1110" =>
-                mem_write <= '1';
-                dw_instruct <= '0';
-            when others =>
-                mem_write <= '0';
-                dw_instruct <= '0';
-        end case;
+        mem_write <= '0';
+        if ir (15 downto 12) = "1000" then
+            dw_instruct <= '1';
+        else
+            dw_instruct <= '0';
+        end if;
     end process;
 
     alu_op_code_proc : process (ir)
     begin
-        if ir (15) = '0' then
-            op_code <= ir (14 downto 12);
+        if ir (15 downto 13) = "000" then
+            op_code <= ir (12 downto 8);
         else
-            op_code <= "111";
+            op_code <= "01100"; -- 无效op_code
         end if;
     end process;
 
     instruct_proc : process (ir)
     begin
         case ir (15 downto 12) is
-            when "1000" =>
+            when "0100" =>
                 zj_instruct <= '0';
                 cj_instruct <= '0';
                 lj_instruct <= '1';
-            when "1001" =>
+            when "" =>
                 zj_instruct <= '0';
                 cj_instruct <= '1';
                 lj_instruct <= '0';
@@ -100,5 +101,4 @@ begin
     end process;
 end behavioral;
 
-        
 
