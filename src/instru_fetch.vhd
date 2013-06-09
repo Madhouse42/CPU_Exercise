@@ -6,6 +6,7 @@ use work.exp_cpu_components.all;
 
 entity instru_fetch     is
     port(
+<<<<<<< HEAD
             reset, clk   :   in std_logic;
             data_read    :   in std_logic_vector(15 downto 0);
             jmp_instruct :   in std_logic;
@@ -16,11 +17,23 @@ entity instru_fetch     is
             pc           :   buffer std_logic_vector(15 downto 0);
             pc_inc       :   buffer std_logic_vector(15 downto 0);
             IR           :   out std_logic_vector(15 downto 0)
+=======
+            reset, clk  :   in std_logic;
+            data_read   :   in std_logic_vector(15 downto 0);
+            lj_instruct :   in std_logic;
+            dw_instruct :   in std_logic;
+            c_z_j_flag  :   in std_logic;
+            sjmp_addr   :   in std_logic_vector(15 downto 0);
+            t1, t2, t3  :   buffer std_logic;
+            pc          :   buffer std_logic_vector(15 downto 0);
+            pc_inc      :   buffer std_logic_vector(15 downto 0);
+            IR          :   out std_logic_vector(15 downto 0)
+>>>>>>> 811a3297e5ed6406723e9cfa0e3bebbed57b8eac
         );
 end instru_fetch;
 
 architecture behav of instru_fetch is
-    signal start, t2    :   std_logic;
+    signal start : std_logic;
 begin
     IR_poc: process(reset, t2)
     begin
@@ -74,3 +87,4 @@ begin
     end process;
     
 end behav;
+
