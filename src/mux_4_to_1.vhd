@@ -21,6 +21,8 @@ begin
                 output <= input2;
             when "0011" =>
                 output <= input3;
+			when others =>
+				output <= x"ffff";
         end case;
     end process;
 end behavioral;

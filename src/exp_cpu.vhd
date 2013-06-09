@@ -8,9 +8,9 @@ entity exp_cpu is port
 	reset : in std_logic;              -- //系统复位信号
 	WE : out std_logic;    				-- //读写内存控制信号
 	AR : out std_logic_vector(15 downto 0);     -- //读写内存地址
-	OB : inout std_logic_vector(15 downto 0)  	-- //外部总线
-    reg_sel : in std_logic (5 downto 0);
-    reg_content : out std_logic (15 downto 0);
+	OB : inout std_logic_vector(15 downto 0);  	-- //外部总线
+    reg_sel : in std_logic_vector (5 downto 0);
+    reg_content : out std_logic_vector (15 downto 0);
     c_flag : out std_logic;
     z_flag : out std_logic
 	);
@@ -51,7 +51,7 @@ begin
             when "000011" =>
                 reg_content <= r3;
             when "000100" =>
-                reg_content <= "0000000" & t3 & "000" & t2 "000" & t1;
+                reg_content <= "0000000" & t3 & "000" & t2 & "000" & t1;
             when "111110" =>
                 reg_content <= pc;
             when "111111" =>
@@ -150,12 +150,18 @@ G_REGFILE : regfile port map
 		change_z => change_z, -- 为1时在t4下降沿根据Z_tmp置Z标志,来自decoder
 		change_c => change_c, -- 为1时在t4下降沿根据C_tmp置C标志,来自decoder
 	    c_in => c_tmp, -- 本条指令得到的c,来自decoder
-	    z_in => z_tmp, -- 本条指令得到的c,来自decoder
+	    z_in => z_tmp, -- 本条指令得到的z,来自decoder
 
 		output_DR => output_DR,   -- DR寄存器内容，送往exe和memory     
 		output_SR => output_SR,   -- SR寄存器内容，送往exe
 		c_out => c_out,  -- C标志，送往exe和exp
-		z_out => z_out   -- Z标志，送往exe和exp
+		z_out => z_out,   -- Z标志，送往exe和exp
+		r0 => r0,
+		r1 => r1,
+		r2 => r2,
+		r3 => r3,
+		c_flag => c_flag,
+		z_flag => z_flag
 	    );
 
 end behav;

@@ -41,7 +41,9 @@ package exp_cpu_components is
           output_sr : out std_logic_vector (15 downto 0);
           r0, r1, r2, r3 : out std_logic_vector (15 downto 0);
           c_out : out std_logic;
-          z_out : out std_logic);
+          z_out : out std_logic;
+          c_flag : out std_logic;
+          z_flag : out std_logic);
     end component;
 
     component instru_fetch

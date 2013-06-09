@@ -16,7 +16,9 @@ port (  DR: 	  in std_logic_vector(3 downto 0);  --Ä¿µÄ¼Ä´æÆ÷ºÅ
 		output_DR:  out std_logic_vector(15 downto 0);
 		output_SR:  out std_logic_vector(15 downto 0);
 		c_out:	    out std_logic;
-		z_out:	    out std_logic
+		z_out:	    out std_logic;
+        c_flag : out std_logic;
+        z_flag : out std_logic;
         r0, r1, r2, r3: out std_logic_vector (15 downto 0)
 	  );
 end regfile;
@@ -41,9 +43,11 @@ begin
 	elsif clk'event and clk = '0' then
 	    if change_z = '1' then
 			z_out <= z_in;
+			z_flag <= z_in;
         end if;
 		if change_c = '1' then
 			c_out <= c_in;
+			c_flag <= c_in;
         end if;
 	end if;
 end process;
