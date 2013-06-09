@@ -9,9 +9,12 @@ entity decoder_unit is
           SR : out std_logic_vector (3 downto 0);
           DR : out std_logic_vector (3 downto 0);
           op_code : out std_logic_vector (4 downto 0);
-          zj_instruct : out std_logic;
-          cj_instruct : out std_logic;
-          lj_instruct : out std_logic;
+          zj_instruct : out std_logic; -- jrz
+          cj_instruct : out std_logic; -- jrc
+          lj_instruct : out std_logic; -- long jmp, aka jmpa
+          rj_instruct : out std_logic; -- relative jmp, aka jr
+          nzj_instruct : out std_logic; -- jrnz
+          ncj_instruct : out std_logic; -- jrnc
           DRWr : buffer std_logic;
           mem_write : out std_logic;
           dw_instruct : buffer std_logic;
@@ -79,10 +82,10 @@ begin
     begin
         if ir (15 downto 12) = "1000" then
             case ir (11 downto 8) is
-                when "0001" =>
+                when "0001" => -- mvrd
                     mem_write <= '0';
                     dw_instruct <= '1';
-                when "0011" =>
+                when "0011" => -- strr
                     mem_write <= '1';
                     dw_instruct <= '0';
                 when others =>
@@ -90,7 +93,7 @@ begin
                     dw_instruct <= '0';
             end case;
         elsif ir (15 downto 12) = "0100" then
-            if ir (11 downto 8) = "1111" then
+            if ir (11 downto 8) = "1111" then -- jmpa
                 mem_write <= '0';
                 dw_instruct <= '1';
             end if;
@@ -108,24 +111,30 @@ begin
 
     instruct_proc : process (ir)
     begin
-        case ir (15 downto 12) is
-            when "1000" =>
-                zj_instruct <= '0';
-                cj_instruct <= '0';
-                lj_instruct <= '1';
-            when "1001" =>
-                zj_instruct <= '0';
-                cj_instruct <= '1';
-                lj_instruct <= '0';
-            when "1010" =>
-                zj_instruct <= '1';
-                cj_instruct <= '0';
-                lj_instruct <= '0';
-            when others =>
-                zj_instruct <= '0';
-                cj_instruct <= '0';
-                lj_instruct <= '0';
-        end case;
+        if ir (15 downto 12) = "0100" then
+            zj_instruct <= '0';
+            cj_instruct <= '0';
+            nzj_instruct <= '0';
+            ncj_instruct <= '0';
+            lj_instruct <= '0';
+            rj_instruct <= '0';
+            case ir (11 downto 8) is
+                when "0000" =>
+                    rj_instruct <= '1';
+                when "0100" =>
+                    cj_instruct <= '1';
+                when "0101" =>
+                    ncj_instruct <= '1';
+                when "0010" =>
+                    zj_instruct <= '1';
+                when "0011" =>
+                    nzj_instruct <= '1';
+                when "1111" =>
+                    lj_instruct <= '1';
+                when others =>
+                    null;
+            end case;
+        end if;
     end process;
 end behavioral;
 

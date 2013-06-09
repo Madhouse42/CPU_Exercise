@@ -39,6 +39,7 @@ package exp_cpu_components is
           z_in : in std_logic;
           output_dr : out std_logic_vector (15 downto 0);
           output_sr : out std_logic_vector (15 downto 0);
+          r0, r1, r2, r3 : out std_logic_vector (15 downto 0);
           c_out : out std_logic;
           z_out : out std_logic);
     end component;
@@ -51,7 +52,7 @@ package exp_cpu_components is
           dw_instruct : in std_logic;
           c_z_j_flag : in std_logic;
           sjmp_addr : in std_logic_vector (15 downto 0);
-          t1, t3 : buffer std_logic;
+          t1, t2, t3 : buffer std_logic;
           pc : buffer std_logic_vector (15 downto 0);
           pc_inc : buffer std_logic_vector (15 downto 0);
           ir : out std_logic_vector (15 downto 0));
@@ -65,6 +66,9 @@ package exp_cpu_components is
           zj_instruct : out std_logic;
           cj_instruct : out std_logic;
           lj_instruct : out std_logic;
+          ncj_instruct : out std_logic;
+          nzj_instruct : out std_logic;
+          rj_instruct : out std_logic;
           drwr : buffer std_logic;
           mem_write : out std_logic;
           dw_instruct : buffer std_logic;
@@ -79,6 +83,9 @@ package exp_cpu_components is
           op_code : in std_logic_vector (4 downto 0);
           zj_instruct : in std_logic;
           cj_instruct : in std_logic;
+          nzj_instruct : in std_logic;
+          ncj_instruct : in std_logic;
+          rj_instruct : in std_logic;
           pc : in std_logic_vector (15 downto 0);
           pc_inc : in std_logic_vector (15 downto 0);
           c_in : in std_logic;

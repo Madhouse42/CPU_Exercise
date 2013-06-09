@@ -1,15 +1,14 @@
--- 实验6.13——实验CPU：CPU调试
 library ieee;
 use ieee.std_logic_1164.all;
 use work.exp_cpu_components.all;
 
 entity exp_cpu is port
 	(
-	clk:		 in std_logic;              -- //系统时钟
-	reset:		 in std_logic;              -- //系统复位信号
-	WE:			out std_logic;    				-- //读写内存控制信号
-	AR:  out std_logic_vector(15 downto 0);     -- //读写内存地址
-	OB:  inout std_logic_vector(15 downto 0)  	-- //外部总线
+	clk : in std_logic;              -- //系统时钟
+	reset : in std_logic;              -- //系统复位信号
+	WE : out std_logic;    				-- //读写内存控制信号
+	AR : out std_logic_vector(15 downto 0);     -- //读写内存地址
+	OB : inout std_logic_vector(15 downto 0)  	-- //外部总线
     reg_sel : in std_logic (5 downto 0);
     reg_content : out std_logic (15 downto 0);
     c_flag : out std_logic;
@@ -19,24 +18,26 @@ end exp_cpu;
 
 architecture behav of exp_cpu is
 	-- instru_fetch out
-signal t1, t2, t3: std_logic;
-signal pc, pc_inc, IR: std_logic_vector(15 downto 0);
+signal t1, t2, t3 : std_logic;
+signal pc, pc_inc, IR : std_logic_vector(15 downto 0);
 	-- decoder_unit out
-signal SR, DR: std_logic_vector(3 downto 0);
-signal op_code:	std_logic_vector(4 downto 0);
-signal zj_instruct, cj_instruct, lj_instruct: std_logic;
-signal DRWr, Mem_Write, dw_instruct, change_z:  std_logic;
-signal change_c, sel_memdata: std_logic;
-signal r_sjmp_addr: std_logic_vector(15 downto 0);
+signal SR, DR : std_logic_vector(3 downto 0);
+signal op_code : std_logic_vector(4 downto 0);
+signal zj_instruct, cj_instruct, lj_instruct,
+       nzj_instruct, ncj_instruct, rj_instruct : std_logic;
+signal DRWr, Mem_Write, dw_instruct, change_z : std_logic;
+signal change_c, sel_memdata : std_logic;
+signal r_sjmp_addr : std_logic_vector(15 downto 0);
 	-- exe_unit out
-signal c_tmp, z_tmp, c_z_j_flag: std_logic;
-signal Mem_Addr, result, sjmp_addr: std_logic_vector(15 downto 0);
+signal c_tmp, z_tmp, c_z_j_flag : std_logic;
+signal Mem_Addr, result, sjmp_addr : std_logic_vector(15 downto 0);
 	-- memory out
-signal data_read, DR_data_out:  std_logic_vector(15 downto 0);
+signal data_read, DR_data_out : std_logic_vector(15 downto 0);
 	-- regfile out
-signal r0, r1, r2, r3: std_logic_vector (15 downto 0);
-signal output_DR, output_SR:  std_logic_vector(15 downto 0);
-signal c_out, z_out:	 std_logic;  
+signal r0, r1, r2, r3 : std_logic_vector (15 downto 0);
+signal output_DR, output_SR : std_logic_vector(15 downto 0);
+signal c_out, z_out : std_logic;  
+
 begin
     test_out : process(reg_sel)
     begin
@@ -60,7 +61,7 @@ begin
         end case;
     end process;
 
-G_INSTRU_FETCH:  instru_fetch port map
+G_INSTRU_FETCH : instru_fetch port map
 	   (reset => reset,
 		clk => clk,		
 		data_read => data_read,  -- 存储器读出的数
@@ -76,14 +77,17 @@ G_INSTRU_FETCH:  instru_fetch port map
 		IR => IR
 		); 
 
-G_DECODER:	decoder_unit port map
+G_DECODER : decoder_unit port map
 	   (IR => IR,	-- 来自instru_fetch
 		SR => SR,   -- 源寄存器号
 		DR => DR,	-- 目的寄存器号
 		op_code => op_code,  -- ALU运算的操作码
-		zj_instruct => zj_instruct, -- 为1时是如果Z=0则转移指令
-		cj_instruct => cj_instruct, -- 为1时是如果C=0则转移指令
+		zj_instruct => zj_instruct, -- 为1时是如果Z=1则转移指令
+		cj_instruct => cj_instruct, -- 为1时是如果C=1则转移指令
 		lj_instruct => lj_instruct, -- 为1时是无条件长转移指令
+        rj_instruct => rj_instruct,
+        nzj_instruct => nzj_instruct,
+        ncj_instruct => ncj_instruct,
 		DRWr => DRWr,  -- 为1时在t3下降沿写DR寄存器,送往regfile
 		Mem_Write => Mem_Write,  -- 为1时对存储器进行写操作。
 		dw_instruct => dw_instruct, -- 为1时是双字指令
@@ -93,12 +97,15 @@ G_DECODER:	decoder_unit port map
 		r_sjmp_addr => r_sjmp_addr -- 相对转移地址
 		);
 
-G_EXE:	exe_unit port map
+G_EXE : exe_unit port map
 		(
 	  	t1 => t1,
 		op_code => op_code, -- ALU运算的操作码，来自decoder
 		zj_instruct => zj_instruct, -- 为1时是如果Z=1则转移指令，来自decoder
 	  	cj_instruct => cj_instruct, -- 为1时是如果C=1则转移指令，来自decoder
+        nzj_instruct => nzj_instruct,
+        ncj_instruct => ncj_instruct,
+        rj_instruct => rj_instruct,
 	    pc => pc,  -- 来自instru_fetch
 		pc_inc => pc_inc, -- 来自instru_fetch
 		c_in => c_out,-- 以前指令产生的进位C，来自regfile
@@ -116,7 +123,7 @@ G_EXE:	exe_unit port map
 		result => result  -- 运算结果，送往regfile
 	    );
 
-G_MEMORY:	memory_unit port map
+G_MEMORY : memory_unit port map
 	   (reset => reset,
 		clk   => clk,
 		t3    => t3, 
@@ -133,7 +140,7 @@ G_MEMORY:	memory_unit port map
 		DR_data_out => DR_data_out -- 写入DR的数据，送往regfile
 		);
 
-G_REGFILE:	regfile port map
+G_REGFILE : regfile port map
  	   (DR => DR,  -- DR寄存器号，来自decoder
 		SR => SR,  -- SR寄存器号，来自decoder
 		reset => reset,
@@ -152,3 +159,4 @@ G_REGFILE:	regfile port map
 	    );
 
 end behav;
+
