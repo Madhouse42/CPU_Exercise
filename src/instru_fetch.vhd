@@ -12,7 +12,7 @@ entity instru_fetch     is
             dw_instruct :   in std_logic;
             c_z_j_flag  :   in std_logic;
             sjmp_addr   :   in std_logic_vector(15 downto 0);
-            t1, t3      :   buffer std_logic;
+            t1, t2, t3  :   buffer std_logic;
             pc          :   buffer std_logic_vector(15 downto 0);
             pc_inc      :   buffer std_logic_vector(15 downto 0);
             IR          :   out std_logic_vector(15 downto 0)
@@ -20,7 +20,7 @@ entity instru_fetch     is
 end instru_fetch;
 
 architecture behav of instru_fetch is
-    signal start, t2    :   std_logic;
+    signal start : std_logic;
 begin
     IR_poc: process(reset, t2)
     begin

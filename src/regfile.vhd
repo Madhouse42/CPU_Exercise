@@ -3,20 +3,21 @@ use ieee.std_logic_1164.all;
 use work.exp_cpu_components.all;
 
 entity regfile is
-Port (  DR: 	  in std_logic_vector(1 downto 0);  --目的寄存器号
-		SR: 	  in std_logic_vector(1 downto 0);  --源寄存器号   
+port (  DR: 	  in std_logic_vector(1 downto 0);  --目的寄存器号
+		SR: 	  in std_logic_vector(1 downto 0);  --源寄存器号
 		reset: 	  in std_logic;
-		write: 	  in std_logic;	--写寄存器信号                           
+		write: 	  in std_logic;	--写寄存器信号
 		clk:	  in std_logic;	
 		d_input:  in  std_logic_vector(15 downto 0);  --写寄存器的数据
 		change_z: in std_logic;			--如果为1，则重新设置z标志
 		change_c: in std_logic;
 	    c_in:     in std_logic;
 	    z_in:     in std_logic;
-		output_DR:  out std_logic_vector(15 downto 0);        
+		output_DR:  out std_logic_vector(15 downto 0);
 		output_SR:  out std_logic_vector(15 downto 0);
 		c_out:	    out std_logic;
-		z_out:	    out std_logic   
+		z_out:	    out std_logic
+        r0, r1, r2, r3: out std_logic_vector (15 downto 0)
 	  );
 end regfile;
 
@@ -27,6 +28,11 @@ signal reg00, reg01, reg02,reg03: std_logic_vector(15 downto 0);
 signal sel00, sel01, sel02, sel03: std_logic;
 
 begin
+    r0 <= reg00;
+    r1 <= reg01;
+    r2 <= reg02;
+    r3 <= reg03;
+
 z_c_proc: process(reset,clk)  --对指令执行结束后的z、c标志进行处理
 begin
    if reset = '0' then
@@ -105,3 +111,4 @@ muxB: mux_4_to_1 port map(				--源寄存器读出4选1选择器
 		);
 
 end struct;
+
