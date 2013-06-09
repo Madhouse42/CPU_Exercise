@@ -3,13 +3,13 @@ use ieee.std_logic_1164.all;
 use work.exp_cpu_components.all;
 
 entity regfile is
-port (  DR: 	  in std_logic_vector(3 downto 0);  --Ä¿µÄ¼Ä´æÆ÷ºÅ
-		SR: 	  in std_logic_vector(3 downto 0);  --Ô´¼Ä´æÆ÷ºÅ
+port (  DR: 	  in std_logic_vector(3 downto 0);  --ç›®çš„å¯„å­˜å™¨å·
+		SR: 	  in std_logic_vector(3 downto 0);  --æºå¯„å­˜å™¨å·
 		reset: 	  in std_logic;
-		write: 	  in std_logic;	--Ğ´¼Ä´æÆ÷ĞÅºÅ
+		write: 	  in std_logic;	--å†™å¯„å­˜å™¨ä¿¡å·
 		clk:	  in std_logic;	
-		d_input:  in  std_logic_vector(15 downto 0);  --Ğ´¼Ä´æÆ÷µÄÊı¾İ
-		change_z: in std_logic;			--Èç¹ûÎª1£¬ÔòÖØĞÂÉèÖÃz±êÖ¾
+		d_input:  in  std_logic_vector(15 downto 0);  --å†™å¯„å­˜å™¨çš„æ•°æ®
+		change_z: in std_logic;			--å¦‚æœä¸º1ï¼Œåˆ™é‡æ–°è®¾ç½®zæ ‡å¿—
 		change_c: in std_logic;
 	    c_in:     in std_logic;
 	    z_in:     in std_logic;
@@ -35,7 +35,7 @@ begin
     r2 <= reg02;
     r3 <= reg03;
 
-z_c_proc: process(reset,clk)  --¶ÔÖ¸ÁîÖ´ĞĞ½áÊøºóµÄz¡¢c±êÖ¾½øĞĞ´¦Àí
+z_c_proc: process(reset,clk)  --å¯¹æŒ‡ä»¤æ‰§è¡Œç»“æŸåçš„zã€cæ ‡å¿—è¿›è¡Œå¤„ç†
 begin
    if reset = '0' then
 		z_out <= '0';
@@ -52,7 +52,7 @@ begin
 	end if;
 end process;
 
-Areg00: reg port map(				--¼Ä´æÆ÷R0
+Areg00: reg port map(				--å¯„å­˜å™¨R0
 		reset		=> reset,
 		d_input		=> d_input,
 		clk			=> clk,		
@@ -61,7 +61,7 @@ Areg00: reg port map(				--¼Ä´æÆ÷R0
 		q_output	=> reg00
 		);
 
-Areg01: reg port map(				--¼Ä´æÆ÷R1
+Areg01: reg port map(				--å¯„å­˜å™¨R1
 		reset		=> reset,
 		d_input		=> d_input,
 		clk			=> clk,		
@@ -70,7 +70,7 @@ Areg01: reg port map(				--¼Ä´æÆ÷R1
 		q_output	=> reg01	
 		);
 
-Areg02: reg port map(				--¼Ä´æÆ÷R2
+Areg02: reg port map(				--å¯„å­˜å™¨R2
 		reset		=> reset,
 		d_input		=> d_input,
 		clk			=> clk,		
@@ -79,7 +79,7 @@ Areg02: reg port map(				--¼Ä´æÆ÷R2
 		q_output	=>  reg02
 		);
 
-Areg03: reg port map(				--¼Ä´æÆ÷R3
+Areg03: reg port map(				--å¯„å­˜å™¨R3
 		reset		=> reset,
 		d_input		=> d_input,
 		clk			=> clk,		
@@ -88,7 +88,7 @@ Areg03: reg port map(				--¼Ä´æÆ÷R3
 		q_output	=> reg03
 		);
 
-des_decoder: decoder_2_to_4 port map(	--2 ¡ª 4ÒëÂëÆ÷
+des_decoder: decoder_2_to_4 port map(	--2 â€” 4è¯‘ç å™¨
 		sel 	=> DR,
     	sel00 	=> sel00,
 		sel01 	=> sel01,
@@ -96,7 +96,7 @@ des_decoder: decoder_2_to_4 port map(	--2 ¡ª 4ÒëÂëÆ÷
 		sel03 	=> sel03 
 		);
 
-muxA: mux_4_to_1 port map(				--Ä¿µÄ¼Ä´æÆ÷¶Á³ö4Ñ¡1Ñ¡ÔñÆ÷
+muxA: mux_4_to_1 port map(				--ç›®çš„å¯„å­˜å™¨è¯»å‡º4é€‰1é€‰æ‹©å™¨
 		input0  => reg00,
     	input1  => reg01,
 		input2  => reg02,
@@ -105,7 +105,7 @@ muxA: mux_4_to_1 port map(				--Ä¿µÄ¼Ä´æÆ÷¶Á³ö4Ñ¡1Ñ¡ÔñÆ÷
 		output => output_DR
 		);
 	
-muxB: mux_4_to_1 port map(				--Ô´¼Ä´æÆ÷¶Á³ö4Ñ¡1Ñ¡ÔñÆ÷
+muxB: mux_4_to_1 port map(				--æºå¯„å­˜å™¨è¯»å‡º4é€‰1é€‰æ‹©å™¨
 		input0 	=> reg00,
    	 	input1 	=> reg01,
 		input2 	=> reg02,
