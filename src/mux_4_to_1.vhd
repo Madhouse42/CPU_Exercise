@@ -32,7 +32,11 @@ begin
 >>>>>>> 811a3297e5ed6406723e9cfa0e3bebbed57b8eac
                 output <= input3;
 			when others =>
+<<<<<<< HEAD
 				null;
+=======
+				output <= x"ffff";
+>>>>>>> a55e84249e88c48e7324ae8dd14b7a2da6fa3a3b
         end case;
     end process;
 end behavioral;

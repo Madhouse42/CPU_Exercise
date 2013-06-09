@@ -34,8 +34,8 @@ entity decoder_unit is
 end decoder_unit;
 
 architecture behavioral of decoder_unit is
-    alu_instruction : variable std_logic_vector (2 downto 0);
 begin
+
     sr <= ir (7 downto 4);
     dr <= ir (3 downto 0);
 
@@ -44,6 +44,7 @@ begin
                    (not ir (13)) and
                    (not ir (12));
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     change_z <= (not ir (15)) and
                 (not ir (14)) and
@@ -67,12 +68,19 @@ begin
                        (not ir (14)) and
                        (not ir (13));
     change_z <= alu_instruction and
+=======
+    change_z <= (not ir (15)) and
+                (not ir (14)) and
+                (not ir (13)) and
+>>>>>>> a55e84249e88c48e7324ae8dd14b7a2da6fa3a3b
                 (not (ir (12) and
                       ir (11) and
                       ir (10) and
                       ir (9) and
-                      ir (8));
-    change_c <= alu_instruction and
+                      ir (8)));
+    change_c <= (not ir (15)) and
+                (not ir (14)) and
+                (not ir (13)) and
                 ((not ir (0)) or
                  ((not ir (12)) and
                   ir (11) and
@@ -128,13 +136,23 @@ begin
                     mem_write <= '0';
                     dw_instruct <= '0';
             end case;
+<<<<<<< HEAD
         elsif ir (15 downto 12) = "0100" then
             if ir (11 downto 8) = "1111" then -- jmpa
                 mem_write <= '0';
                 dw_instruct <= '1';
             end if;
 >>>>>>> 811a3297e5ed6406723e9cfa0e3bebbed57b8eac
+=======
+        elsif ir (15 downto 8) = "01001111" then -- jmpa
+            mem_write <= '0';
+            dw_instruct <= '1';
+		else
+            mem_write <= '0';
+            dw_instruct <= '0';
+>>>>>>> a55e84249e88c48e7324ae8dd14b7a2da6fa3a3b
         end if;
+
     end process;
 
     alu_op_code_proc : process (ir)
@@ -152,7 +170,14 @@ begin
 
     instruct_proc : process (ir)
     begin
+		zj_instruct <= '0';
+		cj_instruct <= '0';
+		nzj_instruct <= '0';
+		ncj_instruct <= '0';
+		lj_instruct <= '0';
+		rj_instruct <= '0';
         if ir (15 downto 12) = "0100" then
+<<<<<<< HEAD
 <<<<<<< HEAD
             jmp_instruct <= '0';
             jc_instruct <= '0';
@@ -182,6 +207,9 @@ begin
             ncj_instruct <= '0';
             lj_instruct <= '0';
             rj_instruct <= '0';
+=======
+
+>>>>>>> a55e84249e88c48e7324ae8dd14b7a2da6fa3a3b
             case ir (11 downto 8) is
                 when "0000" =>
                     rj_instruct <= '1';

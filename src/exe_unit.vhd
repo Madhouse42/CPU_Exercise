@@ -39,20 +39,24 @@ entity exe_unit is
         rj_instruct : in std_logic;
 	    pc : in std_logic_vector(15 downto 0);
 		pc_inc : in std_logic_vector(15 downto 0);
-		c_in : in std_logic;  --ÒÔÇ°Ö¸Áî²úÉúµÄ½øÎ»C
-	    z_in : in std_logic;  --ÒÔÇ°Ö¸Áî²úÉúµÄZ
-		Mem_Write : in std_logic;  --Îª1Ê±£¬Ğ´´æ´¢Æ÷
+		c_in : in std_logic;  --ä»¥å‰æŒ‡ä»¤äº§ç”Ÿçš„è¿›ä½C
+	    z_in : in std_logic;  --ä»¥å‰æŒ‡ä»¤äº§ç”Ÿçš„Z
+		Mem_Write : in std_logic;  --ä¸º1æ—¶ï¼Œå†™å­˜å‚¨å™¨
 		c_tmp : out std_logic;
 		z_tmp : out std_logic;
-		c_z_j_flag : out std_logic; --Îª1Ê±½øĞĞÌõ¼ş×ªÒÆ
-		r_sjmp_addr : in std_logic_vector(15 downto 0); --Ïà¶Ô×ªÒÆµØÖ·
+		c_z_j_flag : out std_logic; --ä¸º1æ—¶è¿›è¡Œæ¡ä»¶è½¬ç§»
+		r_sjmp_addr : in std_logic_vector(15 downto 0); --ç›¸å¯¹è½¬ç§»åœ°å€
 		DW_instruct : in std_logic;
-		sjmp_addr : out std_logic_vector(15 downto 0); --Ìõ¼ş×ªÒÆÖ¸ÁîµÄ×ªÒÆµØÖ·
+		sjmp_addr : out std_logic_vector(15 downto 0); --æ¡ä»¶è½¬ç§»æŒ‡ä»¤çš„è½¬ç§»åœ°å€
 		SR_data : in std_logic_vector(15 downto 0);
 		DR_data : in std_logic_vector(15 downto 0);
 		Mem_Addr : out std_logic_vector(15 downto 0);
+<<<<<<< HEAD
 		result : out std_logic_vector(15 downto 0)  --ÔËËã½á¹û
 >>>>>>> 811a3297e5ed6406723e9cfa0e3bebbed57b8eac
+=======
+		result : out std_logic_vector(15 downto 0)  --è¿ç®—ç»“æœ
+>>>>>>> a55e84249e88c48e7324ae8dd14b7a2da6fa3a3b
 	    );
 
 end exe_unit;
