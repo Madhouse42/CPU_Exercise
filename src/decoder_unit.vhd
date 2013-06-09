@@ -93,7 +93,7 @@ begin
                     mem_write <= '0';
                     dw_instruct <= '0';
             end case;
-        elsif ir (15 downto 8) = "01001111" then-- jmpa
+        elsif ir (15 downto 8) = "01001111" then -- jmpa
             mem_write <= '0';
             dw_instruct <= '1';
 		else
