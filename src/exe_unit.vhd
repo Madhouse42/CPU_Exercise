@@ -7,7 +7,7 @@ use work.exp_cpu_components.all;
 entity exe_unit is
 	port(
 	  	t1: in std_logic;
-		op_code:	in std_logic_vector(2 downto 0);
+		op_code:	in std_logic_vector(4 downto 0);
 		zj_instruct: in std_logic;
 	  	cj_instruct: in std_logic;
 	    pc: in std_logic_vector(15 downto 0);
@@ -57,22 +57,35 @@ end process;
 alu_proc:process(op_code,A,B)
 begin
 	case op_code is
-		when "000" =>
+		when "10000" => -- add
 			result_t <= ('0' & A) + ('0' & B);
-		when "001" =>
+		when "11000" => -- inc
 			result_t <= ('0' & A) + '1';
-		when "010" =>
+		when "10100" => -- adc
+            result_t <= ('0' & A) + ('0' & B) + c_in;
+        when "10010" | "00010" => -- sub | cmp
 			result_t <= ('0' & A) - ('0' & B);
-		when "011" =>
+		when "10110" => -- sbb
 			result_t <= ('0' & A) -  ('0' & B) - c_in;
-		when "100" =>
-			result_t <= ('0' & A) + '1';
-		when "101" =>
+		when "11010" => -- dec
 			result_t <= ('0' & A) - '1';
+        when "01101" => -- shl
+            result_t <= B & '0';
+        when "01111" => -- shr
+            result_t <= B (0) & c_in & B (15 downto 1);
+        when "10001" | "00001" => -- and | test
+            result_t <= c_in & (A and B);
+        when "10011" => -- or
+            result_t <= c_in & (A or B);
+        when "10111" => -- xor
+            result_t <= c_in & (A xor B);
+        when "11001" => -- not
+            result_t <= c_in & (not B);
 		when others =>
 			result_t <= ('0' & B);
 	end case;
 end process;
+
 result <= result_t(15 downto 0);
 c_tmp <= result_t(16);
 z_tmp <= (not result_t(15)) and (not result_t(14)) and
@@ -85,3 +98,4 @@ z_tmp <= (not result_t(15)) and (not result_t(14)) and
 		 (not result_t(1)) and (not result_t(0));
 
 end behav;
+

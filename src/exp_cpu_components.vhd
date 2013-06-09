@@ -14,12 +14,12 @@ package exp_cpu_components is
     component mux_4_to_1
     port (input0, input1,
           input2, input3 : in std_logic_vector (15 downto 0);
-          sel : in std_logic_vector (1 downto 0);
+          sel : in std_logic_vector (3 downto 0);
           output : out std_logic_vector (15 downto 0));
     end component;
 
     component decoder_2_to_4
-    port (sel : in std_logic_vector (1 downto 0);
+    port (sel : in std_logic_vector (3 downto 0);
           sel00 : out std_logic;
           sel01 : out std_logic;
           sel02 : out std_logic;
@@ -27,8 +27,8 @@ package exp_cpu_components is
     end component;
 
     component regfile
-    port (dr : in std_logic_vector (1 downto 0);
-          sr : in std_logic_vector (1 downto 0);
+    port (dr : in std_logic_vector (3 downto 0);
+          sr : in std_logic_vector (3 downto 0);
           reset : in std_logic;
           write : in std_logic;
           clk : in std_logic;
@@ -59,9 +59,9 @@ package exp_cpu_components is
 
     component decoder_unit
     port (ir : in std_logic_vector (15 downto 0);
-          sr : out std_logic_vector (1 downto 0);
-          dr : out std_logic_vector (1 downto 0);
-          op_code : out std_logic_vector (2 downto 0);
+          sr : out std_logic_vector (3 downto 0);
+          dr : out std_logic_vector (3 downto 0);
+          op_code : out std_logic_vector (4 downto 0);
           zj_instruct : out std_logic;
           cj_instruct : out std_logic;
           lj_instruct : out std_logic;
@@ -76,7 +76,7 @@ package exp_cpu_components is
 
     component exe_unit
     port (t1 : in std_logic;
-          op_code : in std_logic_vector (2 downto 0);
+          op_code : in std_logic_vector (4 downto 0);
           zj_instruct : in std_logic;
           cj_instruct : in std_logic;
           pc : in std_logic_vector (15 downto 0);

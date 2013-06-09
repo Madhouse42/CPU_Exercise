@@ -3,8 +3,8 @@ use ieee.std_logic_1164.all;
 use work.exp_cpu_components.all;
 
 entity regfile is
-port (  DR: 	  in std_logic_vector(1 downto 0);  --Ä¿µÄ¼Ä´æÆ÷ºÅ
-		SR: 	  in std_logic_vector(1 downto 0);  --Ô´¼Ä´æÆ÷ºÅ
+port (  DR: 	  in std_logic_vector(3 downto 0);  --Ä¿µÄ¼Ä´æÆ÷ºÅ
+		SR: 	  in std_logic_vector(3 downto 0);  --Ô´¼Ä´æÆ÷ºÅ
 		reset: 	  in std_logic;
 		write: 	  in std_logic;	--Ð´¼Ä´æÆ÷ÐÅºÅ
 		clk:	  in std_logic;	

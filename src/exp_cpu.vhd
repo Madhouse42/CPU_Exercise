@@ -22,8 +22,8 @@ architecture behav of exp_cpu is
 signal t1, t2, t3: std_logic;
 signal pc, pc_inc, IR: std_logic_vector(15 downto 0);
 	-- decoder_unit out
-signal SR, DR: std_logic_vector(1 downto 0);
-signal op_code:	std_logic_vector(2 downto 0);
+signal SR, DR: std_logic_vector(3 downto 0);
+signal op_code:	std_logic_vector(4 downto 0);
 signal zj_instruct, cj_instruct, lj_instruct: std_logic;
 signal DRWr, Mem_Write, dw_instruct, change_z:  std_logic;
 signal change_c, sel_memdata: std_logic;
