@@ -19,7 +19,8 @@ port (  DR: 	  in std_logic_vector(3 downto 0);  --目的寄存器号
 		z_out:	    out std_logic;
         c_flag : out std_logic;
         z_flag : out std_logic;
-        r0, r1, r2, r3: out std_logic_vector (15 downto 0)
+        r0, r1, r2, r3: out std_logic_vector (15 downto 0);
+		sel_out : out std_logic_vector (3 downto 0)
 	  );
 end regfile;
 
@@ -34,6 +35,7 @@ begin
     r1 <= reg01;
     r2 <= reg02;
     r3 <= reg03;
+	sel_out <= sel00 & sel01 & sel02 & sel03;
 
 z_c_proc: process(reset,clk)  --对指令执行结束后的z、c标志进行处理
 begin
@@ -57,14 +59,14 @@ Areg00: reg port map(				--寄存器R0
 		d_input		=> d_input,
 		clk			=> clk,		
 		write		=> write,
-	    sel			=> sel00,	
+	    sel			=> sel00,
 		q_output	=> reg00
 		);
 
 Areg01: reg port map(				--寄存器R1
 		reset		=> reset,
 		d_input		=> d_input,
-		clk			=> clk,		
+		clk			=> clk,
 		write		=> write,
 	    sel			=> sel01,	
 		q_output	=> reg01	

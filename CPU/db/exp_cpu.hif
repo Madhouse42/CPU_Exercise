@@ -521,200 +521,6 @@ add_sub
 }
 # end
 # entity
-exp_cpu
-# storage
-db|exp_cpu.(0).cnf
-db|exp_cpu.(0).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_insensitive
-# source_file
-exp_cpu.vhd
-8d51ffae8c6c54ca7e81e66a3192be3
-4
-# internal_option {
-ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
-ON
-AUTO_RESOURCE_SHARING
-OFF
-}
-# include_file {
-exp_cpu_components.vhd
-a69b7a23c8bc757a2c59d256cc149e16
-}
-# hierarchies {
-|
-}
-# end
-# entity
-instru_fetch
-# storage
-db|exp_cpu.(1).cnf
-db|exp_cpu.(1).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_insensitive
-# source_file
-instru_fetch.vhd
-34a5fb9e9b6bc5e4b7c41a249ecd11d
-4
-# internal_option {
-ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
-ON
-AUTO_RESOURCE_SHARING
-OFF
-}
-# user_parameter {
- constraint(data_read)
-15 downto 0
-PARAMETER_STRING
-USR
- constraint(sjmp_addr)
-15 downto 0
-PARAMETER_STRING
-USR
- constraint(pc)
-15 downto 0
-PARAMETER_STRING
-USR
- constraint(pc_inc)
-15 downto 0
-PARAMETER_STRING
-USR
- constraint(ir)
-15 downto 0
-PARAMETER_STRING
-USR
-}
-# include_file {
-exp_cpu_components.vhd
-a69b7a23c8bc757a2c59d256cc149e16
-}
-# hierarchies {
-instru_fetch:G_INSTRU_FETCH
-}
-# end
-# entity
-decoder_unit
-# storage
-db|exp_cpu.(2).cnf
-db|exp_cpu.(2).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_insensitive
-# source_file
-decoder_unit.vhd
-e14330e6a8ef698a6b33859239ddb6f
-4
-# internal_option {
-ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
-ON
-AUTO_RESOURCE_SHARING
-OFF
-}
-# user_parameter {
- constraint(ir)
-15 downto 0
-PARAMETER_STRING
-USR
- constraint(sr)
-3 downto 0
-PARAMETER_STRING
-USR
- constraint(dr)
-3 downto 0
-PARAMETER_STRING
-USR
- constraint(op_code)
-4 downto 0
-PARAMETER_STRING
-USR
- constraint(r_sjmp_addr)
-15 downto 0
-PARAMETER_STRING
-USR
-}
-# include_file {
-exp_cpu_components.vhd
-a69b7a23c8bc757a2c59d256cc149e16
-}
-# hierarchies {
-decoder_unit:G_DECODER
-}
-# end
-# entity
-exe_unit
-# storage
-db|exp_cpu.(3).cnf
-db|exp_cpu.(3).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_insensitive
-# source_file
-exe_unit.vhd
-4c59e3543b9591c2d1f6fa6b8a2fb1c
-4
-# internal_option {
-ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
-ON
-AUTO_RESOURCE_SHARING
-OFF
-}
-# user_parameter {
- constraint(op_code)
-4 downto 0
-PARAMETER_STRING
-USR
- constraint(pc)
-15 downto 0
-PARAMETER_STRING
-USR
- constraint(pc_inc)
-15 downto 0
-PARAMETER_STRING
-USR
- constraint(r_sjmp_addr)
-15 downto 0
-PARAMETER_STRING
-USR
- constraint(sjmp_addr)
-15 downto 0
-PARAMETER_STRING
-USR
- constraint(sr_data)
-15 downto 0
-PARAMETER_STRING
-USR
- constraint(dr_data)
-15 downto 0
-PARAMETER_STRING
-USR
- constraint(mem_addr)
-15 downto 0
-PARAMETER_STRING
-USR
- constraint(result)
-15 downto 0
-PARAMETER_STRING
-USR
-}
-# include_file {
-exp_cpu_components.vhd
-a69b7a23c8bc757a2c59d256cc149e16
-}
-# hierarchies {
-exe_unit:G_EXE
-}
-# end
-# entity
 memory_unit
 # storage
 db|exp_cpu.(4).cnf
@@ -773,6 +579,93 @@ memory_unit:G_MEMORY
 }
 # end
 # entity
+reg
+# storage
+db|exp_cpu.(6).cnf
+db|exp_cpu.(6).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+reg.vhd
+ee7aac57355551d5951142e5fbb6cd
+4
+# internal_option {
+ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
+ON
+AUTO_RESOURCE_SHARING
+OFF
+}
+# user_parameter {
+ constraint(d_input)
+15 downto 0
+PARAMETER_STRING
+USR
+ constraint(q_output)
+15 downto 0
+PARAMETER_STRING
+USR
+}
+# hierarchies {
+regfile:G_REGFILE|reg:Areg00
+regfile:G_REGFILE|reg:Areg01
+regfile:G_REGFILE|reg:Areg02
+regfile:G_REGFILE|reg:Areg03
+}
+# end
+# entity
+instru_fetch
+# storage
+db|exp_cpu.(1).cnf
+db|exp_cpu.(1).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+instru_fetch.vhd
+f5e6ac6f9e786ba69631db639bb6c55
+4
+# internal_option {
+ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
+ON
+AUTO_RESOURCE_SHARING
+OFF
+}
+# user_parameter {
+ constraint(data_read)
+15 downto 0
+PARAMETER_STRING
+USR
+ constraint(sjmp_addr)
+15 downto 0
+PARAMETER_STRING
+USR
+ constraint(pc)
+15 downto 0
+PARAMETER_STRING
+USR
+ constraint(pc_inc)
+15 downto 0
+PARAMETER_STRING
+USR
+ constraint(ir)
+15 downto 0
+PARAMETER_STRING
+USR
+}
+# include_file {
+exp_cpu_components.vhd
+a69b7a23c8bc757a2c59d256cc149e16
+}
+# hierarchies {
+instru_fetch:G_INSTRU_FETCH
+}
+# end
+# entity
 regfile
 # storage
 db|exp_cpu.(5).cnf
@@ -784,7 +677,7 @@ ON
 # case_insensitive
 # source_file
 regfile.vhd
-ff54aaaf247d73f1ec67ba56ba3b3
+bcccb78aca156ed4b555ecfd99346af3
 4
 # internal_option {
 ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
@@ -827,18 +720,46 @@ regfile:G_REGFILE
 }
 # end
 # entity
-reg
+exp_cpu
 # storage
-db|exp_cpu.(6).cnf
-db|exp_cpu.(6).cnf
+db|exp_cpu.(0).cnf
+db|exp_cpu.(0).cnf
 # logic_option {
 AUTO_RAM_RECOGNITION
 ON
 }
 # case_insensitive
 # source_file
-reg.vhd
-ee7aac57355551d5951142e5fbb6cd
+exp_cpu.vhd
+3b67563021367a984f0cbea4b9843e7
+4
+# internal_option {
+ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
+ON
+AUTO_RESOURCE_SHARING
+OFF
+}
+# include_file {
+exp_cpu_components.vhd
+a69b7a23c8bc757a2c59d256cc149e16
+}
+# hierarchies {
+|
+}
+# end
+# entity
+decoder_unit
+# storage
+db|exp_cpu.(2).cnf
+db|exp_cpu.(2).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+decoder_unit.vhd
+182baf7423f11691ff3e39fb9931587
 4
 # internal_option {
 ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
@@ -847,20 +768,99 @@ AUTO_RESOURCE_SHARING
 OFF
 }
 # user_parameter {
- constraint(d_input)
+ constraint(ir)
 15 downto 0
 PARAMETER_STRING
 USR
- constraint(q_output)
+ constraint(sr)
+3 downto 0
+PARAMETER_STRING
+USR
+ constraint(dr)
+3 downto 0
+PARAMETER_STRING
+USR
+ constraint(op_code)
+4 downto 0
+PARAMETER_STRING
+USR
+ constraint(r_sjmp_addr)
 15 downto 0
 PARAMETER_STRING
 USR
 }
+# include_file {
+exp_cpu_components.vhd
+a69b7a23c8bc757a2c59d256cc149e16
+}
 # hierarchies {
-regfile:G_REGFILE|reg:Areg00
-regfile:G_REGFILE|reg:Areg01
-regfile:G_REGFILE|reg:Areg02
-regfile:G_REGFILE|reg:Areg03
+decoder_unit:G_DECODER
+}
+# end
+# entity
+exe_unit
+# storage
+db|exp_cpu.(3).cnf
+db|exp_cpu.(3).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+exe_unit.vhd
+d31cc7dbf2858c3d9e54542e6e64cb2
+4
+# internal_option {
+ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
+ON
+AUTO_RESOURCE_SHARING
+OFF
+}
+# user_parameter {
+ constraint(op_code)
+4 downto 0
+PARAMETER_STRING
+USR
+ constraint(pc)
+15 downto 0
+PARAMETER_STRING
+USR
+ constraint(pc_inc)
+15 downto 0
+PARAMETER_STRING
+USR
+ constraint(r_sjmp_addr)
+15 downto 0
+PARAMETER_STRING
+USR
+ constraint(sjmp_addr)
+15 downto 0
+PARAMETER_STRING
+USR
+ constraint(sr_data)
+15 downto 0
+PARAMETER_STRING
+USR
+ constraint(dr_data)
+15 downto 0
+PARAMETER_STRING
+USR
+ constraint(mem_addr)
+15 downto 0
+PARAMETER_STRING
+USR
+ constraint(result)
+15 downto 0
+PARAMETER_STRING
+USR
+}
+# include_file {
+exp_cpu_components.vhd
+a69b7a23c8bc757a2c59d256cc149e16
+}
+# hierarchies {
+exe_unit:G_EXE
 }
 # end
 # complete

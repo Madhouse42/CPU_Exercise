@@ -20,7 +20,6 @@ architecture behav of exp_cpu is
 	
 signal t1, t2, t3 : std_logic;
 signal pc, pc_inc, IR : std_logic_vector(15 downto 0);
-	
 signal SR, DR : std_logic_vector(3 downto 0);
 signal op_code : std_logic_vector(4 downto 0);
 signal zj_instruct, cj_instruct, lj_instruct,
@@ -38,6 +37,7 @@ signal r0, r1, r2, r3 : std_logic_vector (15 downto 0);
 signal output_DR, output_SR : std_logic_vector(15 downto 0);
 signal c_out, z_out : std_logic;  
 signal reset_out, clk_out, start_out : std_logic;
+signal sel_out : std_logic_vector (3 downto 0);
 
 begin
     test_out : process(reg_sel)
@@ -50,15 +50,17 @@ begin
             when "000010" =>
                 reg_content <= r2;
             when "000011" =>
-                reg_content <= r3;
+				reg_content <= "1000" & dr & "0000" & sr;
             when "000100" =>
                 reg_content <= '0' & start_out & reset_out & clk_out & "000" & t3 & "000" & t2 & "000" & t1;
+			when "000101" =>
+				reg_content <= "0000" & dr & "0000" & sr;
             when "111110" =>
                 reg_content <= pc;
             when "111111" =>
                 reg_content <= ir;
             when others =>
-                reg_content <= x"0000";
+                reg_content <= x"ffff";
         end case;
     end process;
 

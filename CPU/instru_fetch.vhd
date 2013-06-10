@@ -27,7 +27,7 @@ begin
     IR_poc: process(reset, t2)
     begin
         if reset = '0' then
-            IR  <=  x"7000";
+            IR  <=  x"1b00";
         elsif t2'event and t2 = '1' then
             IR  <=  data_read;
         end if;
@@ -45,7 +45,7 @@ begin
             end if;
         end if;
     end process;
-    
+
     process(reset, clk)
     begin
 		start_out <= start;

@@ -1,5 +1,5 @@
 Flow report for exp_cpu
-Sat Jun 09 13:10:18 2012
+Fri Jun 10 16:32:14 2005
 Version 5.1 Build 176 10/26/2005 SJ Full Version
 
 
@@ -36,15 +36,15 @@ applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +------------------------------------+------------------------------------------+
-; Flow Status                        ; Successful - Sat Jun 09 13:10:17 2012    ;
+; Flow Status                        ; Successful - Fri Jun 10 16:32:14 2005    ;
 ; Quartus II Version                 ; 5.1 Build 176 10/26/2005 SJ Full Version ;
 ; Revision Name                      ; exp_cpu                                  ;
 ; Top-level Entity Name              ; exp_cpu                                  ;
 ; Family                             ; Cyclone II                               ;
 ; Device                             ; EP2C20Q240C8                             ;
 ; Timing Models                      ; Preliminary                              ;
-; Met timing requirements            ; No                                       ;
-; Total logic elements               ; 639 / 18,752 ( 3 % )                     ;
+; Met timing requirements            ; Yes                                      ;
+; Total logic elements               ; 676 / 18,752 ( 4 % )                     ;
 ; Total registers                    ; 104                                      ;
 ; Total pins                         ; 59 / 142 ( 42 % )                        ;
 ; Total virtual pins                 ; 0                                        ;
@@ -59,7 +59,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 06/09/2012 13:09:33 ;
+; Start date & time ; 06/10/2005 16:31:23 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; exp_cpu             ;
 +-------------------+---------------------+
@@ -70,11 +70,11 @@ applicable agreement for further details.
 +----------------------+--------------+
 ; Module Name          ; Elapsed Time ;
 +----------------------+--------------+
-; Analysis & Synthesis ; 00:00:18     ;
-; Fitter               ; 00:00:16     ;
-; Assembler            ; 00:00:06     ;
-; Timing Analyzer      ; 00:00:02     ;
-; Total                ; 00:00:42     ;
+; Analysis & Synthesis ; 00:00:20     ;
+; Fitter               ; 00:00:19     ;
+; Assembler            ; 00:00:02     ;
+; Timing Analyzer      ; 00:00:04     ;
+; Total                ; 00:00:45     ;
 +----------------------+--------------+
 
 

@@ -27,36 +27,75 @@ end decoder_unit;
 architecture behavioral of decoder_unit is
 begin
 
-    sr <= ir (7 downto 4);
-    dr <= ir (3 downto 0);
 
     sel_memdata <= ir (15) and
                    (not ir (14)) and
                    (not ir (13)) and
                    (not ir (12));
 
-    change_z <= (not ir (15)) and
-                (not ir (14)) and
-                (not ir (13)) and
-                (not (ir (12) and
-                      ir (11) and
-                      ir (10) and
-                      ir (9) and
-                      ir (8)));
-    change_c <= (not ir (15)) and
-                (not ir (14)) and
-                (not ir (13)) and
-                ((not ir (0)) or
-                 ((not ir (12)) and
-                  ir (11) and
-                  ir (10)));
+	process (ir)
+	begin
+    	dr <= ir (3 downto 0);
+		if ir (12) = '1' then
+    		sr <= ir (3 downto 0);
+		else
+			sr <= ir (7 downto 4);
+		end if;
+		case ir (15 downto 8) is
+			when "00010000" =>
+				change_z <= '1';
+				change_c <= '1';
+			when "00011000" =>
+				change_z <= '1';
+				change_c <= '1';
+			when "00010100" =>
+				change_z <= '1';
+				change_c <= '1';
+			when "00010010" =>
+				change_z <= '1';
+				change_c <= '1';
+			when "00000010" =>
+				change_z <= '1';
+				change_c <= '1';
+			when "00011010" =>
+				change_z <= '1';
+				change_c <= '1';
+			when "00010110" =>
+				change_z <= '1';
+				change_c <= '1';
+			when "00011101" =>
+				change_z <= '1';
+				change_c <= '1';
+			when "00011110" =>
+				change_z <= '1';
+				change_c <= '1';
+			when "00010001" =>
+				change_z <= '1';
+				change_c <= '0';
+			when "00000001" =>
+				change_z <= '1';
+				change_c <= '0';
+			when "00010011" =>
+				change_z <= '1';
+				change_c <= '0';
+			when "00010111" =>
+				change_z <= '1';
+				change_c <= '0';
+			when "00011001" =>
+				change_z <= '1';
+				change_c <= '0';
+			when others =>
+				change_z <= '0';
+				change_c <= '0';
+		end case;
+	end process;
 
     DRWr_proc : process (ir)
     begin
         if ir (15 downto 13) = "000" then -- 算术指令，包括mvrr
             if ir (12) = '1' then -- modifiable
                 drwr <= '1';
-            else
+			else
                 drwr <= '0';
             end if;
         elsif ir (15 downto 12) = "1000" then

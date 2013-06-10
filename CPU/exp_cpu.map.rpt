@@ -1,5 +1,5 @@
 Analysis & Synthesis report for exp_cpu
-Sat Jun 09 13:09:50 2012
+Fri Jun 10 16:31:42 2005
 Version 5.1 Build 176 10/26/2005 SJ Full Version
 
 
@@ -44,12 +44,12 @@ applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +------------------------------------+------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sat Jun 09 13:09:50 2012    ;
+; Analysis & Synthesis Status        ; Successful - Fri Jun 10 16:31:42 2005    ;
 ; Quartus II Version                 ; 5.1 Build 176 10/26/2005 SJ Full Version ;
 ; Revision Name                      ; exp_cpu                                  ;
 ; Top-level Entity Name              ; exp_cpu                                  ;
 ; Family                             ; Cyclone II                               ;
-; Total combinational functions      ; 637                                      ;
+; Total combinational functions      ; 675                                      ;
 ; Total registers                    ; 104                                      ;
 ; Total pins                         ; 59                                       ;
 ; Total virtual pins                 ; 0                                        ;
@@ -151,21 +151,21 @@ applicable agreement for further details.
 +---------------------------------------------+-------+
 ; Resource                                    ; Usage ;
 +---------------------------------------------+-------+
-; Total combinational functions               ; 637   ;
+; Total combinational functions               ; 675   ;
 ; Logic element usage by number of LUT inputs ;       ;
-;     -- 4 input functions                    ; 404   ;
-;     -- 3 input functions                    ; 187   ;
-;     -- <=2 input functions                  ; 46    ;
+;     -- 4 input functions                    ; 400   ;
+;     -- 3 input functions                    ; 222   ;
+;     -- <=2 input functions                  ; 53    ;
 ;         -- Combinational cells for routing  ; 0     ;
 ; Logic elements by mode                      ;       ;
-;     -- normal mode                          ; 527   ;
-;     -- arithmetic mode                      ; 110   ;
+;     -- normal mode                          ; 549   ;
+;     -- arithmetic mode                      ; 126   ;
 ; Total registers                             ; 104   ;
 ; I/O pins                                    ; 59    ;
 ; Maximum fan-out node                        ; reset ;
 ; Maximum fan-out                             ; 107   ;
-; Total fan-out                               ; 2700  ;
-; Average fan-out                             ; 3.38  ;
+; Total fan-out                               ; 2800  ;
+; Average fan-out                             ; 3.34  ;
 +---------------------------------------------+-------+
 
 
@@ -174,16 +174,16 @@ applicable agreement for further details.
 +---------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------+
 ; Compilation Hierarchy Node            ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                      ;
 +---------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------+
-; |exp_cpu                              ; 637 (90)          ; 104 (0)      ; 0           ; 0            ; 0       ; 0         ; 59   ; 0            ; |exp_cpu                                                                 ;
-;    |decoder_unit:G_DECODER|           ; 14 (14)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|decoder_unit:G_DECODER                                          ;
-;    |exe_unit:G_EXE|                   ; 298 (264)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|exe_unit:G_EXE                                                  ;
-;       |lpm_add_sub:add_rtl_0|         ; 34 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|exe_unit:G_EXE|lpm_add_sub:add_rtl_0                            ;
-;          |add_sub_rjg:auto_generated| ; 34 (34)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|exe_unit:G_EXE|lpm_add_sub:add_rtl_0|add_sub_rjg:auto_generated ;
-;    |instru_fetch:G_INSTRU_FETCH|      ; 70 (70)           ; 36 (36)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|instru_fetch:G_INSTRU_FETCH                                     ;
+; |exp_cpu                              ; 675 (101)         ; 104 (0)      ; 0           ; 0            ; 0       ; 0         ; 59   ; 0            ; |exp_cpu                                                                 ;
+;    |decoder_unit:G_DECODER|           ; 18 (18)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|decoder_unit:G_DECODER                                          ;
+;    |exe_unit:G_EXE|                   ; 322 (271)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|exe_unit:G_EXE                                                  ;
+;       |lpm_add_sub:add_rtl_0|         ; 51 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|exe_unit:G_EXE|lpm_add_sub:add_rtl_0                            ;
+;          |add_sub_rjg:auto_generated| ; 51 (51)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|exe_unit:G_EXE|lpm_add_sub:add_rtl_0|add_sub_rjg:auto_generated ;
+;    |instru_fetch:G_INSTRU_FETCH|      ; 71 (71)           ; 36 (36)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|instru_fetch:G_INSTRU_FETCH                                     ;
 ;    |memory_unit:G_MEMORY|             ; 50 (50)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|memory_unit:G_MEMORY                                            ;
-;    |regfile:G_REGFILE|                ; 115 (13)          ; 68 (4)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|regfile:G_REGFILE                                               ;
+;    |regfile:G_REGFILE|                ; 113 (12)          ; 68 (4)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|regfile:G_REGFILE                                               ;
 ;       |mux_4_to_1:muxA|               ; 49 (49)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|regfile:G_REGFILE|mux_4_to_1:muxA                               ;
-;       |mux_4_to_1:muxB|               ; 49 (49)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|regfile:G_REGFILE|mux_4_to_1:muxB                               ;
+;       |mux_4_to_1:muxB|               ; 48 (48)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|regfile:G_REGFILE|mux_4_to_1:muxB                               ;
 ;       |reg:Areg00|                    ; 1 (1)             ; 16 (16)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|regfile:G_REGFILE|reg:Areg00                                    ;
 ;       |reg:Areg01|                    ; 1 (1)             ; 16 (16)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|regfile:G_REGFILE|reg:Areg01                                    ;
 ;       |reg:Areg02|                    ; 1 (1)             ; 16 (16)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|regfile:G_REGFILE|reg:Areg02                                    ;
@@ -209,8 +209,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; memory_unit:G_MEMORY|data_read[3]             ;    ;
 ; memory_unit:G_MEMORY|data_read[2]             ;    ;
 ; memory_unit:G_MEMORY|data_read[1]             ;    ;
-; memory_unit:G_MEMORY|data_read[7]             ;    ;
 ; memory_unit:G_MEMORY|data_read[6]             ;    ;
+; memory_unit:G_MEMORY|data_read[7]             ;    ;
 ; memory_unit:G_MEMORY|data_read[4]             ;    ;
 ; memory_unit:G_MEMORY|data_read[5]             ;    ;
 ; Number of user-specified and inferred latches ; 16 ;
@@ -238,27 +238,32 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------------------------------+---------+
 ; Inverted Register                      ; Fan out ;
 +----------------------------------------+---------+
-; instru_fetch:G_INSTRU_FETCH|IR[14]     ; 11      ;
-; instru_fetch:G_INSTRU_FETCH|IR[13]     ; 11      ;
-; instru_fetch:G_INSTRU_FETCH|IR[12]     ; 9       ;
+; instru_fetch:G_INSTRU_FETCH|IR[12]     ; 15      ;
+; instru_fetch:G_INSTRU_FETCH|IR[8]      ; 16      ;
+; instru_fetch:G_INSTRU_FETCH|IR[9]      ; 17      ;
+; instru_fetch:G_INSTRU_FETCH|IR[11]     ; 10      ;
 ; instru_fetch:G_INSTRU_FETCH|start      ; 2       ;
-; Total number of inverted registers = 4 ;         ;
+; Total number of inverted registers = 5 ;         ;
 +----------------------------------------+---------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                      ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                            ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------+
-; 4:1                ; 15 bits   ; 30 LEs        ; 30 LEs               ; 0 LEs                  ; Yes        ; |exp_cpu|instru_fetch:G_INSTRU_FETCH|pc[1]            ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |exp_cpu|exe_unit:G_EXE|Mem_Addr[15]                  ;
-; 16:1               ; 16 bits   ; 160 LEs       ; 48 LEs               ; 112 LEs                ; No         ; |exp_cpu|regfile:G_REGFILE|mux_4_to_1:muxB|output[10] ;
-; 16:1               ; 16 bits   ; 160 LEs       ; 48 LEs               ; 112 LEs                ; No         ; |exp_cpu|regfile:G_REGFILE|mux_4_to_1:muxA|output[15] ;
-; 64:1               ; 10 bits   ; 420 LEs       ; 60 LEs               ; 360 LEs                ; No         ; |exp_cpu|Mux~6                                        ;
-; 64:1               ; 6 bits    ; 252 LEs       ; 36 LEs               ; 216 LEs                ; No         ; |exp_cpu|Mux~11                                       ;
-; 20:1               ; 15 bits   ; 195 LEs       ; 105 LEs              ; 90 LEs                 ; No         ; |exp_cpu|exe_unit:G_EXE|result[11]                    ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                     ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------+
+; 4:1                ; 15 bits   ; 30 LEs        ; 30 LEs               ; 0 LEs                  ; Yes        ; |exp_cpu|instru_fetch:G_INSTRU_FETCH|pc[1]           ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |exp_cpu|exe_unit:G_EXE|Mem_Addr[10]                 ;
+; 16:1               ; 16 bits   ; 160 LEs       ; 48 LEs               ; 112 LEs                ; No         ; |exp_cpu|regfile:G_REGFILE|mux_4_to_1:muxA|output[0] ;
+; 16:1               ; 16 bits   ; 160 LEs       ; 48 LEs               ; 112 LEs                ; No         ; |exp_cpu|regfile:G_REGFILE|mux_4_to_1:muxB|output[0] ;
+; 64:1               ; 4 bits    ; 168 LEs       ; 28 LEs               ; 140 LEs                ; No         ; |exp_cpu|Mux~0                                       ;
+; 64:1               ; 4 bits    ; 168 LEs       ; 32 LEs               ; 136 LEs                ; No         ; |exp_cpu|Mux~11                                      ;
+; 36:1               ; 6 bits    ; 144 LEs       ; 36 LEs               ; 108 LEs                ; No         ; |exp_cpu|Mux~14                                      ;
+; 36:1               ; 2 bits    ; 48 LEs        ; 10 LEs               ; 38 LEs                 ; No         ; |exp_cpu|Mux~15                                      ;
+; 23:1               ; 15 bits   ; 225 LEs       ; 105 LEs              ; 120 LEs                ; No         ; |exp_cpu|exe_unit:G_EXE|result[5]                    ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |exp_cpu|exe_unit:G_EXE|add~2                        ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |exp_cpu|exe_unit:G_EXE|add~2                        ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------+
 
 
 +---------------------------------------------------------------------------------------+
@@ -301,7 +306,7 @@ The equations can be found in D:/ream/ccpu/exp_cpu.map.eqn.
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 5.1 Build 176 10/26/2005 SJ Full Version
-    Info: Processing started: Sat Jun 09 13:09:32 2012
+    Info: Processing started: Fri Jun 10 16:31:23 2005
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ccpu -c exp_cpu
 Info: Found 2 design units, including 1 entities, in source file decoder_2_to_4.vhd
     Info: Found design unit 1: decoder_2_to_4-behavioral
@@ -333,18 +338,23 @@ Info: Found 2 design units, including 1 entities, in source file regfile.vhd
     Info: Found design unit 1: regfile-struct
     Info: Found entity 1: regfile
 Info: Elaborating entity "exp_cpu" for the top level hierarchy
+Warning (10036): Verilog HDL or VHDL warning at exp_cpu.vhd(36): object "r3" assigned a value but never read
+Info (10035): Verilog HDL or VHDL information at exp_cpu.vhd(40): object "sel_out" declared but not used
 Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(47): signal "r0" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
 Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(49): signal "r1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
 Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(51): signal "r2" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
-Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(53): signal "r3" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(53): signal "DR" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(53): signal "SR" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
 Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(55): signal "start_out" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
 Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(55): signal "reset_out" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
 Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(55): signal "clk_out" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
 Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(55): signal "t3" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
 Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(55): signal "t2" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
 Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(55): signal "t1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
-Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(57): signal "pc" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
-Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(59): signal "IR" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(57): signal "DR" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(57): signal "SR" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(59): signal "pc" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(61): signal "IR" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
 Info: Elaborating entity "instru_fetch" for hierarchy "instru_fetch:G_INSTRU_FETCH"
 Warning (10492): VHDL Process Statement warning at instru_fetch.vhd(51): signal "start" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
 Info: Elaborating entity "decoder_unit" for hierarchy "decoder_unit:G_DECODER"
@@ -371,13 +381,13 @@ Info: Found 1 design units, including 1 entities, in source file db/add_sub_rjg.
     Info: Found entity 1: add_sub_rjg
 Info: Registers with preset signals will power-up high
 Info: DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
-Info: Implemented 776 device resources after synthesis - the final resource count might be different
+Info: Implemented 813 device resources after synthesis - the final resource count might be different
     Info: Implemented 8 input pins
     Info: Implemented 35 output pins
     Info: Implemented 16 bidirectional pins
-    Info: Implemented 717 logic cells
-Info: Quartus II Analysis & Synthesis was successful. 0 errors, 24 warnings
-    Info: Processing ended: Sat Jun 09 13:09:50 2012
-    Info: Elapsed time: 00:00:18
+    Info: Implemented 754 logic cells
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 28 warnings
+    Info: Processing ended: Fri Jun 10 16:31:42 2005
+    Info: Elapsed time: 00:00:20
 
 
