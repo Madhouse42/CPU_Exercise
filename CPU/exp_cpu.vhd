@@ -33,7 +33,7 @@ signal Mem_Addr, result, sjmp_addr : std_logic_vector(15 downto 0);
 	
 signal data_read, DR_data_out : std_logic_vector(15 downto 0);
 	
-signal r0, r1, r2, r3 : std_logic_vector (15 downto 0);
+signal r0, r1, r2, r3, r4 : std_logic_vector (15 downto 0);
 signal output_DR, output_SR : std_logic_vector(15 downto 0);
 signal c_out, z_out : std_logic;  
 signal reset_out, clk_out, start_out : std_logic;
@@ -52,6 +52,8 @@ begin
             when "000011" =>
 				reg_content <= r3;
             when "000100" =>
+				reg_content <= r4;
+			when "000101" =>
                 reg_content <= '0' & start_out & reset_out & clk_out & "000" & t3 & "000" & t2 & "000" & t1;
             when "111110" =>
                 reg_content <= pc;
@@ -164,6 +166,7 @@ G_REGFILE : regfile port map
 		r1 => r1,
 		r2 => r2,
 		r3 => r3,
+		r4 => r4,
 		c_flag => c_flag,
 		z_flag => z_flag
 	    );

@@ -13,7 +13,7 @@ package exp_cpu_components is
 
     component mux_4_to_1
     port (input0, input1,
-          input2, input3 : in std_logic_vector (15 downto 0);
+          input2, input3, input4 : in std_logic_vector (15 downto 0);
           sel : in std_logic_vector (3 downto 0);
           output : out std_logic_vector (15 downto 0));
     end component;
@@ -23,7 +23,8 @@ package exp_cpu_components is
           sel00 : out std_logic;
           sel01 : out std_logic;
           sel02 : out std_logic;
-          sel03 : out std_logic);
+          sel03 : out std_logic;
+		  sel04 : out std_logic);
     end component;
 
     component regfile
@@ -39,7 +40,7 @@ package exp_cpu_components is
           z_in : in std_logic;
           output_dr : out std_logic_vector (15 downto 0);
           output_sr : out std_logic_vector (15 downto 0);
-          r0, r1, r2, r3 : out std_logic_vector (15 downto 0);
+          r0, r1, r2, r3, r4 : out std_logic_vector (15 downto 0);
           c_out : out std_logic;
           z_out : out std_logic;
           c_flag : out std_logic;

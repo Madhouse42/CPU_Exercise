@@ -16,79 +16,6 @@ VHSM_ON
 -- Start Partition --
 -- End Partition --
 # entity
-decoder_2_to_4
-# storage
-db|exp_cpu.(7).cnf
-db|exp_cpu.(7).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_insensitive
-# source_file
-decoder_2_to_4.vhd
-29b0c61e6b55c276a2a92655d6e43de
-4
-# internal_option {
-ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
-ON
-AUTO_RESOURCE_SHARING
-OFF
-}
-# user_parameter {
- constraint(sel)
-3 downto 0
-PARAMETER_STRING
-USR
-}
-# hierarchies {
-regfile:G_REGFILE|decoder_2_to_4:des_decoder
-}
-# end
-# entity
-mux_4_to_1
-# storage
-db|exp_cpu.(8).cnf
-db|exp_cpu.(8).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_insensitive
-# source_file
-mux_4_to_1.vhd
-44d31f3e181610f34a892af4c8c22ff7
-4
-# internal_option {
-ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
-ON
-AUTO_RESOURCE_SHARING
-OFF
-}
-# user_parameter {
- constraint(input0)
-15 downto 0
-PARAMETER_STRING
-USR
- constraint(input2)
-15 downto 0
-PARAMETER_STRING
-USR
- constraint(sel)
-3 downto 0
-PARAMETER_STRING
-USR
- constraint(output)
-15 downto 0
-PARAMETER_STRING
-USR
-}
-# hierarchies {
-regfile:G_REGFILE|mux_4_to_1:muxA
-regfile:G_REGFILE|mux_4_to_1:muxB
-}
-# end
-# entity
 lpm_add_sub
 # storage
 db|exp_cpu.(9).cnf
@@ -521,64 +448,6 @@ add_sub
 }
 # end
 # entity
-memory_unit
-# storage
-db|exp_cpu.(4).cnf
-db|exp_cpu.(4).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_insensitive
-# source_file
-memory_unit.vhd
-dd4151fd29e3871aa7e430a9649d488d
-4
-# internal_option {
-ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
-ON
-AUTO_RESOURCE_SHARING
-OFF
-}
-# user_parameter {
- constraint(mem_addr)
-15 downto 0
-PARAMETER_STRING
-USR
- constraint(sr_data)
-15 downto 0
-PARAMETER_STRING
-USR
- constraint(result)
-15 downto 0
-PARAMETER_STRING
-USR
- constraint(ob)
-15 downto 0
-PARAMETER_STRING
-USR
- constraint(ar)
-15 downto 0
-PARAMETER_STRING
-USR
- constraint(data_read)
-15 downto 0
-PARAMETER_STRING
-USR
- constraint(dr_data_out)
-15 downto 0
-PARAMETER_STRING
-USR
-}
-# include_file {
-exp_cpu_components.vhd
-a69b7a23c8bc757a2c59d256cc149e16
-}
-# hierarchies {
-memory_unit:G_MEMORY
-}
-# end
-# entity
 reg
 # storage
 db|exp_cpu.(6).cnf
@@ -613,6 +482,35 @@ regfile:G_REGFILE|reg:Areg00
 regfile:G_REGFILE|reg:Areg01
 regfile:G_REGFILE|reg:Areg02
 regfile:G_REGFILE|reg:Areg03
+regfile:G_REGFILE|reg:Areg04
+}
+# end
+# entity
+exp_cpu
+# storage
+db|exp_cpu.(0).cnf
+db|exp_cpu.(0).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+exp_cpu.vhd
+2380d5ca2d469c0f3d23efb17ad9a
+4
+# internal_option {
+ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
+ON
+AUTO_RESOURCE_SHARING
+OFF
+}
+# include_file {
+exp_cpu_components.vhd
+e7369eea980cc11b4a748ebcac812c
+}
+# hierarchies {
+|
 }
 # end
 # entity
@@ -659,64 +557,10 @@ USR
 }
 # include_file {
 exp_cpu_components.vhd
-a69b7a23c8bc757a2c59d256cc149e16
+e7369eea980cc11b4a748ebcac812c
 }
 # hierarchies {
 instru_fetch:G_INSTRU_FETCH
-}
-# end
-# entity
-regfile
-# storage
-db|exp_cpu.(5).cnf
-db|exp_cpu.(5).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_insensitive
-# source_file
-regfile.vhd
-bcccb78aca156ed4b555ecfd99346af3
-4
-# internal_option {
-ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
-ON
-AUTO_RESOURCE_SHARING
-OFF
-}
-# user_parameter {
- constraint(dr)
-3 downto 0
-PARAMETER_STRING
-USR
- constraint(sr)
-3 downto 0
-PARAMETER_STRING
-USR
- constraint(d_input)
-15 downto 0
-PARAMETER_STRING
-USR
- constraint(output_dr)
-15 downto 0
-PARAMETER_STRING
-USR
- constraint(output_sr)
-15 downto 0
-PARAMETER_STRING
-USR
- constraint(r0)
-15 downto 0
-PARAMETER_STRING
-USR
-}
-# include_file {
-exp_cpu_components.vhd
-a69b7a23c8bc757a2c59d256cc149e16
-}
-# hierarchies {
-regfile:G_REGFILE
 }
 # end
 # entity
@@ -763,7 +607,7 @@ USR
 }
 # include_file {
 exp_cpu_components.vhd
-a69b7a23c8bc757a2c59d256cc149e16
+e7369eea980cc11b4a748ebcac812c
 }
 # hierarchies {
 decoder_unit:G_DECODER
@@ -829,25 +673,25 @@ USR
 }
 # include_file {
 exp_cpu_components.vhd
-a69b7a23c8bc757a2c59d256cc149e16
+e7369eea980cc11b4a748ebcac812c
 }
 # hierarchies {
 exe_unit:G_EXE
 }
 # end
 # entity
-exp_cpu
+memory_unit
 # storage
-db|exp_cpu.(0).cnf
-db|exp_cpu.(0).cnf
+db|exp_cpu.(4).cnf
+db|exp_cpu.(4).cnf
 # logic_option {
 AUTO_RAM_RECOGNITION
 ON
 }
 # case_insensitive
 # source_file
-exp_cpu.vhd
-f94453c24a557ec16ed6705f46ca456a
+memory_unit.vhd
+dd4151fd29e3871aa7e430a9649d488d
 4
 # internal_option {
 ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
@@ -855,12 +699,169 @@ ON
 AUTO_RESOURCE_SHARING
 OFF
 }
+# user_parameter {
+ constraint(mem_addr)
+15 downto 0
+PARAMETER_STRING
+USR
+ constraint(sr_data)
+15 downto 0
+PARAMETER_STRING
+USR
+ constraint(result)
+15 downto 0
+PARAMETER_STRING
+USR
+ constraint(ob)
+15 downto 0
+PARAMETER_STRING
+USR
+ constraint(ar)
+15 downto 0
+PARAMETER_STRING
+USR
+ constraint(data_read)
+15 downto 0
+PARAMETER_STRING
+USR
+ constraint(dr_data_out)
+15 downto 0
+PARAMETER_STRING
+USR
+}
 # include_file {
 exp_cpu_components.vhd
-a69b7a23c8bc757a2c59d256cc149e16
+e7369eea980cc11b4a748ebcac812c
 }
 # hierarchies {
-|
+memory_unit:G_MEMORY
+}
+# end
+# entity
+regfile
+# storage
+db|exp_cpu.(5).cnf
+db|exp_cpu.(5).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+regfile.vhd
+8c75f28f284289962363efa0775327
+4
+# internal_option {
+ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
+ON
+AUTO_RESOURCE_SHARING
+OFF
+}
+# user_parameter {
+ constraint(dr)
+3 downto 0
+PARAMETER_STRING
+USR
+ constraint(sr)
+3 downto 0
+PARAMETER_STRING
+USR
+ constraint(d_input)
+15 downto 0
+PARAMETER_STRING
+USR
+ constraint(output_dr)
+15 downto 0
+PARAMETER_STRING
+USR
+ constraint(output_sr)
+15 downto 0
+PARAMETER_STRING
+USR
+ constraint(r0)
+15 downto 0
+PARAMETER_STRING
+USR
+}
+# include_file {
+exp_cpu_components.vhd
+e7369eea980cc11b4a748ebcac812c
+}
+# hierarchies {
+regfile:G_REGFILE
+}
+# end
+# entity
+decoder_2_to_4
+# storage
+db|exp_cpu.(7).cnf
+db|exp_cpu.(7).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+decoder_2_to_4.vhd
+1fb49cf5d04a11149d896d875c69596
+4
+# internal_option {
+ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
+ON
+AUTO_RESOURCE_SHARING
+OFF
+}
+# user_parameter {
+ constraint(sel)
+3 downto 0
+PARAMETER_STRING
+USR
+}
+# hierarchies {
+regfile:G_REGFILE|decoder_2_to_4:des_decoder
+}
+# end
+# entity
+mux_4_to_1
+# storage
+db|exp_cpu.(8).cnf
+db|exp_cpu.(8).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+mux_4_to_1.vhd
+b823f2fe905fd821aba5f66e3c850c
+4
+# internal_option {
+ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
+ON
+AUTO_RESOURCE_SHARING
+OFF
+}
+# user_parameter {
+ constraint(input0)
+15 downto 0
+PARAMETER_STRING
+USR
+ constraint(input2)
+15 downto 0
+PARAMETER_STRING
+USR
+ constraint(sel)
+3 downto 0
+PARAMETER_STRING
+USR
+ constraint(output)
+15 downto 0
+PARAMETER_STRING
+USR
+}
+# hierarchies {
+regfile:G_REGFILE|mux_4_to_1:muxA
+regfile:G_REGFILE|mux_4_to_1:muxB
 }
 # end
 # complete

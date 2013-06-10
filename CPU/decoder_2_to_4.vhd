@@ -7,7 +7,8 @@ entity decoder_2_to_4 is
             sel00:  out std_logic;
             sel01:  out std_logic;
             sel02:  out std_logic;
-            sel03:  out std_logic
+            sel03:  out std_logic;
+			sel04: out std_logic
         );
 end decoder_2_to_4;
 
@@ -19,7 +20,8 @@ begin
              (not sel(0));
     sel01 <= (not sel(3)) and
              (not sel(2)) and
-             (not sel(1)) and sel(0);
+             (not sel(1)) and
+             sel(0);
     sel02 <= (not sel(3)) and
              (not sel(2)) and
              sel(1) and
@@ -28,5 +30,9 @@ begin
              (not sel(2)) and
              sel(1) and
              sel(0);
+	sel04 <= (not sel(3)) and
+			  sel(2) and
+			 (not sel(1)) and
+			 (not sel(0));
 end behavioral;
 

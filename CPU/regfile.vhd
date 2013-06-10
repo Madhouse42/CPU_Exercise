@@ -19,23 +19,22 @@ port (  DR: 	  in std_logic_vector(3 downto 0);  --目的寄存器号
 		z_out:	    out std_logic;
         c_flag : out std_logic;
         z_flag : out std_logic;
-        r0, r1, r2, r3: out std_logic_vector (15 downto 0);
-		sel_out : out std_logic_vector (3 downto 0)
+        r0, r1, r2, r3, r4: out std_logic_vector (15 downto 0)
 	  );
 end regfile;
 
 
 architecture struct of regfile is
 
-signal reg00, reg01, reg02,reg03: std_logic_vector(15 downto 0);
-signal sel00, sel01, sel02, sel03: std_logic;
+signal reg00, reg01, reg02, reg03, reg04: std_logic_vector(15 downto 0);
+signal sel00, sel01, sel02, sel03, sel04: std_logic;
 
 begin
     r0 <= reg00;
     r1 <= reg01;
     r2 <= reg02;
     r3 <= reg03;
-	sel_out <= sel00 & sel01 & sel02 & sel03;
+	r4 <= reg04;
 
 z_c_proc: process(reset,clk)  --对指令执行结束后的z、c标志进行处理
 begin
@@ -78,7 +77,7 @@ Areg02: reg port map(				--寄存器R2
 		clk			=> clk,		
 		write		=> write,
 	    sel			=> sel02,	
-		q_output	=>  reg02
+		q_output	=> reg02
 		);
 
 Areg03: reg port map(				--寄存器R3
@@ -90,12 +89,22 @@ Areg03: reg port map(				--寄存器R3
 		q_output	=> reg03
 		);
 
+Areg04: reg port map(
+		reset => reset,
+		d_input => d_input,
+		clk => clk,
+		write => write,
+		sel => sel04,
+		q_output => reg04
+		);
+
 des_decoder: decoder_2_to_4 port map(	--2 — 4译码器
 		sel 	=> DR,
     	sel00 	=> sel00,
 		sel01 	=> sel01,
 		sel02 	=> sel02,
-		sel03 	=> sel03
+		sel03 	=> sel03,
+		sel04 => sel04
 		);
 
 muxA: mux_4_to_1 port map(				--目的寄存器读出4选1选择器
@@ -103,6 +112,7 @@ muxA: mux_4_to_1 port map(				--目的寄存器读出4选1选择器
     	input1  => reg01,
 		input2  => reg02,
 		input3  => reg03,
+		input4 => reg04,
 		sel     => DR,
 		output => output_DR
 		);
@@ -112,6 +122,7 @@ muxB: mux_4_to_1 port map(				--源寄存器读出4选1选择器
    	 	input1 	=> reg01,
 		input2 	=> reg02,
 		input3 	=> reg03,
+		input4 => reg04,
 		sel 	=> SR,
 		output => output_SR
 		);

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for exp_cpu
-Fri Jun 10 17:03:28 2011
+Fri Jun 10 17:16:39 2011
 Version 5.1 Build 176 10/26/2005 SJ Full Version
 
 
@@ -43,13 +43,13 @@ applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +------------------------------------+------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Fri Jun 10 17:03:28 2011    ;
+; Analysis & Synthesis Status        ; Successful - Fri Jun 10 17:16:39 2011    ;
 ; Quartus II Version                 ; 5.1 Build 176 10/26/2005 SJ Full Version ;
 ; Revision Name                      ; exp_cpu                                  ;
 ; Top-level Entity Name              ; exp_cpu                                  ;
 ; Family                             ; Cyclone II                               ;
-; Total combinational functions      ; 651                                      ;
-; Total registers                    ; 104                                      ;
+; Total combinational functions      ; 709                                      ;
+; Total registers                    ; 120                                      ;
 ; Total pins                         ; 59                                       ;
 ; Total virtual pins                 ; 0                                        ;
 ; Total memory bits                  ; 0                                        ;
@@ -141,21 +141,21 @@ applicable agreement for further details.
 +---------------------------------------------+-------+
 ; Resource                                    ; Usage ;
 +---------------------------------------------+-------+
-; Total combinational functions               ; 651   ;
+; Total combinational functions               ; 709   ;
 ; Logic element usage by number of LUT inputs ;       ;
-;     -- 4 input functions                    ; 408   ;
-;     -- 3 input functions                    ; 180   ;
-;     -- <=2 input functions                  ; 63    ;
+;     -- 4 input functions                    ; 436   ;
+;     -- 3 input functions                    ; 182   ;
+;     -- <=2 input functions                  ; 91    ;
 ;         -- Combinational cells for routing  ; 0     ;
 ; Logic elements by mode                      ;       ;
-;     -- normal mode                          ; 542   ;
+;     -- normal mode                          ; 600   ;
 ;     -- arithmetic mode                      ; 109   ;
-; Total registers                             ; 104   ;
+; Total registers                             ; 120   ;
 ; I/O pins                                    ; 59    ;
 ; Maximum fan-out node                        ; reset ;
-; Maximum fan-out                             ; 107   ;
-; Total fan-out                               ; 2726  ;
-; Average fan-out                             ; 3.35  ;
+; Maximum fan-out                             ; 123   ;
+; Total fan-out                               ; 2964  ;
+; Average fan-out                             ; 3.34  ;
 +---------------------------------------------+-------+
 
 
@@ -164,18 +164,19 @@ applicable agreement for further details.
 +----------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------+
 ; Compilation Hierarchy Node       ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                        ;
 +----------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------+
-; |exp_cpu                         ; 651 (94)          ; 104 (0)      ; 0           ; 0            ; 0       ; 0         ; 59   ; 0            ; |exp_cpu                                   ;
-;    |decoder_unit:G_DECODER|      ; 16 (16)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|decoder_unit:G_DECODER            ;
-;    |exe_unit:G_EXE|              ; 306 (306)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|exe_unit:G_EXE                    ;
+; |exp_cpu                         ; 709 (120)         ; 120 (0)      ; 0           ; 0            ; 0       ; 0         ; 59   ; 0            ; |exp_cpu                                   ;
+;    |decoder_unit:G_DECODER|      ; 18 (18)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|decoder_unit:G_DECODER            ;
+;    |exe_unit:G_EXE|              ; 303 (303)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|exe_unit:G_EXE                    ;
 ;    |instru_fetch:G_INSTRU_FETCH| ; 71 (71)           ; 36 (36)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|instru_fetch:G_INSTRU_FETCH       ;
 ;    |memory_unit:G_MEMORY|        ; 50 (50)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|memory_unit:G_MEMORY              ;
-;    |regfile:G_REGFILE|           ; 114 (12)          ; 68 (4)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|regfile:G_REGFILE                 ;
-;       |mux_4_to_1:muxA|          ; 49 (49)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|regfile:G_REGFILE|mux_4_to_1:muxA ;
-;       |mux_4_to_1:muxB|          ; 49 (49)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|regfile:G_REGFILE|mux_4_to_1:muxB ;
+;    |regfile:G_REGFILE|           ; 147 (12)          ; 84 (4)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|regfile:G_REGFILE                 ;
+;       |mux_4_to_1:muxA|          ; 64 (64)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|regfile:G_REGFILE|mux_4_to_1:muxA ;
+;       |mux_4_to_1:muxB|          ; 64 (64)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|regfile:G_REGFILE|mux_4_to_1:muxB ;
 ;       |reg:Areg00|               ; 1 (1)             ; 16 (16)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|regfile:G_REGFILE|reg:Areg00      ;
-;       |reg:Areg01|               ; 1 (1)             ; 16 (16)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|regfile:G_REGFILE|reg:Areg01      ;
+;       |reg:Areg01|               ; 2 (2)             ; 16 (16)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|regfile:G_REGFILE|reg:Areg01      ;
 ;       |reg:Areg02|               ; 1 (1)             ; 16 (16)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|regfile:G_REGFILE|reg:Areg02      ;
 ;       |reg:Areg03|               ; 1 (1)             ; 16 (16)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|regfile:G_REGFILE|reg:Areg03      ;
+;       |reg:Areg04|               ; 2 (2)             ; 16 (16)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|regfile:G_REGFILE|reg:Areg04      ;
 +----------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -195,12 +196,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; memory_unit:G_MEMORY|data_read[8]             ;    ;
 ; memory_unit:G_MEMORY|data_read[0]             ;    ;
 ; memory_unit:G_MEMORY|data_read[3]             ;    ;
-; memory_unit:G_MEMORY|data_read[2]             ;    ;
 ; memory_unit:G_MEMORY|data_read[1]             ;    ;
-; memory_unit:G_MEMORY|data_read[6]             ;    ;
+; memory_unit:G_MEMORY|data_read[2]             ;    ;
 ; memory_unit:G_MEMORY|data_read[7]             ;    ;
 ; memory_unit:G_MEMORY|data_read[4]             ;    ;
 ; memory_unit:G_MEMORY|data_read[5]             ;    ;
+; memory_unit:G_MEMORY|data_read[6]             ;    ;
 ; Number of user-specified and inferred latches ; 16 ;
 +-----------------------------------------------+----+
 Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
@@ -211,12 +212,12 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 104   ;
+; Total registers                              ; 120   ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 102   ;
+; Number of registers using Asynchronous Clear ; 118   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 64    ;
+; Number of registers using Clock Enable       ; 80    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -226,7 +227,7 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------------------------------+---------+
 ; Inverted Register                      ; Fan out ;
 +----------------------------------------+---------+
-; instru_fetch:G_INSTRU_FETCH|IR[12]     ; 14      ;
+; instru_fetch:G_INSTRU_FETCH|IR[12]     ; 15      ;
 ; instru_fetch:G_INSTRU_FETCH|IR[8]      ; 15      ;
 ; instru_fetch:G_INSTRU_FETCH|IR[9]      ; 14      ;
 ; instru_fetch:G_INSTRU_FETCH|IR[11]     ; 10      ;
@@ -242,10 +243,10 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------+
 ; 4:1                ; 15 bits   ; 30 LEs        ; 30 LEs               ; 0 LEs                  ; Yes        ; |exp_cpu|instru_fetch:G_INSTRU_FETCH|pc[1]           ;
 ; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |exp_cpu|exe_unit:G_EXE|Mem_Addr[12]                 ;
-; 16:1               ; 16 bits   ; 160 LEs       ; 48 LEs               ; 112 LEs                ; No         ; |exp_cpu|regfile:G_REGFILE|mux_4_to_1:muxA|output[0] ;
-; 16:1               ; 16 bits   ; 160 LEs       ; 48 LEs               ; 112 LEs                ; No         ; |exp_cpu|regfile:G_REGFILE|mux_4_to_1:muxB|output[0] ;
-; 64:1               ; 10 bits   ; 420 LEs       ; 80 LEs               ; 340 LEs                ; No         ; |exp_cpu|Mux~14                                      ;
-; 64:1               ; 6 bits    ; 252 LEs       ; 36 LEs               ; 216 LEs                ; No         ; |exp_cpu|Mux~7                                       ;
+; 16:1               ; 16 bits   ; 160 LEs       ; 64 LEs               ; 96 LEs                 ; No         ; |exp_cpu|regfile:G_REGFILE|mux_4_to_1:muxA|output[0] ;
+; 16:1               ; 16 bits   ; 160 LEs       ; 64 LEs               ; 96 LEs                 ; No         ; |exp_cpu|regfile:G_REGFILE|mux_4_to_1:muxB|output[0] ;
+; 64:1               ; 10 bits   ; 420 LEs       ; 60 LEs               ; 360 LEs                ; No         ; |exp_cpu|Mux~14                                      ;
+; 64:1               ; 6 bits    ; 252 LEs       ; 42 LEs               ; 210 LEs                ; No         ; |exp_cpu|Mux~7                                       ;
 ; 23:1               ; 15 bits   ; 225 LEs       ; 105 LEs              ; 120 LEs                ; No         ; |exp_cpu|exe_unit:G_EXE|result[5]                    ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |exp_cpu|exe_unit:G_EXE|add~1                        ;
 ; 3:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |exp_cpu|exe_unit:G_EXE|add~1                        ;
@@ -264,7 +265,7 @@ The equations can be found in D:/ccpu/exp_cpu.map.eqn.
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 5.1 Build 176 10/26/2005 SJ Full Version
-    Info: Processing started: Fri Jun 10 17:03:10 2011
+    Info: Processing started: Fri Jun 10 17:16:19 2011
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ccpu -c exp_cpu
 Info: Found 2 design units, including 1 entities, in source file decoder_2_to_4.vhd
     Info: Found design unit 1: decoder_2_to_4-behavioral
@@ -301,14 +302,15 @@ Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(47): signal "r0" 
 Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(49): signal "r1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
 Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(51): signal "r2" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
 Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(53): signal "r3" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
-Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(55): signal "start_out" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
-Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(55): signal "reset_out" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
-Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(55): signal "clk_out" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
-Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(55): signal "t3" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
-Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(55): signal "t2" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
-Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(55): signal "t1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
-Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(57): signal "pc" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
-Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(59): signal "IR" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(55): signal "r4" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(57): signal "start_out" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(57): signal "reset_out" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(57): signal "clk_out" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(57): signal "t3" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(57): signal "t2" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(57): signal "t1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(59): signal "pc" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning (10492): VHDL Process Statement warning at exp_cpu.vhd(61): signal "IR" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
 Info: Elaborating entity "instru_fetch" for hierarchy "instru_fetch:G_INSTRU_FETCH"
 Warning (10492): VHDL Process Statement warning at instru_fetch.vhd(51): signal "start" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
 Info: Elaborating entity "decoder_unit" for hierarchy "decoder_unit:G_DECODER"
@@ -331,13 +333,13 @@ Info: Elaborating entity "decoder_2_to_4" for hierarchy "regfile:G_REGFILE|decod
 Info: Elaborating entity "mux_4_to_1" for hierarchy "regfile:G_REGFILE|mux_4_to_1:muxA"
 Info: Registers with preset signals will power-up high
 Info: DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
-Info: Implemented 789 device resources after synthesis - the final resource count might be different
+Info: Implemented 863 device resources after synthesis - the final resource count might be different
     Info: Implemented 8 input pins
     Info: Implemented 35 output pins
     Info: Implemented 16 bidirectional pins
-    Info: Implemented 730 logic cells
-Info: Quartus II Analysis & Synthesis was successful. 0 errors, 24 warnings
-    Info: Processing ended: Fri Jun 10 17:03:28 2011
-    Info: Elapsed time: 00:00:18
+    Info: Implemented 804 logic cells
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 25 warnings
+    Info: Processing ended: Fri Jun 10 17:16:39 2011
+    Info: Elapsed time: 00:00:21
 
 
