@@ -1,0 +1,16 @@
+; 8bit x 8bit multiplier
+
+;
+MAIN:   MVRD     R0,513
+        MVRD     R1,6
+        MVRD     R2,0
+        MVRD     R3,8
+LOOP:   MVRD     R1,1
+        AND      R2,R1
+        JRZ      1F
+        ADD      R2,R0
+1:      SHL      R0
+        SHR      R1
+        DEC      R3
+        JRNZ     LOOP
+1:      JR       1B
