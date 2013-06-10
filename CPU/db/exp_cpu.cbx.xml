@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
 <LOG_ROOT>
 	<PROJECT NAME="exp_cpu">
-		<CBX_INST_ENTRY INSTANCE_NAME="|exp_cpu|exe_unit:G_EXE|lpm_add_sub:add_rtl_0" CBX_FILE_NAME="add_sub_rjg.tdf"/>
 	</PROJECT>
 </LOG_ROOT>

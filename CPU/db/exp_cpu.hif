@@ -720,34 +720,6 @@ regfile:G_REGFILE
 }
 # end
 # entity
-exp_cpu
-# storage
-db|exp_cpu.(0).cnf
-db|exp_cpu.(0).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_insensitive
-# source_file
-exp_cpu.vhd
-3b67563021367a984f0cbea4b9843e7
-4
-# internal_option {
-ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
-ON
-AUTO_RESOURCE_SHARING
-OFF
-}
-# include_file {
-exp_cpu_components.vhd
-a69b7a23c8bc757a2c59d256cc149e16
-}
-# hierarchies {
-|
-}
-# end
-# entity
 decoder_unit
 # storage
 db|exp_cpu.(2).cnf
@@ -809,7 +781,7 @@ ON
 # case_insensitive
 # source_file
 exe_unit.vhd
-d31cc7dbf2858c3d9e54542e6e64cb2
+7beab971e27bf71df0c7d9b716a8405f
 4
 # internal_option {
 ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
@@ -861,6 +833,34 @@ a69b7a23c8bc757a2c59d256cc149e16
 }
 # hierarchies {
 exe_unit:G_EXE
+}
+# end
+# entity
+exp_cpu
+# storage
+db|exp_cpu.(0).cnf
+db|exp_cpu.(0).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+exp_cpu.vhd
+f94453c24a557ec16ed6705f46ca456a
+4
+# internal_option {
+ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
+ON
+AUTO_RESOURCE_SHARING
+OFF
+}
+# include_file {
+exp_cpu_components.vhd
+a69b7a23c8bc757a2c59d256cc149e16
+}
+# hierarchies {
+|
 }
 # end
 # complete

@@ -69,7 +69,7 @@ begin
 		when "10000" => -- add
 			result_t <= ('0' & A) + ('0' & B);
 		when "11000" => -- inc
-            result_t <= A & '0';
+			result_t <= ('0' & A) + '1';
 		when "10100" => -- adc
             result_t <= ('0' & A) + ('0' & B) + c_in;
         when "10010" | "00010" => -- sub | cmp
@@ -79,7 +79,7 @@ begin
 		when "11010" => -- dec
 			result_t <= ('0' & A) - '1';
         when "11101" => -- shl
-			result_t <= ('0' & A) + '1';
+            result_t <= A & '0';
         when "11110" => -- shr
             result_t <= A (0) & c_in & A (15 downto 1);
         when "10001" | "00001" => -- and | test

@@ -50,11 +50,9 @@ begin
             when "000010" =>
                 reg_content <= r2;
             when "000011" =>
-				reg_content <= "1000" & dr & "0000" & sr;
+				reg_content <= r3;
             when "000100" =>
                 reg_content <= '0' & start_out & reset_out & clk_out & "000" & t3 & "000" & t2 & "000" & t1;
-			when "000101" =>
-				reg_content <= "0000" & dr & "0000" & sr;
             when "111110" =>
                 reg_content <= pc;
             when "111111" =>
