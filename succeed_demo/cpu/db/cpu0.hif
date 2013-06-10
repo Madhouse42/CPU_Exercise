@@ -1,0 +1,408 @@
+Version 5.1 Build 176 10/26/2005 SJ Full Version
+10
+748
+OFF
+OFF
+OFF
+OFF
+OFF
+FV_OFF
+Level2
+0
+0
+VRSM_ON
+VHSM_ON
+0
+-- Start Partition --
+-- End Partition --
+# entity
+controller
+# storage
+db|cpu0.(1).cnf
+db|cpu0.(1).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+controller.vhd
+6780c7b4fa52ab6a14917439432ad3a
+4
+# internal_option {
+ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
+ON
+AUTO_RESOURCE_SHARING
+OFF
+}
+# hierarchies {
+controller:inst8
+}
+# end
+# entity
+flag_reg
+# storage
+db|cpu0.(2).cnf
+db|cpu0.(2).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+flag_reg.vhd
+7494337aeefbb31e0b58e1246deb60
+4
+# internal_option {
+ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
+ON
+AUTO_RESOURCE_SHARING
+OFF
+}
+# hierarchies {
+flag_reg:inst2
+}
+# end
+# entity
+alu
+# storage
+db|cpu0.(3).cnf
+db|cpu0.(3).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+alu.vhd
+80ec4703e67761d622854eaebafb71
+4
+# internal_option {
+ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
+ON
+AUTO_RESOURCE_SHARING
+OFF
+}
+# hierarchies {
+alu:inst
+}
+# end
+# entity
+t1
+# storage
+db|cpu0.(4).cnf
+db|cpu0.(4).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+t1.vhd
+27b23cdea516ecc5ec9b2d5b6f932b9
+4
+# internal_option {
+ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
+ON
+AUTO_RESOURCE_SHARING
+OFF
+}
+# hierarchies {
+t1:inst31
+}
+# end
+# entity
+bus_mux
+# storage
+db|cpu0.(5).cnf
+db|cpu0.(5).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+bus_mux.vhd
+f3eac4cb61e3dba32cac3712b1f5164f
+4
+# internal_option {
+ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
+ON
+AUTO_RESOURCE_SHARING
+OFF
+}
+# hierarchies {
+bus_mux:inst28
+}
+# end
+# entity
+reg_mux
+# storage
+db|cpu0.(6).cnf
+db|cpu0.(6).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+reg_mux.vhd
+f877a22a2bac6268c040cadf43466
+4
+# internal_option {
+ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
+ON
+AUTO_RESOURCE_SHARING
+OFF
+}
+# hierarchies {
+reg_mux:inst27
+}
+# end
+# entity
+reg
+# storage
+db|cpu0.(7).cnf
+db|cpu0.(7).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+reg.vhd
+76ff85facfa66808dc013789dbff89
+4
+# internal_option {
+ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
+ON
+AUTO_RESOURCE_SHARING
+OFF
+}
+# hierarchies {
+reg:inst30
+reg:inst12
+reg:inst13
+reg:inst14
+reg:inst15
+reg:inst16
+reg:inst17
+reg:inst18
+reg:inst19
+reg:inst20
+reg:inst21
+reg:inst22
+reg:inst23
+reg:inst24
+reg:inst25
+reg:inst26
+}
+# end
+# entity
+t2
+# storage
+db|cpu0.(8).cnf
+db|cpu0.(8).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+t2.vhd
+22c64077c4606d1365c1c64a8c10a483
+4
+# internal_option {
+ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
+ON
+AUTO_RESOURCE_SHARING
+OFF
+}
+# hierarchies {
+t2:inst32
+}
+# end
+# entity
+pc
+# storage
+db|cpu0.(9).cnf
+db|cpu0.(9).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+pc.vhd
+9d914cb26830f7e799f049adbbbf5
+4
+# internal_option {
+ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
+ON
+AUTO_RESOURCE_SHARING
+OFF
+}
+# hierarchies {
+pc:inst10
+}
+# end
+# entity
+ir
+# storage
+db|cpu0.(10).cnf
+db|cpu0.(10).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+ir.vhd
+dbf3ae1e6d669ced32a076af1182e8
+4
+# internal_option {
+ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
+ON
+AUTO_RESOURCE_SHARING
+OFF
+}
+# hierarchies {
+ir:inst7
+}
+# end
+# entity
+timer
+# storage
+db|cpu0.(11).cnf
+db|cpu0.(11).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+timer.vhd
+dc4f36c8997623de69d154f85f3ebb79
+4
+# internal_option {
+ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
+ON
+AUTO_RESOURCE_SHARING
+OFF
+}
+# hierarchies {
+timer:inst6
+}
+# end
+# entity
+ar
+# storage
+db|cpu0.(12).cnf
+db|cpu0.(12).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+ar.vhd
+9543709515caee65387a24861ec225b4
+4
+# internal_option {
+ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
+ON
+AUTO_RESOURCE_SHARING
+OFF
+}
+# hierarchies {
+ar:inst9
+}
+# end
+# entity
+t3
+# storage
+db|cpu0.(13).cnf
+db|cpu0.(13).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+t3.vhd
+6b7e6a984fd3833b75e73aa18ef44e5
+4
+# internal_option {
+ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
+ON
+AUTO_RESOURCE_SHARING
+OFF
+}
+# hierarchies {
+t3:inst4
+}
+# end
+# entity
+reg_out
+# storage
+db|cpu0.(14).cnf
+db|cpu0.(14).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+reg_out.vhd
+8a5549f43271164ed7e9ebbd9e8aa3
+4
+# internal_option {
+ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
+ON
+AUTO_RESOURCE_SHARING
+OFF
+}
+# hierarchies {
+reg_out:inst33
+}
+# end
+# entity
+reg_testa
+# storage
+db|cpu0.(15).cnf
+db|cpu0.(15).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+reg_testa.vhd
+fec765c5d7322fed18ab3a65aba6b14
+4
+# internal_option {
+ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS
+ON
+AUTO_RESOURCE_SHARING
+OFF
+}
+# hierarchies {
+reg_testa:inst1
+}
+# end
+# entity
+cpu0
+# storage
+db|cpu0.(0).cnf
+db|cpu0.(0).cnf
+# case_insensitive
+# source_file
+cpu0.bdf
+4c5cc260121ad1209bae267aa92d99c3
+23
+# hierarchies {
+|
+}
+# end
+# complete
+
