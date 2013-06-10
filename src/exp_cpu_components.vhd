@@ -23,8 +23,7 @@ package exp_cpu_components is
           sel00 : out std_logic;
           sel01 : out std_logic;
           sel02 : out std_logic;
-          sel03 : out std_logic;
-		  sel04 : out std_logic);
+          sel03 : out std_logic);
     end component;
 
     component regfile
@@ -51,7 +50,7 @@ package exp_cpu_components is
     port (reset : in std_logic;
           clk : in std_logic;
           data_read : in std_logic_vector (15 downto 0);
-          jmp_instruct : in std_logic;
+          lj_instruct : in std_logic;
           dw_instruct : in std_logic;
           c_z_j_flag : in std_logic;
           sjmp_addr : in std_logic_vector (15 downto 0);
@@ -66,21 +65,12 @@ package exp_cpu_components is
           sr : out std_logic_vector (3 downto 0);
           dr : out std_logic_vector (3 downto 0);
           op_code : out std_logic_vector (4 downto 0);
-<<<<<<< HEAD
-          jmp_instruct : out std_logic;
-          jr_instruct : out std_logic;
-          jc_instruct : out std_logic;
-          jz_instruct : out std_logic;
-          jnc_instruct : out std_logic;
-          jnz_instruct : out std_logic;
-=======
           zj_instruct : out std_logic;
           cj_instruct : out std_logic;
           lj_instruct : out std_logic;
           ncj_instruct : out std_logic;
           nzj_instruct : out std_logic;
           rj_instruct : out std_logic;
->>>>>>> 811a3297e5ed6406723e9cfa0e3bebbed57b8eac
           drwr : buffer std_logic;
           mem_write : out std_logic;
           dw_instruct : buffer std_logic;
@@ -93,19 +83,11 @@ package exp_cpu_components is
     component exe_unit
     port (t1 : in std_logic;
           op_code : in std_logic_vector (4 downto 0);
-<<<<<<< HEAD
-          jnc_instruct : in std_logic;
-          jnz_instruct : in std_logic;
-          jz_instruct : in std_logic;
-          jc_instruct : in std_logic;
-          jr_instruct : in std_logic;
-=======
           zj_instruct : in std_logic;
           cj_instruct : in std_logic;
           nzj_instruct : in std_logic;
           ncj_instruct : in std_logic;
           rj_instruct : in std_logic;
->>>>>>> 811a3297e5ed6406723e9cfa0e3bebbed57b8eac
           pc : in std_logic_vector (15 downto 0);
           pc_inc : in std_logic_vector (15 downto 0);
           c_in : in std_logic;

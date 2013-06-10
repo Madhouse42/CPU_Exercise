@@ -3,18 +3,8 @@ use ieee.std_logic_1164.all;
 use work.exp_cpu_components.all;
 
 entity regfile is
-<<<<<<< HEAD
-<<<<<<< HEAD
-Port (  DR: 	  in std_logic_vector(3 downto 0);  --Ä¿µÄ¼Ä´æÆ÷ºÅ
-		SR: 	  in std_logic_vector(3 downto 0);  --Ô´¼Ä´æÆ÷ºÅ   
-=======
-port (  DR: 	  in std_logic_vector(3 downto 0);  --Ä¿µÄ¼Ä´æÆ÷ºÅ
-		SR: 	  in std_logic_vector(3 downto 0);  --Ô´¼Ä´æÆ÷ºÅ
->>>>>>> 811a3297e5ed6406723e9cfa0e3bebbed57b8eac
-=======
 port (  DR: 	  in std_logic_vector(3 downto 0);  --ç›®çš„å¯„å­˜å™¨å·
 		SR: 	  in std_logic_vector(3 downto 0);  --æºå¯„å­˜å™¨å·
->>>>>>> a55e84249e88c48e7324ae8dd14b7a2da6fa3a3b
 		reset: 	  in std_logic;
 		write: 	  in std_logic;	--å†™å¯„å­˜å™¨ä¿¡å·
 		clk:	  in std_logic;	
@@ -36,8 +26,8 @@ end regfile;
 
 architecture struct of regfile is
 
-signal reg00, reg01, reg02,reg03, reg04: std_logic_vector(15 downto 0);
-signal sel00, sel01, sel02, sel03, sel04: std_logic;
+signal reg00, reg01, reg02,reg03: std_logic_vector(15 downto 0);
+signal sel00, sel01, sel02, sel03: std_logic;
 
 begin
     r0 <= reg00;
@@ -96,15 +86,6 @@ Areg03: reg port map(				--å¯„å­˜å™¨R3
 		write		=> write,
 	    sel			=> sel03,	
 		q_output	=> reg03
-		);
-		
-Areg04: reg port map(				--¼Ä´æÆ÷R3
-		reset		=> reset,
-		d_input		=> d_input,
-		clk			=> clk,		
-		write		=> write,
-	    sel			=> sel04,	
-		q_output	=> reg04
 		);
 
 des_decoder: decoder_2_to_4 port map(	--2 â€” 4è¯‘ç å™¨

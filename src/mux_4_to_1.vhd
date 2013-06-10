@@ -13,15 +13,6 @@ begin
     mux : process(sel, input0, input1, input2, input3)
     begin
         case sel is
-<<<<<<< HEAD
-            when "0001" =>
-                output <= input0;
-            when "0010" =>
-                output <= input1;
-            when "0100" =>
-                output <= input2;
-            when "1000" =>
-=======
             when "0000" =>
                 output <= input0;
             when "0001" =>
@@ -29,14 +20,9 @@ begin
             when "0010" =>
                 output <= input2;
             when "0011" =>
->>>>>>> 811a3297e5ed6406723e9cfa0e3bebbed57b8eac
                 output <= input3;
 			when others =>
-<<<<<<< HEAD
-				null;
-=======
 				output <= x"ffff";
->>>>>>> a55e84249e88c48e7324ae8dd14b7a2da6fa3a3b
         end case;
     end process;
 end behavioral;
