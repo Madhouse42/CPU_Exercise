@@ -33,14 +33,11 @@ begin
                    (not ir (13)) and
                    (not ir (12));
 
+    sr <= ir (3 downto 0);
+	dr <= ir (7 downto 4);
+
 	process (ir)
 	begin
-    	dr <= ir (3 downto 0);
-		if ir (12) = '1' then
-    		sr <= ir (3 downto 0);
-		else
-			sr <= ir (7 downto 4);
-		end if;
 		case ir (15 downto 8) is
 			when "00010000" =>
 				change_z <= '1';

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for exp_cpu
-Fri Jun 10 17:16:39 2011
+Sat Jun 11 08:31:05 2011
 Version 5.1 Build 176 10/26/2005 SJ Full Version
 
 
@@ -43,12 +43,12 @@ applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +------------------------------------+------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Fri Jun 10 17:16:39 2011    ;
+; Analysis & Synthesis Status        ; Successful - Sat Jun 11 08:31:05 2011    ;
 ; Quartus II Version                 ; 5.1 Build 176 10/26/2005 SJ Full Version ;
 ; Revision Name                      ; exp_cpu                                  ;
 ; Top-level Entity Name              ; exp_cpu                                  ;
 ; Family                             ; Cyclone II                               ;
-; Total combinational functions      ; 709                                      ;
+; Total combinational functions      ; 707                                      ;
 ; Total registers                    ; 120                                      ;
 ; Total pins                         ; 59                                       ;
 ; Total virtual pins                 ; 0                                        ;
@@ -118,22 +118,22 @@ applicable agreement for further details.
 +--------------------------------------------------------------------+--------------------+--------------------+
 
 
-+-------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                ;
-+----------------------------------+-----------------+-----------------+--------------------------------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path   ;
-+----------------------------------+-----------------+-----------------+--------------------------------+
-; decoder_2_to_4.vhd               ; yes             ; User VHDL File  ; D:/ccpu/decoder_2_to_4.vhd     ;
-; decoder_unit.vhd                 ; yes             ; User VHDL File  ; D:/ccpu/decoder_unit.vhd       ;
-; exe_unit.vhd                     ; yes             ; User VHDL File  ; D:/ccpu/exe_unit.vhd           ;
-; exp_cpu.vhd                      ; yes             ; User VHDL File  ; D:/ccpu/exp_cpu.vhd            ;
-; exp_cpu_components.vhd           ; yes             ; User VHDL File  ; D:/ccpu/exp_cpu_components.vhd ;
-; instru_fetch.vhd                 ; yes             ; User VHDL File  ; D:/ccpu/instru_fetch.vhd       ;
-; memory_unit.vhd                  ; yes             ; User VHDL File  ; D:/ccpu/memory_unit.vhd        ;
-; mux_4_to_1.vhd                   ; yes             ; User VHDL File  ; D:/ccpu/mux_4_to_1.vhd         ;
-; reg.vhd                          ; yes             ; User VHDL File  ; D:/ccpu/reg.vhd                ;
-; regfile.vhd                      ; yes             ; User VHDL File  ; D:/ccpu/regfile.vhd            ;
-+----------------------------------+-----------------+-----------------+--------------------------------+
++---------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                              ;
++----------------------------------+-----------------+-----------------+----------------------------------------------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                 ;
++----------------------------------+-----------------+-----------------+----------------------------------------------+
+; decoder_2_to_4.vhd               ; yes             ; User VHDL File  ; D:/vhdl/ccpu_added_r4/decoder_2_to_4.vhd     ;
+; decoder_unit.vhd                 ; yes             ; User VHDL File  ; D:/vhdl/ccpu_added_r4/decoder_unit.vhd       ;
+; exe_unit.vhd                     ; yes             ; User VHDL File  ; D:/vhdl/ccpu_added_r4/exe_unit.vhd           ;
+; exp_cpu.vhd                      ; yes             ; User VHDL File  ; D:/vhdl/ccpu_added_r4/exp_cpu.vhd            ;
+; exp_cpu_components.vhd           ; yes             ; User VHDL File  ; D:/vhdl/ccpu_added_r4/exp_cpu_components.vhd ;
+; instru_fetch.vhd                 ; yes             ; User VHDL File  ; D:/vhdl/ccpu_added_r4/instru_fetch.vhd       ;
+; memory_unit.vhd                  ; yes             ; User VHDL File  ; D:/vhdl/ccpu_added_r4/memory_unit.vhd        ;
+; mux_4_to_1.vhd                   ; yes             ; User VHDL File  ; D:/vhdl/ccpu_added_r4/mux_4_to_1.vhd         ;
+; reg.vhd                          ; yes             ; User VHDL File  ; D:/vhdl/ccpu_added_r4/reg.vhd                ;
+; regfile.vhd                      ; yes             ; User VHDL File  ; D:/vhdl/ccpu_added_r4/regfile.vhd            ;
++----------------------------------+-----------------+-----------------+----------------------------------------------+
 
 
 +-----------------------------------------------------+
@@ -141,20 +141,20 @@ applicable agreement for further details.
 +---------------------------------------------+-------+
 ; Resource                                    ; Usage ;
 +---------------------------------------------+-------+
-; Total combinational functions               ; 709   ;
+; Total combinational functions               ; 707   ;
 ; Logic element usage by number of LUT inputs ;       ;
 ;     -- 4 input functions                    ; 436   ;
-;     -- 3 input functions                    ; 182   ;
-;     -- <=2 input functions                  ; 91    ;
+;     -- 3 input functions                    ; 181   ;
+;     -- <=2 input functions                  ; 90    ;
 ;         -- Combinational cells for routing  ; 0     ;
 ; Logic elements by mode                      ;       ;
-;     -- normal mode                          ; 600   ;
+;     -- normal mode                          ; 598   ;
 ;     -- arithmetic mode                      ; 109   ;
 ; Total registers                             ; 120   ;
 ; I/O pins                                    ; 59    ;
 ; Maximum fan-out node                        ; reset ;
 ; Maximum fan-out                             ; 123   ;
-; Total fan-out                               ; 2964  ;
+; Total fan-out                               ; 2959  ;
 ; Average fan-out                             ; 3.34  ;
 +---------------------------------------------+-------+
 
@@ -164,9 +164,9 @@ applicable agreement for further details.
 +----------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------+
 ; Compilation Hierarchy Node       ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                        ;
 +----------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------+
-; |exp_cpu                         ; 709 (120)         ; 120 (0)      ; 0           ; 0            ; 0       ; 0         ; 59   ; 0            ; |exp_cpu                                   ;
-;    |decoder_unit:G_DECODER|      ; 18 (18)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|decoder_unit:G_DECODER            ;
-;    |exe_unit:G_EXE|              ; 303 (303)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|exe_unit:G_EXE                    ;
+; |exp_cpu                         ; 707 (120)         ; 120 (0)      ; 0           ; 0            ; 0       ; 0         ; 59   ; 0            ; |exp_cpu                                   ;
+;    |decoder_unit:G_DECODER|      ; 14 (14)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|decoder_unit:G_DECODER            ;
+;    |exe_unit:G_EXE|              ; 305 (305)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|exe_unit:G_EXE                    ;
 ;    |instru_fetch:G_INSTRU_FETCH| ; 71 (71)           ; 36 (36)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|instru_fetch:G_INSTRU_FETCH       ;
 ;    |memory_unit:G_MEMORY|        ; 50 (50)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|memory_unit:G_MEMORY              ;
 ;    |regfile:G_REGFILE|           ; 147 (12)          ; 84 (4)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |exp_cpu|regfile:G_REGFILE                 ;
@@ -195,13 +195,13 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; memory_unit:G_MEMORY|data_read[9]             ;    ;
 ; memory_unit:G_MEMORY|data_read[8]             ;    ;
 ; memory_unit:G_MEMORY|data_read[0]             ;    ;
+; memory_unit:G_MEMORY|data_read[7]             ;    ;
+; memory_unit:G_MEMORY|data_read[5]             ;    ;
+; memory_unit:G_MEMORY|data_read[4]             ;    ;
+; memory_unit:G_MEMORY|data_read[6]             ;    ;
 ; memory_unit:G_MEMORY|data_read[3]             ;    ;
 ; memory_unit:G_MEMORY|data_read[1]             ;    ;
 ; memory_unit:G_MEMORY|data_read[2]             ;    ;
-; memory_unit:G_MEMORY|data_read[7]             ;    ;
-; memory_unit:G_MEMORY|data_read[4]             ;    ;
-; memory_unit:G_MEMORY|data_read[5]             ;    ;
-; memory_unit:G_MEMORY|data_read[6]             ;    ;
 ; Number of user-specified and inferred latches ; 16 ;
 +-----------------------------------------------+----+
 Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
@@ -227,7 +227,7 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------------------------------+---------+
 ; Inverted Register                      ; Fan out ;
 +----------------------------------------+---------+
-; instru_fetch:G_INSTRU_FETCH|IR[12]     ; 15      ;
+; instru_fetch:G_INSTRU_FETCH|IR[12]     ; 11      ;
 ; instru_fetch:G_INSTRU_FETCH|IR[8]      ; 15      ;
 ; instru_fetch:G_INSTRU_FETCH|IR[9]      ; 14      ;
 ; instru_fetch:G_INSTRU_FETCH|IR[11]     ; 10      ;
@@ -236,27 +236,27 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------------------------------+---------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                     ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                           ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------+
-; 4:1                ; 15 bits   ; 30 LEs        ; 30 LEs               ; 0 LEs                  ; Yes        ; |exp_cpu|instru_fetch:G_INSTRU_FETCH|pc[1]           ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |exp_cpu|exe_unit:G_EXE|Mem_Addr[12]                 ;
-; 16:1               ; 16 bits   ; 160 LEs       ; 64 LEs               ; 96 LEs                 ; No         ; |exp_cpu|regfile:G_REGFILE|mux_4_to_1:muxA|output[0] ;
-; 16:1               ; 16 bits   ; 160 LEs       ; 64 LEs               ; 96 LEs                 ; No         ; |exp_cpu|regfile:G_REGFILE|mux_4_to_1:muxB|output[0] ;
-; 64:1               ; 10 bits   ; 420 LEs       ; 60 LEs               ; 360 LEs                ; No         ; |exp_cpu|Mux~14                                      ;
-; 64:1               ; 6 bits    ; 252 LEs       ; 42 LEs               ; 210 LEs                ; No         ; |exp_cpu|Mux~7                                       ;
-; 23:1               ; 15 bits   ; 225 LEs       ; 105 LEs              ; 120 LEs                ; No         ; |exp_cpu|exe_unit:G_EXE|result[5]                    ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |exp_cpu|exe_unit:G_EXE|add~1                        ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |exp_cpu|exe_unit:G_EXE|add~1                        ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                            ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------+
+; 4:1                ; 15 bits   ; 30 LEs        ; 30 LEs               ; 0 LEs                  ; Yes        ; |exp_cpu|instru_fetch:G_INSTRU_FETCH|pc[1]            ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |exp_cpu|exe_unit:G_EXE|Mem_Addr[6]                   ;
+; 16:1               ; 16 bits   ; 160 LEs       ; 64 LEs               ; 96 LEs                 ; No         ; |exp_cpu|regfile:G_REGFILE|mux_4_to_1:muxB|output[14] ;
+; 16:1               ; 16 bits   ; 160 LEs       ; 64 LEs               ; 96 LEs                 ; No         ; |exp_cpu|regfile:G_REGFILE|mux_4_to_1:muxA|output[1]  ;
+; 64:1               ; 10 bits   ; 420 LEs       ; 60 LEs               ; 360 LEs                ; No         ; |exp_cpu|Mux~14                                       ;
+; 64:1               ; 6 bits    ; 252 LEs       ; 42 LEs               ; 210 LEs                ; No         ; |exp_cpu|Mux~7                                        ;
+; 23:1               ; 15 bits   ; 225 LEs       ; 105 LEs              ; 120 LEs                ; No         ; |exp_cpu|exe_unit:G_EXE|result[3]                     ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |exp_cpu|exe_unit:G_EXE|add~1                         ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |exp_cpu|exe_unit:G_EXE|add~1                         ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------+
 
 
 +--------------------------------+
 ; Analysis & Synthesis Equations ;
 +--------------------------------+
-The equations can be found in D:/ccpu/exp_cpu.map.eqn.
+The equations can be found in D:/vhdl/ccpu_added_r4/exp_cpu.map.eqn.
 
 
 +-------------------------------+
@@ -265,7 +265,7 @@ The equations can be found in D:/ccpu/exp_cpu.map.eqn.
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 5.1 Build 176 10/26/2005 SJ Full Version
-    Info: Processing started: Fri Jun 10 17:16:19 2011
+    Info: Processing started: Sat Jun 11 08:30:47 2011
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ccpu -c exp_cpu
 Info: Found 2 design units, including 1 entities, in source file decoder_2_to_4.vhd
     Info: Found design unit 1: decoder_2_to_4-behavioral
@@ -333,13 +333,13 @@ Info: Elaborating entity "decoder_2_to_4" for hierarchy "regfile:G_REGFILE|decod
 Info: Elaborating entity "mux_4_to_1" for hierarchy "regfile:G_REGFILE|mux_4_to_1:muxA"
 Info: Registers with preset signals will power-up high
 Info: DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
-Info: Implemented 863 device resources after synthesis - the final resource count might be different
+Info: Implemented 861 device resources after synthesis - the final resource count might be different
     Info: Implemented 8 input pins
     Info: Implemented 35 output pins
     Info: Implemented 16 bidirectional pins
-    Info: Implemented 804 logic cells
+    Info: Implemented 802 logic cells
 Info: Quartus II Analysis & Synthesis was successful. 0 errors, 25 warnings
-    Info: Processing ended: Fri Jun 10 17:16:39 2011
-    Info: Elapsed time: 00:00:21
+    Info: Processing ended: Sat Jun 11 08:31:05 2011
+    Info: Elapsed time: 00:00:19
 
 

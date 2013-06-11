@@ -90,12 +90,12 @@ A1L196 = D1_IR[14] & D1_IR[12] & !D1_IR[13] & !D1_IR[15];
 B1L9 = D1_IR[10] & A1L196 & !D1_IR[9] & !D1_IR[11];
 
 
---C1L248 is exe_unit:G_EXE|Mem_Addr[12]~220
-C1L248 = D1_t1 # !D1_IR[8] & (B1L7 # B1L9);
+--C1L240 is exe_unit:G_EXE|Mem_Addr[6]~220
+C1L240 = D1_t1 # !D1_IR[8] & (B1L7 # B1L9);
 
 
---D1_IR[3] is instru_fetch:G_INSTRU_FETCH|IR[3]
-D1_IR[3] = DFFEAS(E1_data_read[3], D1_t2, reset,  ,  ,  ,  ,  ,  );
+--D1_IR[7] is instru_fetch:G_INSTRU_FETCH|IR[7]
+D1_IR[7] = DFFEAS(E1_data_read[7], D1_t2, reset,  ,  ,  ,  ,  ,  );
 
 
 --G5_q_output[0] is regfile:G_REGFILE|reg:Areg04|q_output[0]
@@ -106,16 +106,16 @@ G5_q_output[0] = DFFEAS(E1L18, !D1_t3, reset,  , G5L1,  ,  ,  ,  );
 G3_q_output[0] = DFFEAS(E1L18, !D1_t3, reset,  , G3L1,  ,  ,  ,  );
 
 
---D1_IR[1] is instru_fetch:G_INSTRU_FETCH|IR[1]
-D1_IR[1] = DFFEAS(E1_data_read[1], D1_t2, reset,  ,  ,  ,  ,  ,  );
+--D1_IR[5] is instru_fetch:G_INSTRU_FETCH|IR[5]
+D1_IR[5] = DFFEAS(E1_data_read[5], D1_t2, reset,  ,  ,  ,  ,  ,  );
 
 
 --G2_q_output[0] is regfile:G_REGFILE|reg:Areg01|q_output[0]
 G2_q_output[0] = DFFEAS(E1L18, !D1_t3, reset,  , G2L2,  ,  ,  ,  );
 
 
---D1_IR[0] is instru_fetch:G_INSTRU_FETCH|IR[0]
-D1_IR[0] = DFFEAS(E1_data_read[0], D1_t2, reset,  ,  ,  ,  ,  ,  );
+--D1_IR[4] is instru_fetch:G_INSTRU_FETCH|IR[4]
+D1_IR[4] = DFFEAS(E1_data_read[4], D1_t2, reset,  ,  ,  ,  ,  ,  );
 
 
 --G1_q_output[0] is regfile:G_REGFILE|reg:Areg00|q_output[0]
@@ -123,7 +123,7 @@ G1_q_output[0] = DFFEAS(E1L18, !D1_t3, reset,  , G1L1,  ,  ,  ,  );
 
 
 --J1L1 is regfile:G_REGFILE|mux_4_to_1:muxA|output[0]~2566
-J1L1 = D1_IR[1] & (D1_IR[0]) # !D1_IR[1] & (D1_IR[0] & G2_q_output[0] # !D1_IR[0] & (G1_q_output[0]));
+J1L1 = D1_IR[5] & (D1_IR[4]) # !D1_IR[5] & (D1_IR[4] & G2_q_output[0] # !D1_IR[4] & (G1_q_output[0]));
 
 
 --G4_q_output[0] is regfile:G_REGFILE|reg:Areg03|q_output[0]
@@ -131,87 +131,71 @@ G4_q_output[0] = DFFEAS(E1L18, !D1_t3, reset,  , G4L1,  ,  ,  ,  );
 
 
 --J1L2 is regfile:G_REGFILE|mux_4_to_1:muxA|output[0]~2567
-J1L2 = D1_IR[1] & (J1L1 & (G4_q_output[0]) # !J1L1 & G3_q_output[0]) # !D1_IR[1] & (J1L1);
-
-
---D1_IR[2] is instru_fetch:G_INSTRU_FETCH|IR[2]
-D1_IR[2] = DFFEAS(E1_data_read[2], D1_t2, reset,  ,  ,  ,  ,  ,  );
-
-
---G5L2 is regfile:G_REGFILE|reg:Areg04|process0~44
-G5L2 = !D1_IR[1] & !D1_IR[0];
-
-
---J1L3 is regfile:G_REGFILE|mux_4_to_1:muxA|output[0]~2568
-J1L3 = D1_IR[2] & (G5_q_output[0] # !G5L2) # !D1_IR[2] & (J1L2);
-
-
---J1L4 is regfile:G_REGFILE|mux_4_to_1:muxA|output[0]~2569
-J1L4 = D1_IR[3] # J1L3;
-
-
---B1L8 is decoder_unit:G_DECODER|dw_instruct~109
-B1L8 = !D1_IR[8] & (B1L7 # B1L9);
-
-
---C1L249 is exe_unit:G_EXE|Mem_Addr[12]~221
-C1L249 = D1_t1 # A1L195 & !B1L10 & !B1L8;
-
-
---D1_IR[7] is instru_fetch:G_INSTRU_FETCH|IR[7]
-D1_IR[7] = DFFEAS(E1_data_read[7], D1_t2, reset,  ,  ,  ,  ,  ,  );
-
-
---B1L18 is decoder_unit:G_DECODER|SR[3]~170
-B1L18 = D1_IR[12] & D1_IR[7] # !D1_IR[12] & (D1_IR[3]);
-
-
---D1_IR[4] is instru_fetch:G_INSTRU_FETCH|IR[4]
-D1_IR[4] = DFFEAS(E1_data_read[4], D1_t2, reset,  ,  ,  ,  ,  ,  );
-
-
---B1L15 is decoder_unit:G_DECODER|SR[0]~171
-B1L15 = D1_IR[12] & D1_IR[4] # !D1_IR[12] & (D1_IR[0]);
-
-
---D1_IR[5] is instru_fetch:G_INSTRU_FETCH|IR[5]
-D1_IR[5] = DFFEAS(E1_data_read[5], D1_t2, reset,  ,  ,  ,  ,  ,  );
-
-
---B1L16 is decoder_unit:G_DECODER|SR[1]~172
-B1L16 = D1_IR[12] & D1_IR[5] # !D1_IR[12] & (D1_IR[1]);
-
-
---J2L1 is regfile:G_REGFILE|mux_4_to_1:muxB|output[0]~4145
-J2L1 = G5_q_output[0] # B1L15 # B1L16;
-
-
---J2L2 is regfile:G_REGFILE|mux_4_to_1:muxB|output[0]~4146
-J2L2 = B1L15 & (B1L16) # !B1L15 & (B1L16 & G3_q_output[0] # !B1L16 & (G1_q_output[0]));
-
-
---J2L3 is regfile:G_REGFILE|mux_4_to_1:muxB|output[0]~4147
-J2L3 = B1L15 & (J2L2 & (G4_q_output[0]) # !J2L2 & G2_q_output[0]) # !B1L15 & (J2L2);
+J1L2 = D1_IR[5] & (J1L1 & (G4_q_output[0]) # !J1L1 & G3_q_output[0]) # !D1_IR[5] & (J1L1);
 
 
 --D1_IR[6] is instru_fetch:G_INSTRU_FETCH|IR[6]
 D1_IR[6] = DFFEAS(E1_data_read[6], D1_t2, reset,  ,  ,  ,  ,  ,  );
 
 
---B1L17 is decoder_unit:G_DECODER|SR[2]~173
-B1L17 = D1_IR[12] & D1_IR[6] # !D1_IR[12] & (D1_IR[2]);
+--G5L2 is regfile:G_REGFILE|reg:Areg04|process0~44
+G5L2 = !D1_IR[5] & !D1_IR[4];
 
 
---J2L4 is regfile:G_REGFILE|mux_4_to_1:muxB|output[0]~4148
-J2L4 = B1L18 # B1L17 & J2L1 # !B1L17 & (J2L3);
+--J1L3 is regfile:G_REGFILE|mux_4_to_1:muxA|output[0]~2568
+J1L3 = D1_IR[6] & (G5_q_output[0] # !G5L2) # !D1_IR[6] & (J1L2);
 
 
---C1L224 is exe_unit:G_EXE|Mem_Addr[0]~222
-C1L224 = C1L248 & (C1L249) # !C1L248 & (C1L249 & J1L4 # !C1L249 & (J2L4));
+--J1L4 is regfile:G_REGFILE|mux_4_to_1:muxA|output[0]~2569
+J1L4 = D1_IR[7] # J1L3;
 
 
---C1L225 is exe_unit:G_EXE|Mem_Addr[0]~223
-C1L225 = C1L248 & (C1L224 & (D1_pc[0]) # !C1L224 & D1L1) # !C1L248 & (C1L224);
+--B1L8 is decoder_unit:G_DECODER|dw_instruct~109
+B1L8 = !D1_IR[8] & (B1L7 # B1L9);
+
+
+--C1L241 is exe_unit:G_EXE|Mem_Addr[6]~221
+C1L241 = D1_t1 # A1L195 & !B1L10 & !B1L8;
+
+
+--D1_IR[3] is instru_fetch:G_INSTRU_FETCH|IR[3]
+D1_IR[3] = DFFEAS(E1_data_read[3], D1_t2, reset,  ,  ,  ,  ,  ,  );
+
+
+--D1_IR[0] is instru_fetch:G_INSTRU_FETCH|IR[0]
+D1_IR[0] = DFFEAS(E1_data_read[0], D1_t2, reset,  ,  ,  ,  ,  ,  );
+
+
+--D1_IR[1] is instru_fetch:G_INSTRU_FETCH|IR[1]
+D1_IR[1] = DFFEAS(E1_data_read[1], D1_t2, reset,  ,  ,  ,  ,  ,  );
+
+
+--J2L1 is regfile:G_REGFILE|mux_4_to_1:muxB|output[0]~2585
+J2L1 = G5_q_output[0] # D1_IR[0] # D1_IR[1];
+
+
+--J2L2 is regfile:G_REGFILE|mux_4_to_1:muxB|output[0]~2586
+J2L2 = D1_IR[0] & (D1_IR[1]) # !D1_IR[0] & (D1_IR[1] & G3_q_output[0] # !D1_IR[1] & (G1_q_output[0]));
+
+
+--J2L3 is regfile:G_REGFILE|mux_4_to_1:muxB|output[0]~2587
+J2L3 = D1_IR[0] & (J2L2 & (G4_q_output[0]) # !J2L2 & G2_q_output[0]) # !D1_IR[0] & (J2L2);
+
+
+--D1_IR[2] is instru_fetch:G_INSTRU_FETCH|IR[2]
+D1_IR[2] = DFFEAS(E1_data_read[2], D1_t2, reset,  ,  ,  ,  ,  ,  );
+
+
+--J2L4 is regfile:G_REGFILE|mux_4_to_1:muxB|output[0]~2588
+J2L4 = D1_IR[3] # D1_IR[2] & J2L1 # !D1_IR[2] & (J2L3);
+
+
+--C1L228 is exe_unit:G_EXE|Mem_Addr[0]~222
+C1L228 = C1L240 & (C1L241) # !C1L240 & (C1L241 & J1L4 # !C1L241 & (J2L4));
+
+
+--C1L229 is exe_unit:G_EXE|Mem_Addr[0]~223
+C1L229 = C1L240 & (C1L228 & (D1_pc[0]) # !C1L228 & D1L1) # !C1L240 & (C1L228);
 
 
 --G5_q_output[1] is regfile:G_REGFILE|reg:Areg04|q_output[1]
@@ -231,7 +215,7 @@ G1_q_output[1] = DFFEAS(E1L20, !D1_t3, reset,  , G1L1,  ,  ,  ,  );
 
 
 --J1L5 is regfile:G_REGFILE|mux_4_to_1:muxA|output[1]~2570
-J1L5 = D1_IR[1] & (D1_IR[0]) # !D1_IR[1] & (D1_IR[0] & G2_q_output[1] # !D1_IR[0] & (G1_q_output[1]));
+J1L5 = D1_IR[5] & (D1_IR[4]) # !D1_IR[5] & (D1_IR[4] & G2_q_output[1] # !D1_IR[4] & (G1_q_output[1]));
 
 
 --G4_q_output[1] is regfile:G_REGFILE|reg:Areg03|q_output[1]
@@ -239,15 +223,15 @@ G4_q_output[1] = DFFEAS(E1L20, !D1_t3, reset,  , G4L1,  ,  ,  ,  );
 
 
 --J1L6 is regfile:G_REGFILE|mux_4_to_1:muxA|output[1]~2571
-J1L6 = D1_IR[1] & (J1L5 & (G4_q_output[1]) # !J1L5 & G3_q_output[1]) # !D1_IR[1] & (J1L5);
+J1L6 = D1_IR[5] & (J1L5 & (G4_q_output[1]) # !J1L5 & G3_q_output[1]) # !D1_IR[5] & (J1L5);
 
 
 --J1L7 is regfile:G_REGFILE|mux_4_to_1:muxA|output[1]~2572
-J1L7 = D1_IR[2] & (G5_q_output[1] # !G5L2) # !D1_IR[2] & (J1L6);
+J1L7 = D1_IR[6] & (G5_q_output[1] # !G5L2) # !D1_IR[6] & (J1L6);
 
 
 --J1L8 is regfile:G_REGFILE|mux_4_to_1:muxA|output[1]~2573
-J1L8 = D1_IR[3] # J1L7;
+J1L8 = D1_IR[7] # J1L7;
 
 
 --D1_pc[1] is instru_fetch:G_INSTRU_FETCH|pc[1]
@@ -261,28 +245,28 @@ D1L3 = D1_pc[1] & !D1L2 # !D1_pc[1] & (D1L2 # GND);
 D1L4 = CARRY(!D1L2 # !D1_pc[1]);
 
 
---J2L5 is regfile:G_REGFILE|mux_4_to_1:muxB|output[1]~4149
-J2L5 = B1L15 # B1L16 # G5_q_output[1];
+--J2L5 is regfile:G_REGFILE|mux_4_to_1:muxB|output[1]~2589
+J2L5 = D1_IR[0] # D1_IR[1] # G5_q_output[1];
 
 
---J2L6 is regfile:G_REGFILE|mux_4_to_1:muxB|output[1]~4150
-J2L6 = B1L16 & (B1L15) # !B1L16 & (B1L15 & G2_q_output[1] # !B1L15 & (G1_q_output[1]));
+--J2L6 is regfile:G_REGFILE|mux_4_to_1:muxB|output[1]~2590
+J2L6 = D1_IR[1] & (D1_IR[0]) # !D1_IR[1] & (D1_IR[0] & G2_q_output[1] # !D1_IR[0] & (G1_q_output[1]));
 
 
---J2L7 is regfile:G_REGFILE|mux_4_to_1:muxB|output[1]~4151
-J2L7 = B1L16 & (J2L6 & (G4_q_output[1]) # !J2L6 & G3_q_output[1]) # !B1L16 & (J2L6);
+--J2L7 is regfile:G_REGFILE|mux_4_to_1:muxB|output[1]~2591
+J2L7 = D1_IR[1] & (J2L6 & (G4_q_output[1]) # !J2L6 & G3_q_output[1]) # !D1_IR[1] & (J2L6);
 
 
---J2L8 is regfile:G_REGFILE|mux_4_to_1:muxB|output[1]~4152
-J2L8 = B1L18 # B1L17 & J2L5 # !B1L17 & (J2L7);
+--J2L8 is regfile:G_REGFILE|mux_4_to_1:muxB|output[1]~2592
+J2L8 = D1_IR[3] # D1_IR[2] & J2L5 # !D1_IR[2] & (J2L7);
 
 
---C1L226 is exe_unit:G_EXE|Mem_Addr[1]~224
-C1L226 = C1L249 & (C1L248) # !C1L249 & (C1L248 & D1L3 # !C1L248 & (J2L8));
+--C1L230 is exe_unit:G_EXE|Mem_Addr[1]~224
+C1L230 = C1L241 & (C1L240) # !C1L241 & (C1L240 & D1L3 # !C1L240 & (J2L8));
 
 
---C1L227 is exe_unit:G_EXE|Mem_Addr[1]~225
-C1L227 = C1L249 & (C1L226 & (D1_pc[1]) # !C1L226 & J1L8) # !C1L249 & (C1L226);
+--C1L231 is exe_unit:G_EXE|Mem_Addr[1]~225
+C1L231 = C1L241 & (C1L230 & (D1_pc[1]) # !C1L230 & J1L8) # !C1L241 & (C1L230);
 
 
 --D1_pc[2] is instru_fetch:G_INSTRU_FETCH|pc[2]
@@ -313,7 +297,7 @@ G1_q_output[2] = DFFEAS(E1L22, !D1_t3, reset,  , G1L1,  ,  ,  ,  );
 
 
 --J1L9 is regfile:G_REGFILE|mux_4_to_1:muxA|output[2]~2574
-J1L9 = D1_IR[0] & (D1_IR[1]) # !D1_IR[0] & (D1_IR[1] & G3_q_output[2] # !D1_IR[1] & (G1_q_output[2]));
+J1L9 = D1_IR[4] & (D1_IR[5]) # !D1_IR[4] & (D1_IR[5] & G3_q_output[2] # !D1_IR[5] & (G1_q_output[2]));
 
 
 --G4_q_output[2] is regfile:G_REGFILE|reg:Areg03|q_output[2]
@@ -321,39 +305,39 @@ G4_q_output[2] = DFFEAS(E1L22, !D1_t3, reset,  , G4L1,  ,  ,  ,  );
 
 
 --J1L10 is regfile:G_REGFILE|mux_4_to_1:muxA|output[2]~2575
-J1L10 = D1_IR[0] & (J1L9 & (G4_q_output[2]) # !J1L9 & G2_q_output[2]) # !D1_IR[0] & (J1L9);
+J1L10 = D1_IR[4] & (J1L9 & (G4_q_output[2]) # !J1L9 & G2_q_output[2]) # !D1_IR[4] & (J1L9);
 
 
 --J1L11 is regfile:G_REGFILE|mux_4_to_1:muxA|output[2]~2576
-J1L11 = D1_IR[2] & (G5_q_output[2] # !G5L2) # !D1_IR[2] & (J1L10);
+J1L11 = D1_IR[6] & (G5_q_output[2] # !G5L2) # !D1_IR[6] & (J1L10);
 
 
 --J1L12 is regfile:G_REGFILE|mux_4_to_1:muxA|output[2]~2577
-J1L12 = D1_IR[3] # J1L11;
+J1L12 = D1_IR[7] # J1L11;
 
 
---J2L9 is regfile:G_REGFILE|mux_4_to_1:muxB|output[2]~4153
-J2L9 = B1L15 # B1L16 # G5_q_output[2];
+--J2L9 is regfile:G_REGFILE|mux_4_to_1:muxB|output[2]~2593
+J2L9 = D1_IR[0] # D1_IR[1] # G5_q_output[2];
 
 
---J2L10 is regfile:G_REGFILE|mux_4_to_1:muxB|output[2]~4154
-J2L10 = B1L15 & (B1L16) # !B1L15 & (B1L16 & G3_q_output[2] # !B1L16 & (G1_q_output[2]));
+--J2L10 is regfile:G_REGFILE|mux_4_to_1:muxB|output[2]~2594
+J2L10 = D1_IR[0] & (D1_IR[1]) # !D1_IR[0] & (D1_IR[1] & G3_q_output[2] # !D1_IR[1] & (G1_q_output[2]));
 
 
---J2L11 is regfile:G_REGFILE|mux_4_to_1:muxB|output[2]~4155
-J2L11 = B1L15 & (J2L10 & (G4_q_output[2]) # !J2L10 & G2_q_output[2]) # !B1L15 & (J2L10);
+--J2L11 is regfile:G_REGFILE|mux_4_to_1:muxB|output[2]~2595
+J2L11 = D1_IR[0] & (J2L10 & (G4_q_output[2]) # !J2L10 & G2_q_output[2]) # !D1_IR[0] & (J2L10);
 
 
---J2L12 is regfile:G_REGFILE|mux_4_to_1:muxB|output[2]~4156
-J2L12 = B1L18 # B1L17 & J2L9 # !B1L17 & (J2L11);
+--J2L12 is regfile:G_REGFILE|mux_4_to_1:muxB|output[2]~2596
+J2L12 = D1_IR[3] # D1_IR[2] & J2L9 # !D1_IR[2] & (J2L11);
 
 
---C1L228 is exe_unit:G_EXE|Mem_Addr[2]~226
-C1L228 = C1L248 & (C1L249) # !C1L248 & (C1L249 & J1L12 # !C1L249 & (J2L12));
+--C1L232 is exe_unit:G_EXE|Mem_Addr[2]~226
+C1L232 = C1L240 & (C1L241) # !C1L240 & (C1L241 & J1L12 # !C1L241 & (J2L12));
 
 
---C1L229 is exe_unit:G_EXE|Mem_Addr[2]~227
-C1L229 = C1L248 & (C1L228 & (D1_pc[2]) # !C1L228 & D1L5) # !C1L248 & (C1L228);
+--C1L233 is exe_unit:G_EXE|Mem_Addr[2]~227
+C1L233 = C1L240 & (C1L232 & (D1_pc[2]) # !C1L232 & D1L5) # !C1L240 & (C1L232);
 
 
 --G5_q_output[3] is regfile:G_REGFILE|reg:Areg04|q_output[3]
@@ -373,7 +357,7 @@ G1_q_output[3] = DFFEAS(E1L24, !D1_t3, reset,  , G1L1,  ,  ,  ,  );
 
 
 --J1L13 is regfile:G_REGFILE|mux_4_to_1:muxA|output[3]~2578
-J1L13 = D1_IR[1] & (D1_IR[0]) # !D1_IR[1] & (D1_IR[0] & G2_q_output[3] # !D1_IR[0] & (G1_q_output[3]));
+J1L13 = D1_IR[5] & (D1_IR[4]) # !D1_IR[5] & (D1_IR[4] & G2_q_output[3] # !D1_IR[4] & (G1_q_output[3]));
 
 
 --G4_q_output[3] is regfile:G_REGFILE|reg:Areg03|q_output[3]
@@ -381,15 +365,15 @@ G4_q_output[3] = DFFEAS(E1L24, !D1_t3, reset,  , G4L1,  ,  ,  ,  );
 
 
 --J1L14 is regfile:G_REGFILE|mux_4_to_1:muxA|output[3]~2579
-J1L14 = D1_IR[1] & (J1L13 & (G4_q_output[3]) # !J1L13 & G3_q_output[3]) # !D1_IR[1] & (J1L13);
+J1L14 = D1_IR[5] & (J1L13 & (G4_q_output[3]) # !J1L13 & G3_q_output[3]) # !D1_IR[5] & (J1L13);
 
 
 --J1L15 is regfile:G_REGFILE|mux_4_to_1:muxA|output[3]~2580
-J1L15 = D1_IR[2] & (G5_q_output[3] # !G5L2) # !D1_IR[2] & (J1L14);
+J1L15 = D1_IR[6] & (G5_q_output[3] # !G5L2) # !D1_IR[6] & (J1L14);
 
 
 --J1L16 is regfile:G_REGFILE|mux_4_to_1:muxA|output[3]~2581
-J1L16 = D1_IR[3] # J1L15;
+J1L16 = D1_IR[7] # J1L15;
 
 
 --D1_pc[3] is instru_fetch:G_INSTRU_FETCH|pc[3]
@@ -403,28 +387,28 @@ D1L7 = D1_pc[3] & !D1L6 # !D1_pc[3] & (D1L6 # GND);
 D1L8 = CARRY(!D1L6 # !D1_pc[3]);
 
 
---J2L13 is regfile:G_REGFILE|mux_4_to_1:muxB|output[3]~4157
-J2L13 = B1L15 # B1L16 # G5_q_output[3];
+--J2L13 is regfile:G_REGFILE|mux_4_to_1:muxB|output[3]~2597
+J2L13 = D1_IR[0] # D1_IR[1] # G5_q_output[3];
 
 
---J2L14 is regfile:G_REGFILE|mux_4_to_1:muxB|output[3]~4158
-J2L14 = B1L16 & (B1L15) # !B1L16 & (B1L15 & G2_q_output[3] # !B1L15 & (G1_q_output[3]));
+--J2L14 is regfile:G_REGFILE|mux_4_to_1:muxB|output[3]~2598
+J2L14 = D1_IR[1] & (D1_IR[0]) # !D1_IR[1] & (D1_IR[0] & G2_q_output[3] # !D1_IR[0] & (G1_q_output[3]));
 
 
---J2L15 is regfile:G_REGFILE|mux_4_to_1:muxB|output[3]~4159
-J2L15 = B1L16 & (J2L14 & (G4_q_output[3]) # !J2L14 & G3_q_output[3]) # !B1L16 & (J2L14);
+--J2L15 is regfile:G_REGFILE|mux_4_to_1:muxB|output[3]~2599
+J2L15 = D1_IR[1] & (J2L14 & (G4_q_output[3]) # !J2L14 & G3_q_output[3]) # !D1_IR[1] & (J2L14);
 
 
---J2L16 is regfile:G_REGFILE|mux_4_to_1:muxB|output[3]~4160
-J2L16 = B1L18 # B1L17 & J2L13 # !B1L17 & (J2L15);
+--J2L16 is regfile:G_REGFILE|mux_4_to_1:muxB|output[3]~2600
+J2L16 = D1_IR[3] # D1_IR[2] & J2L13 # !D1_IR[2] & (J2L15);
 
 
---C1L230 is exe_unit:G_EXE|Mem_Addr[3]~228
-C1L230 = C1L249 & (C1L248) # !C1L249 & (C1L248 & D1L7 # !C1L248 & (J2L16));
+--C1L234 is exe_unit:G_EXE|Mem_Addr[3]~228
+C1L234 = C1L241 & (C1L240) # !C1L241 & (C1L240 & D1L7 # !C1L240 & (J2L16));
 
 
---C1L231 is exe_unit:G_EXE|Mem_Addr[3]~229
-C1L231 = C1L249 & (C1L230 & (D1_pc[3]) # !C1L230 & J1L16) # !C1L249 & (C1L230);
+--C1L235 is exe_unit:G_EXE|Mem_Addr[3]~229
+C1L235 = C1L241 & (C1L234 & (D1_pc[3]) # !C1L234 & J1L16) # !C1L241 & (C1L234);
 
 
 --D1_pc[4] is instru_fetch:G_INSTRU_FETCH|pc[4]
@@ -455,7 +439,7 @@ G1_q_output[4] = DFFEAS(E1L26, !D1_t3, reset,  , G1L1,  ,  ,  ,  );
 
 
 --J1L17 is regfile:G_REGFILE|mux_4_to_1:muxA|output[4]~2582
-J1L17 = D1_IR[0] & (D1_IR[1]) # !D1_IR[0] & (D1_IR[1] & G3_q_output[4] # !D1_IR[1] & (G1_q_output[4]));
+J1L17 = D1_IR[4] & (D1_IR[5]) # !D1_IR[4] & (D1_IR[5] & G3_q_output[4] # !D1_IR[5] & (G1_q_output[4]));
 
 
 --G4_q_output[4] is regfile:G_REGFILE|reg:Areg03|q_output[4]
@@ -463,39 +447,39 @@ G4_q_output[4] = DFFEAS(E1L26, !D1_t3, reset,  , G4L1,  ,  ,  ,  );
 
 
 --J1L18 is regfile:G_REGFILE|mux_4_to_1:muxA|output[4]~2583
-J1L18 = D1_IR[0] & (J1L17 & (G4_q_output[4]) # !J1L17 & G2_q_output[4]) # !D1_IR[0] & (J1L17);
+J1L18 = D1_IR[4] & (J1L17 & (G4_q_output[4]) # !J1L17 & G2_q_output[4]) # !D1_IR[4] & (J1L17);
 
 
 --J1L19 is regfile:G_REGFILE|mux_4_to_1:muxA|output[4]~2584
-J1L19 = D1_IR[2] & (G5_q_output[4] # !G5L2) # !D1_IR[2] & (J1L18);
+J1L19 = D1_IR[6] & (G5_q_output[4] # !G5L2) # !D1_IR[6] & (J1L18);
 
 
 --J1L20 is regfile:G_REGFILE|mux_4_to_1:muxA|output[4]~2585
-J1L20 = D1_IR[3] # J1L19;
+J1L20 = D1_IR[7] # J1L19;
 
 
---J2L17 is regfile:G_REGFILE|mux_4_to_1:muxB|output[4]~4161
-J2L17 = B1L15 # B1L16 # G5_q_output[4];
+--J2L17 is regfile:G_REGFILE|mux_4_to_1:muxB|output[4]~2601
+J2L17 = D1_IR[0] # D1_IR[1] # G5_q_output[4];
 
 
---J2L18 is regfile:G_REGFILE|mux_4_to_1:muxB|output[4]~4162
-J2L18 = B1L15 & (B1L16) # !B1L15 & (B1L16 & G3_q_output[4] # !B1L16 & (G1_q_output[4]));
+--J2L18 is regfile:G_REGFILE|mux_4_to_1:muxB|output[4]~2602
+J2L18 = D1_IR[0] & (D1_IR[1]) # !D1_IR[0] & (D1_IR[1] & G3_q_output[4] # !D1_IR[1] & (G1_q_output[4]));
 
 
---J2L19 is regfile:G_REGFILE|mux_4_to_1:muxB|output[4]~4163
-J2L19 = B1L15 & (J2L18 & (G4_q_output[4]) # !J2L18 & G2_q_output[4]) # !B1L15 & (J2L18);
+--J2L19 is regfile:G_REGFILE|mux_4_to_1:muxB|output[4]~2603
+J2L19 = D1_IR[0] & (J2L18 & (G4_q_output[4]) # !J2L18 & G2_q_output[4]) # !D1_IR[0] & (J2L18);
 
 
---J2L20 is regfile:G_REGFILE|mux_4_to_1:muxB|output[4]~4164
-J2L20 = B1L18 # B1L17 & J2L17 # !B1L17 & (J2L19);
+--J2L20 is regfile:G_REGFILE|mux_4_to_1:muxB|output[4]~2604
+J2L20 = D1_IR[3] # D1_IR[2] & J2L17 # !D1_IR[2] & (J2L19);
 
 
---C1L232 is exe_unit:G_EXE|Mem_Addr[4]~230
-C1L232 = C1L248 & (C1L249) # !C1L248 & (C1L249 & J1L20 # !C1L249 & (J2L20));
+--C1L236 is exe_unit:G_EXE|Mem_Addr[4]~230
+C1L236 = C1L240 & (C1L241) # !C1L240 & (C1L241 & J1L20 # !C1L241 & (J2L20));
 
 
---C1L233 is exe_unit:G_EXE|Mem_Addr[4]~231
-C1L233 = C1L248 & (C1L232 & (D1_pc[4]) # !C1L232 & D1L9) # !C1L248 & (C1L232);
+--C1L237 is exe_unit:G_EXE|Mem_Addr[4]~231
+C1L237 = C1L240 & (C1L236 & (D1_pc[4]) # !C1L236 & D1L9) # !C1L240 & (C1L236);
 
 
 --G5_q_output[5] is regfile:G_REGFILE|reg:Areg04|q_output[5]
@@ -515,7 +499,7 @@ G1_q_output[5] = DFFEAS(E1L28, !D1_t3, reset,  , G1L1,  ,  ,  ,  );
 
 
 --J1L21 is regfile:G_REGFILE|mux_4_to_1:muxA|output[5]~2586
-J1L21 = D1_IR[1] & (D1_IR[0]) # !D1_IR[1] & (D1_IR[0] & G2_q_output[5] # !D1_IR[0] & (G1_q_output[5]));
+J1L21 = D1_IR[5] & (D1_IR[4]) # !D1_IR[5] & (D1_IR[4] & G2_q_output[5] # !D1_IR[4] & (G1_q_output[5]));
 
 
 --G4_q_output[5] is regfile:G_REGFILE|reg:Areg03|q_output[5]
@@ -523,15 +507,15 @@ G4_q_output[5] = DFFEAS(E1L28, !D1_t3, reset,  , G4L1,  ,  ,  ,  );
 
 
 --J1L22 is regfile:G_REGFILE|mux_4_to_1:muxA|output[5]~2587
-J1L22 = D1_IR[1] & (J1L21 & (G4_q_output[5]) # !J1L21 & G3_q_output[5]) # !D1_IR[1] & (J1L21);
+J1L22 = D1_IR[5] & (J1L21 & (G4_q_output[5]) # !J1L21 & G3_q_output[5]) # !D1_IR[5] & (J1L21);
 
 
 --J1L23 is regfile:G_REGFILE|mux_4_to_1:muxA|output[5]~2588
-J1L23 = D1_IR[2] & (G5_q_output[5] # !G5L2) # !D1_IR[2] & (J1L22);
+J1L23 = D1_IR[6] & (G5_q_output[5] # !G5L2) # !D1_IR[6] & (J1L22);
 
 
 --J1L24 is regfile:G_REGFILE|mux_4_to_1:muxA|output[5]~2589
-J1L24 = D1_IR[3] # J1L23;
+J1L24 = D1_IR[7] # J1L23;
 
 
 --D1_pc[5] is instru_fetch:G_INSTRU_FETCH|pc[5]
@@ -545,28 +529,28 @@ D1L11 = D1_pc[5] & !D1L10 # !D1_pc[5] & (D1L10 # GND);
 D1L12 = CARRY(!D1L10 # !D1_pc[5]);
 
 
---J2L21 is regfile:G_REGFILE|mux_4_to_1:muxB|output[5]~4165
-J2L21 = B1L15 # B1L16 # G5_q_output[5];
+--J2L21 is regfile:G_REGFILE|mux_4_to_1:muxB|output[5]~2605
+J2L21 = D1_IR[0] # D1_IR[1] # G5_q_output[5];
 
 
---J2L22 is regfile:G_REGFILE|mux_4_to_1:muxB|output[5]~4166
-J2L22 = B1L16 & (B1L15) # !B1L16 & (B1L15 & G2_q_output[5] # !B1L15 & (G1_q_output[5]));
+--J2L22 is regfile:G_REGFILE|mux_4_to_1:muxB|output[5]~2606
+J2L22 = D1_IR[1] & (D1_IR[0]) # !D1_IR[1] & (D1_IR[0] & G2_q_output[5] # !D1_IR[0] & (G1_q_output[5]));
 
 
---J2L23 is regfile:G_REGFILE|mux_4_to_1:muxB|output[5]~4167
-J2L23 = B1L16 & (J2L22 & (G4_q_output[5]) # !J2L22 & G3_q_output[5]) # !B1L16 & (J2L22);
+--J2L23 is regfile:G_REGFILE|mux_4_to_1:muxB|output[5]~2607
+J2L23 = D1_IR[1] & (J2L22 & (G4_q_output[5]) # !J2L22 & G3_q_output[5]) # !D1_IR[1] & (J2L22);
 
 
---J2L24 is regfile:G_REGFILE|mux_4_to_1:muxB|output[5]~4168
-J2L24 = B1L18 # B1L17 & J2L21 # !B1L17 & (J2L23);
+--J2L24 is regfile:G_REGFILE|mux_4_to_1:muxB|output[5]~2608
+J2L24 = D1_IR[3] # D1_IR[2] & J2L21 # !D1_IR[2] & (J2L23);
 
 
---C1L234 is exe_unit:G_EXE|Mem_Addr[5]~232
-C1L234 = C1L249 & (C1L248) # !C1L249 & (C1L248 & D1L11 # !C1L248 & (J2L24));
+--C1L238 is exe_unit:G_EXE|Mem_Addr[5]~232
+C1L238 = C1L241 & (C1L240) # !C1L241 & (C1L240 & D1L11 # !C1L240 & (J2L24));
 
 
---C1L235 is exe_unit:G_EXE|Mem_Addr[5]~233
-C1L235 = C1L249 & (C1L234 & (D1_pc[5]) # !C1L234 & J1L24) # !C1L249 & (C1L234);
+--C1L239 is exe_unit:G_EXE|Mem_Addr[5]~233
+C1L239 = C1L241 & (C1L238 & (D1_pc[5]) # !C1L238 & J1L24) # !C1L241 & (C1L238);
 
 
 --D1_pc[6] is instru_fetch:G_INSTRU_FETCH|pc[6]
@@ -597,7 +581,7 @@ G1_q_output[6] = DFFEAS(E1L30, !D1_t3, reset,  , G1L1,  ,  ,  ,  );
 
 
 --J1L25 is regfile:G_REGFILE|mux_4_to_1:muxA|output[6]~2590
-J1L25 = D1_IR[0] & (D1_IR[1]) # !D1_IR[0] & (D1_IR[1] & G3_q_output[6] # !D1_IR[1] & (G1_q_output[6]));
+J1L25 = D1_IR[4] & (D1_IR[5]) # !D1_IR[4] & (D1_IR[5] & G3_q_output[6] # !D1_IR[5] & (G1_q_output[6]));
 
 
 --G4_q_output[6] is regfile:G_REGFILE|reg:Areg03|q_output[6]
@@ -605,39 +589,39 @@ G4_q_output[6] = DFFEAS(E1L30, !D1_t3, reset,  , G4L1,  ,  ,  ,  );
 
 
 --J1L26 is regfile:G_REGFILE|mux_4_to_1:muxA|output[6]~2591
-J1L26 = D1_IR[0] & (J1L25 & (G4_q_output[6]) # !J1L25 & G2_q_output[6]) # !D1_IR[0] & (J1L25);
+J1L26 = D1_IR[4] & (J1L25 & (G4_q_output[6]) # !J1L25 & G2_q_output[6]) # !D1_IR[4] & (J1L25);
 
 
 --J1L27 is regfile:G_REGFILE|mux_4_to_1:muxA|output[6]~2592
-J1L27 = D1_IR[2] & (G5_q_output[6] # !G5L2) # !D1_IR[2] & (J1L26);
+J1L27 = D1_IR[6] & (G5_q_output[6] # !G5L2) # !D1_IR[6] & (J1L26);
 
 
 --J1L28 is regfile:G_REGFILE|mux_4_to_1:muxA|output[6]~2593
-J1L28 = D1_IR[3] # J1L27;
+J1L28 = D1_IR[7] # J1L27;
 
 
---J2L25 is regfile:G_REGFILE|mux_4_to_1:muxB|output[6]~4169
-J2L25 = B1L15 # B1L16 # G5_q_output[6];
+--J2L25 is regfile:G_REGFILE|mux_4_to_1:muxB|output[6]~2609
+J2L25 = D1_IR[0] # D1_IR[1] # G5_q_output[6];
 
 
---J2L26 is regfile:G_REGFILE|mux_4_to_1:muxB|output[6]~4170
-J2L26 = B1L15 & (B1L16) # !B1L15 & (B1L16 & G3_q_output[6] # !B1L16 & (G1_q_output[6]));
+--J2L26 is regfile:G_REGFILE|mux_4_to_1:muxB|output[6]~2610
+J2L26 = D1_IR[0] & (D1_IR[1]) # !D1_IR[0] & (D1_IR[1] & G3_q_output[6] # !D1_IR[1] & (G1_q_output[6]));
 
 
---J2L27 is regfile:G_REGFILE|mux_4_to_1:muxB|output[6]~4171
-J2L27 = B1L15 & (J2L26 & (G4_q_output[6]) # !J2L26 & G2_q_output[6]) # !B1L15 & (J2L26);
+--J2L27 is regfile:G_REGFILE|mux_4_to_1:muxB|output[6]~2611
+J2L27 = D1_IR[0] & (J2L26 & (G4_q_output[6]) # !J2L26 & G2_q_output[6]) # !D1_IR[0] & (J2L26);
 
 
---J2L28 is regfile:G_REGFILE|mux_4_to_1:muxB|output[6]~4172
-J2L28 = B1L18 # B1L17 & J2L25 # !B1L17 & (J2L27);
+--J2L28 is regfile:G_REGFILE|mux_4_to_1:muxB|output[6]~2612
+J2L28 = D1_IR[3] # D1_IR[2] & J2L25 # !D1_IR[2] & (J2L27);
 
 
---C1L236 is exe_unit:G_EXE|Mem_Addr[6]~234
-C1L236 = C1L248 & (C1L249) # !C1L248 & (C1L249 & J1L28 # !C1L249 & (J2L28));
+--C1L242 is exe_unit:G_EXE|Mem_Addr[6]~234
+C1L242 = C1L240 & (C1L241) # !C1L240 & (C1L241 & J1L28 # !C1L241 & (J2L28));
 
 
---C1L237 is exe_unit:G_EXE|Mem_Addr[6]~235
-C1L237 = C1L248 & (C1L236 & (D1_pc[6]) # !C1L236 & D1L13) # !C1L248 & (C1L236);
+--C1L243 is exe_unit:G_EXE|Mem_Addr[6]~235
+C1L243 = C1L240 & (C1L242 & (D1_pc[6]) # !C1L242 & D1L13) # !C1L240 & (C1L242);
 
 
 --G5_q_output[7] is regfile:G_REGFILE|reg:Areg04|q_output[7]
@@ -657,7 +641,7 @@ G1_q_output[7] = DFFEAS(E1L32, !D1_t3, reset,  , G1L1,  ,  ,  ,  );
 
 
 --J1L29 is regfile:G_REGFILE|mux_4_to_1:muxA|output[7]~2594
-J1L29 = D1_IR[1] & (D1_IR[0]) # !D1_IR[1] & (D1_IR[0] & G2_q_output[7] # !D1_IR[0] & (G1_q_output[7]));
+J1L29 = D1_IR[5] & (D1_IR[4]) # !D1_IR[5] & (D1_IR[4] & G2_q_output[7] # !D1_IR[4] & (G1_q_output[7]));
 
 
 --G4_q_output[7] is regfile:G_REGFILE|reg:Areg03|q_output[7]
@@ -665,15 +649,15 @@ G4_q_output[7] = DFFEAS(E1L32, !D1_t3, reset,  , G4L1,  ,  ,  ,  );
 
 
 --J1L30 is regfile:G_REGFILE|mux_4_to_1:muxA|output[7]~2595
-J1L30 = D1_IR[1] & (J1L29 & (G4_q_output[7]) # !J1L29 & G3_q_output[7]) # !D1_IR[1] & (J1L29);
+J1L30 = D1_IR[5] & (J1L29 & (G4_q_output[7]) # !J1L29 & G3_q_output[7]) # !D1_IR[5] & (J1L29);
 
 
 --J1L31 is regfile:G_REGFILE|mux_4_to_1:muxA|output[7]~2596
-J1L31 = D1_IR[2] & (G5_q_output[7] # !G5L2) # !D1_IR[2] & (J1L30);
+J1L31 = D1_IR[6] & (G5_q_output[7] # !G5L2) # !D1_IR[6] & (J1L30);
 
 
 --J1L32 is regfile:G_REGFILE|mux_4_to_1:muxA|output[7]~2597
-J1L32 = D1_IR[3] # J1L31;
+J1L32 = D1_IR[7] # J1L31;
 
 
 --D1_pc[7] is instru_fetch:G_INSTRU_FETCH|pc[7]
@@ -687,28 +671,28 @@ D1L15 = D1_pc[7] & !D1L14 # !D1_pc[7] & (D1L14 # GND);
 D1L16 = CARRY(!D1L14 # !D1_pc[7]);
 
 
---J2L29 is regfile:G_REGFILE|mux_4_to_1:muxB|output[7]~4173
-J2L29 = B1L15 # B1L16 # G5_q_output[7];
+--J2L29 is regfile:G_REGFILE|mux_4_to_1:muxB|output[7]~2613
+J2L29 = D1_IR[0] # D1_IR[1] # G5_q_output[7];
 
 
---J2L30 is regfile:G_REGFILE|mux_4_to_1:muxB|output[7]~4174
-J2L30 = B1L16 & (B1L15) # !B1L16 & (B1L15 & G2_q_output[7] # !B1L15 & (G1_q_output[7]));
+--J2L30 is regfile:G_REGFILE|mux_4_to_1:muxB|output[7]~2614
+J2L30 = D1_IR[1] & (D1_IR[0]) # !D1_IR[1] & (D1_IR[0] & G2_q_output[7] # !D1_IR[0] & (G1_q_output[7]));
 
 
---J2L31 is regfile:G_REGFILE|mux_4_to_1:muxB|output[7]~4175
-J2L31 = B1L16 & (J2L30 & (G4_q_output[7]) # !J2L30 & G3_q_output[7]) # !B1L16 & (J2L30);
+--J2L31 is regfile:G_REGFILE|mux_4_to_1:muxB|output[7]~2615
+J2L31 = D1_IR[1] & (J2L30 & (G4_q_output[7]) # !J2L30 & G3_q_output[7]) # !D1_IR[1] & (J2L30);
 
 
---J2L32 is regfile:G_REGFILE|mux_4_to_1:muxB|output[7]~4176
-J2L32 = B1L18 # B1L17 & J2L29 # !B1L17 & (J2L31);
+--J2L32 is regfile:G_REGFILE|mux_4_to_1:muxB|output[7]~2616
+J2L32 = D1_IR[3] # D1_IR[2] & J2L29 # !D1_IR[2] & (J2L31);
 
 
---C1L238 is exe_unit:G_EXE|Mem_Addr[7]~236
-C1L238 = C1L249 & (C1L248) # !C1L249 & (C1L248 & D1L15 # !C1L248 & (J2L32));
+--C1L244 is exe_unit:G_EXE|Mem_Addr[7]~236
+C1L244 = C1L241 & (C1L240) # !C1L241 & (C1L240 & D1L15 # !C1L240 & (J2L32));
 
 
---C1L239 is exe_unit:G_EXE|Mem_Addr[7]~237
-C1L239 = C1L249 & (C1L238 & (D1_pc[7]) # !C1L238 & J1L32) # !C1L249 & (C1L238);
+--C1L245 is exe_unit:G_EXE|Mem_Addr[7]~237
+C1L245 = C1L241 & (C1L244 & (D1_pc[7]) # !C1L244 & J1L32) # !C1L241 & (C1L244);
 
 
 --D1_pc[8] is instru_fetch:G_INSTRU_FETCH|pc[8]
@@ -739,7 +723,7 @@ G1_q_output[8] = DFFEAS(E1L34, !D1_t3, reset,  , G1L1,  ,  ,  ,  );
 
 
 --J1L33 is regfile:G_REGFILE|mux_4_to_1:muxA|output[8]~2598
-J1L33 = D1_IR[0] & (D1_IR[1]) # !D1_IR[0] & (D1_IR[1] & G3_q_output[8] # !D1_IR[1] & (G1_q_output[8]));
+J1L33 = D1_IR[4] & (D1_IR[5]) # !D1_IR[4] & (D1_IR[5] & G3_q_output[8] # !D1_IR[5] & (G1_q_output[8]));
 
 
 --G4_q_output[8] is regfile:G_REGFILE|reg:Areg03|q_output[8]
@@ -747,39 +731,39 @@ G4_q_output[8] = DFFEAS(E1L34, !D1_t3, reset,  , G4L1,  ,  ,  ,  );
 
 
 --J1L34 is regfile:G_REGFILE|mux_4_to_1:muxA|output[8]~2599
-J1L34 = D1_IR[0] & (J1L33 & (G4_q_output[8]) # !J1L33 & G2_q_output[8]) # !D1_IR[0] & (J1L33);
+J1L34 = D1_IR[4] & (J1L33 & (G4_q_output[8]) # !J1L33 & G2_q_output[8]) # !D1_IR[4] & (J1L33);
 
 
 --J1L35 is regfile:G_REGFILE|mux_4_to_1:muxA|output[8]~2600
-J1L35 = D1_IR[2] & (G5_q_output[8] # !G5L2) # !D1_IR[2] & (J1L34);
+J1L35 = D1_IR[6] & (G5_q_output[8] # !G5L2) # !D1_IR[6] & (J1L34);
 
 
 --J1L36 is regfile:G_REGFILE|mux_4_to_1:muxA|output[8]~2601
-J1L36 = D1_IR[3] # J1L35;
+J1L36 = D1_IR[7] # J1L35;
 
 
---J2L33 is regfile:G_REGFILE|mux_4_to_1:muxB|output[8]~4177
-J2L33 = B1L15 # B1L16 # G5_q_output[8];
+--J2L33 is regfile:G_REGFILE|mux_4_to_1:muxB|output[8]~2617
+J2L33 = D1_IR[0] # D1_IR[1] # G5_q_output[8];
 
 
---J2L34 is regfile:G_REGFILE|mux_4_to_1:muxB|output[8]~4178
-J2L34 = B1L15 & (B1L16) # !B1L15 & (B1L16 & G3_q_output[8] # !B1L16 & (G1_q_output[8]));
+--J2L34 is regfile:G_REGFILE|mux_4_to_1:muxB|output[8]~2618
+J2L34 = D1_IR[0] & (D1_IR[1]) # !D1_IR[0] & (D1_IR[1] & G3_q_output[8] # !D1_IR[1] & (G1_q_output[8]));
 
 
---J2L35 is regfile:G_REGFILE|mux_4_to_1:muxB|output[8]~4179
-J2L35 = B1L15 & (J2L34 & (G4_q_output[8]) # !J2L34 & G2_q_output[8]) # !B1L15 & (J2L34);
+--J2L35 is regfile:G_REGFILE|mux_4_to_1:muxB|output[8]~2619
+J2L35 = D1_IR[0] & (J2L34 & (G4_q_output[8]) # !J2L34 & G2_q_output[8]) # !D1_IR[0] & (J2L34);
 
 
---J2L36 is regfile:G_REGFILE|mux_4_to_1:muxB|output[8]~4180
-J2L36 = B1L18 # B1L17 & J2L33 # !B1L17 & (J2L35);
+--J2L36 is regfile:G_REGFILE|mux_4_to_1:muxB|output[8]~2620
+J2L36 = D1_IR[3] # D1_IR[2] & J2L33 # !D1_IR[2] & (J2L35);
 
 
---C1L240 is exe_unit:G_EXE|Mem_Addr[8]~238
-C1L240 = C1L248 & (C1L249) # !C1L248 & (C1L249 & J1L36 # !C1L249 & (J2L36));
+--C1L246 is exe_unit:G_EXE|Mem_Addr[8]~238
+C1L246 = C1L240 & (C1L241) # !C1L240 & (C1L241 & J1L36 # !C1L241 & (J2L36));
 
 
---C1L241 is exe_unit:G_EXE|Mem_Addr[8]~239
-C1L241 = C1L248 & (C1L240 & (D1_pc[8]) # !C1L240 & D1L17) # !C1L248 & (C1L240);
+--C1L247 is exe_unit:G_EXE|Mem_Addr[8]~239
+C1L247 = C1L240 & (C1L246 & (D1_pc[8]) # !C1L246 & D1L17) # !C1L240 & (C1L246);
 
 
 --G5_q_output[9] is regfile:G_REGFILE|reg:Areg04|q_output[9]
@@ -799,7 +783,7 @@ G1_q_output[9] = DFFEAS(E1L36, !D1_t3, reset,  , G1L1,  ,  ,  ,  );
 
 
 --J1L37 is regfile:G_REGFILE|mux_4_to_1:muxA|output[9]~2602
-J1L37 = D1_IR[1] & (D1_IR[0]) # !D1_IR[1] & (D1_IR[0] & G2_q_output[9] # !D1_IR[0] & (G1_q_output[9]));
+J1L37 = D1_IR[5] & (D1_IR[4]) # !D1_IR[5] & (D1_IR[4] & G2_q_output[9] # !D1_IR[4] & (G1_q_output[9]));
 
 
 --G4_q_output[9] is regfile:G_REGFILE|reg:Areg03|q_output[9]
@@ -807,15 +791,15 @@ G4_q_output[9] = DFFEAS(E1L36, !D1_t3, reset,  , G4L1,  ,  ,  ,  );
 
 
 --J1L38 is regfile:G_REGFILE|mux_4_to_1:muxA|output[9]~2603
-J1L38 = D1_IR[1] & (J1L37 & (G4_q_output[9]) # !J1L37 & G3_q_output[9]) # !D1_IR[1] & (J1L37);
+J1L38 = D1_IR[5] & (J1L37 & (G4_q_output[9]) # !J1L37 & G3_q_output[9]) # !D1_IR[5] & (J1L37);
 
 
 --J1L39 is regfile:G_REGFILE|mux_4_to_1:muxA|output[9]~2604
-J1L39 = D1_IR[2] & (G5_q_output[9] # !G5L2) # !D1_IR[2] & (J1L38);
+J1L39 = D1_IR[6] & (G5_q_output[9] # !G5L2) # !D1_IR[6] & (J1L38);
 
 
 --J1L40 is regfile:G_REGFILE|mux_4_to_1:muxA|output[9]~2605
-J1L40 = D1_IR[3] # J1L39;
+J1L40 = D1_IR[7] # J1L39;
 
 
 --D1_pc[9] is instru_fetch:G_INSTRU_FETCH|pc[9]
@@ -829,28 +813,28 @@ D1L19 = D1_pc[9] & !D1L18 # !D1_pc[9] & (D1L18 # GND);
 D1L20 = CARRY(!D1L18 # !D1_pc[9]);
 
 
---J2L37 is regfile:G_REGFILE|mux_4_to_1:muxB|output[9]~4181
-J2L37 = B1L15 # B1L16 # G5_q_output[9];
+--J2L37 is regfile:G_REGFILE|mux_4_to_1:muxB|output[9]~2621
+J2L37 = D1_IR[0] # D1_IR[1] # G5_q_output[9];
 
 
---J2L38 is regfile:G_REGFILE|mux_4_to_1:muxB|output[9]~4182
-J2L38 = B1L16 & (B1L15) # !B1L16 & (B1L15 & G2_q_output[9] # !B1L15 & (G1_q_output[9]));
+--J2L38 is regfile:G_REGFILE|mux_4_to_1:muxB|output[9]~2622
+J2L38 = D1_IR[1] & (D1_IR[0]) # !D1_IR[1] & (D1_IR[0] & G2_q_output[9] # !D1_IR[0] & (G1_q_output[9]));
 
 
---J2L39 is regfile:G_REGFILE|mux_4_to_1:muxB|output[9]~4183
-J2L39 = B1L16 & (J2L38 & (G4_q_output[9]) # !J2L38 & G3_q_output[9]) # !B1L16 & (J2L38);
+--J2L39 is regfile:G_REGFILE|mux_4_to_1:muxB|output[9]~2623
+J2L39 = D1_IR[1] & (J2L38 & (G4_q_output[9]) # !J2L38 & G3_q_output[9]) # !D1_IR[1] & (J2L38);
 
 
---J2L40 is regfile:G_REGFILE|mux_4_to_1:muxB|output[9]~4184
-J2L40 = B1L18 # B1L17 & J2L37 # !B1L17 & (J2L39);
+--J2L40 is regfile:G_REGFILE|mux_4_to_1:muxB|output[9]~2624
+J2L40 = D1_IR[3] # D1_IR[2] & J2L37 # !D1_IR[2] & (J2L39);
 
 
---C1L242 is exe_unit:G_EXE|Mem_Addr[9]~240
-C1L242 = C1L249 & (C1L248) # !C1L249 & (C1L248 & D1L19 # !C1L248 & (J2L40));
+--C1L248 is exe_unit:G_EXE|Mem_Addr[9]~240
+C1L248 = C1L241 & (C1L240) # !C1L241 & (C1L240 & D1L19 # !C1L240 & (J2L40));
 
 
---C1L243 is exe_unit:G_EXE|Mem_Addr[9]~241
-C1L243 = C1L249 & (C1L242 & (D1_pc[9]) # !C1L242 & J1L40) # !C1L249 & (C1L242);
+--C1L249 is exe_unit:G_EXE|Mem_Addr[9]~241
+C1L249 = C1L241 & (C1L248 & (D1_pc[9]) # !C1L248 & J1L40) # !C1L241 & (C1L248);
 
 
 --D1_pc[10] is instru_fetch:G_INSTRU_FETCH|pc[10]
@@ -881,7 +865,7 @@ G1_q_output[10] = DFFEAS(E1L38, !D1_t3, reset,  , G1L1,  ,  ,  ,  );
 
 
 --J1L41 is regfile:G_REGFILE|mux_4_to_1:muxA|output[10]~2606
-J1L41 = D1_IR[0] & (D1_IR[1]) # !D1_IR[0] & (D1_IR[1] & G3_q_output[10] # !D1_IR[1] & (G1_q_output[10]));
+J1L41 = D1_IR[4] & (D1_IR[5]) # !D1_IR[4] & (D1_IR[5] & G3_q_output[10] # !D1_IR[5] & (G1_q_output[10]));
 
 
 --G4_q_output[10] is regfile:G_REGFILE|reg:Areg03|q_output[10]
@@ -889,39 +873,39 @@ G4_q_output[10] = DFFEAS(E1L38, !D1_t3, reset,  , G4L1,  ,  ,  ,  );
 
 
 --J1L42 is regfile:G_REGFILE|mux_4_to_1:muxA|output[10]~2607
-J1L42 = D1_IR[0] & (J1L41 & (G4_q_output[10]) # !J1L41 & G2_q_output[10]) # !D1_IR[0] & (J1L41);
+J1L42 = D1_IR[4] & (J1L41 & (G4_q_output[10]) # !J1L41 & G2_q_output[10]) # !D1_IR[4] & (J1L41);
 
 
 --J1L43 is regfile:G_REGFILE|mux_4_to_1:muxA|output[10]~2608
-J1L43 = D1_IR[2] & (G5_q_output[10] # !G5L2) # !D1_IR[2] & (J1L42);
+J1L43 = D1_IR[6] & (G5_q_output[10] # !G5L2) # !D1_IR[6] & (J1L42);
 
 
 --J1L44 is regfile:G_REGFILE|mux_4_to_1:muxA|output[10]~2609
-J1L44 = D1_IR[3] # J1L43;
+J1L44 = D1_IR[7] # J1L43;
 
 
---J2L41 is regfile:G_REGFILE|mux_4_to_1:muxB|output[10]~4185
-J2L41 = B1L15 # B1L16 # G5_q_output[10];
+--J2L41 is regfile:G_REGFILE|mux_4_to_1:muxB|output[10]~2625
+J2L41 = D1_IR[0] # D1_IR[1] # G5_q_output[10];
 
 
---J2L42 is regfile:G_REGFILE|mux_4_to_1:muxB|output[10]~4186
-J2L42 = B1L15 & (B1L16) # !B1L15 & (B1L16 & G3_q_output[10] # !B1L16 & (G1_q_output[10]));
+--J2L42 is regfile:G_REGFILE|mux_4_to_1:muxB|output[10]~2626
+J2L42 = D1_IR[0] & (D1_IR[1]) # !D1_IR[0] & (D1_IR[1] & G3_q_output[10] # !D1_IR[1] & (G1_q_output[10]));
 
 
---J2L43 is regfile:G_REGFILE|mux_4_to_1:muxB|output[10]~4187
-J2L43 = B1L15 & (J2L42 & (G4_q_output[10]) # !J2L42 & G2_q_output[10]) # !B1L15 & (J2L42);
+--J2L43 is regfile:G_REGFILE|mux_4_to_1:muxB|output[10]~2627
+J2L43 = D1_IR[0] & (J2L42 & (G4_q_output[10]) # !J2L42 & G2_q_output[10]) # !D1_IR[0] & (J2L42);
 
 
---J2L44 is regfile:G_REGFILE|mux_4_to_1:muxB|output[10]~4188
-J2L44 = B1L18 # B1L17 & J2L41 # !B1L17 & (J2L43);
+--J2L44 is regfile:G_REGFILE|mux_4_to_1:muxB|output[10]~2628
+J2L44 = D1_IR[3] # D1_IR[2] & J2L41 # !D1_IR[2] & (J2L43);
 
 
---C1L244 is exe_unit:G_EXE|Mem_Addr[10]~242
-C1L244 = C1L248 & (C1L249) # !C1L248 & (C1L249 & J1L44 # !C1L249 & (J2L44));
+--C1L250 is exe_unit:G_EXE|Mem_Addr[10]~242
+C1L250 = C1L240 & (C1L241) # !C1L240 & (C1L241 & J1L44 # !C1L241 & (J2L44));
 
 
---C1L245 is exe_unit:G_EXE|Mem_Addr[10]~243
-C1L245 = C1L248 & (C1L244 & (D1_pc[10]) # !C1L244 & D1L21) # !C1L248 & (C1L244);
+--C1L251 is exe_unit:G_EXE|Mem_Addr[10]~243
+C1L251 = C1L240 & (C1L250 & (D1_pc[10]) # !C1L250 & D1L21) # !C1L240 & (C1L250);
 
 
 --G5_q_output[11] is regfile:G_REGFILE|reg:Areg04|q_output[11]
@@ -941,7 +925,7 @@ G1_q_output[11] = DFFEAS(E1L40, !D1_t3, reset,  , G1L1,  ,  ,  ,  );
 
 
 --J1L45 is regfile:G_REGFILE|mux_4_to_1:muxA|output[11]~2610
-J1L45 = D1_IR[1] & (D1_IR[0]) # !D1_IR[1] & (D1_IR[0] & G2_q_output[11] # !D1_IR[0] & (G1_q_output[11]));
+J1L45 = D1_IR[5] & (D1_IR[4]) # !D1_IR[5] & (D1_IR[4] & G2_q_output[11] # !D1_IR[4] & (G1_q_output[11]));
 
 
 --G4_q_output[11] is regfile:G_REGFILE|reg:Areg03|q_output[11]
@@ -949,15 +933,15 @@ G4_q_output[11] = DFFEAS(E1L40, !D1_t3, reset,  , G4L1,  ,  ,  ,  );
 
 
 --J1L46 is regfile:G_REGFILE|mux_4_to_1:muxA|output[11]~2611
-J1L46 = D1_IR[1] & (J1L45 & (G4_q_output[11]) # !J1L45 & G3_q_output[11]) # !D1_IR[1] & (J1L45);
+J1L46 = D1_IR[5] & (J1L45 & (G4_q_output[11]) # !J1L45 & G3_q_output[11]) # !D1_IR[5] & (J1L45);
 
 
 --J1L47 is regfile:G_REGFILE|mux_4_to_1:muxA|output[11]~2612
-J1L47 = D1_IR[2] & (G5_q_output[11] # !G5L2) # !D1_IR[2] & (J1L46);
+J1L47 = D1_IR[6] & (G5_q_output[11] # !G5L2) # !D1_IR[6] & (J1L46);
 
 
 --J1L48 is regfile:G_REGFILE|mux_4_to_1:muxA|output[11]~2613
-J1L48 = D1_IR[3] # J1L47;
+J1L48 = D1_IR[7] # J1L47;
 
 
 --D1_pc[11] is instru_fetch:G_INSTRU_FETCH|pc[11]
@@ -971,28 +955,28 @@ D1L23 = D1_pc[11] & !D1L22 # !D1_pc[11] & (D1L22 # GND);
 D1L24 = CARRY(!D1L22 # !D1_pc[11]);
 
 
---J2L45 is regfile:G_REGFILE|mux_4_to_1:muxB|output[11]~4189
-J2L45 = B1L15 # B1L16 # G5_q_output[11];
+--J2L45 is regfile:G_REGFILE|mux_4_to_1:muxB|output[11]~2629
+J2L45 = D1_IR[0] # D1_IR[1] # G5_q_output[11];
 
 
---J2L46 is regfile:G_REGFILE|mux_4_to_1:muxB|output[11]~4190
-J2L46 = B1L16 & (B1L15) # !B1L16 & (B1L15 & G2_q_output[11] # !B1L15 & (G1_q_output[11]));
+--J2L46 is regfile:G_REGFILE|mux_4_to_1:muxB|output[11]~2630
+J2L46 = D1_IR[1] & (D1_IR[0]) # !D1_IR[1] & (D1_IR[0] & G2_q_output[11] # !D1_IR[0] & (G1_q_output[11]));
 
 
---J2L47 is regfile:G_REGFILE|mux_4_to_1:muxB|output[11]~4191
-J2L47 = B1L16 & (J2L46 & (G4_q_output[11]) # !J2L46 & G3_q_output[11]) # !B1L16 & (J2L46);
+--J2L47 is regfile:G_REGFILE|mux_4_to_1:muxB|output[11]~2631
+J2L47 = D1_IR[1] & (J2L46 & (G4_q_output[11]) # !J2L46 & G3_q_output[11]) # !D1_IR[1] & (J2L46);
 
 
---J2L48 is regfile:G_REGFILE|mux_4_to_1:muxB|output[11]~4192
-J2L48 = B1L18 # B1L17 & J2L45 # !B1L17 & (J2L47);
+--J2L48 is regfile:G_REGFILE|mux_4_to_1:muxB|output[11]~2632
+J2L48 = D1_IR[3] # D1_IR[2] & J2L45 # !D1_IR[2] & (J2L47);
 
 
---C1L246 is exe_unit:G_EXE|Mem_Addr[11]~244
-C1L246 = C1L249 & (C1L248) # !C1L249 & (C1L248 & D1L23 # !C1L248 & (J2L48));
+--C1L252 is exe_unit:G_EXE|Mem_Addr[11]~244
+C1L252 = C1L241 & (C1L240) # !C1L241 & (C1L240 & D1L23 # !C1L240 & (J2L48));
 
 
---C1L247 is exe_unit:G_EXE|Mem_Addr[11]~245
-C1L247 = C1L249 & (C1L246 & (D1_pc[11]) # !C1L246 & J1L48) # !C1L249 & (C1L246);
+--C1L253 is exe_unit:G_EXE|Mem_Addr[11]~245
+C1L253 = C1L241 & (C1L252 & (D1_pc[11]) # !C1L252 & J1L48) # !C1L241 & (C1L252);
 
 
 --D1_pc[12] is instru_fetch:G_INSTRU_FETCH|pc[12]
@@ -1023,7 +1007,7 @@ G1_q_output[12] = DFFEAS(E1L42, !D1_t3, reset,  , G1L1,  ,  ,  ,  );
 
 
 --J1L49 is regfile:G_REGFILE|mux_4_to_1:muxA|output[12]~2614
-J1L49 = D1_IR[0] & (D1_IR[1]) # !D1_IR[0] & (D1_IR[1] & G3_q_output[12] # !D1_IR[1] & (G1_q_output[12]));
+J1L49 = D1_IR[4] & (D1_IR[5]) # !D1_IR[4] & (D1_IR[5] & G3_q_output[12] # !D1_IR[5] & (G1_q_output[12]));
 
 
 --G4_q_output[12] is regfile:G_REGFILE|reg:Areg03|q_output[12]
@@ -1031,39 +1015,39 @@ G4_q_output[12] = DFFEAS(E1L42, !D1_t3, reset,  , G4L1,  ,  ,  ,  );
 
 
 --J1L50 is regfile:G_REGFILE|mux_4_to_1:muxA|output[12]~2615
-J1L50 = D1_IR[0] & (J1L49 & (G4_q_output[12]) # !J1L49 & G2_q_output[12]) # !D1_IR[0] & (J1L49);
+J1L50 = D1_IR[4] & (J1L49 & (G4_q_output[12]) # !J1L49 & G2_q_output[12]) # !D1_IR[4] & (J1L49);
 
 
 --J1L51 is regfile:G_REGFILE|mux_4_to_1:muxA|output[12]~2616
-J1L51 = D1_IR[2] & (G5_q_output[12] # !G5L2) # !D1_IR[2] & (J1L50);
+J1L51 = D1_IR[6] & (G5_q_output[12] # !G5L2) # !D1_IR[6] & (J1L50);
 
 
 --J1L52 is regfile:G_REGFILE|mux_4_to_1:muxA|output[12]~2617
-J1L52 = D1_IR[3] # J1L51;
+J1L52 = D1_IR[7] # J1L51;
 
 
---J2L49 is regfile:G_REGFILE|mux_4_to_1:muxB|output[12]~4193
-J2L49 = B1L15 # B1L16 # G5_q_output[12];
+--J2L49 is regfile:G_REGFILE|mux_4_to_1:muxB|output[12]~2633
+J2L49 = D1_IR[0] # D1_IR[1] # G5_q_output[12];
 
 
---J2L50 is regfile:G_REGFILE|mux_4_to_1:muxB|output[12]~4194
-J2L50 = B1L15 & (B1L16) # !B1L15 & (B1L16 & G3_q_output[12] # !B1L16 & (G1_q_output[12]));
+--J2L50 is regfile:G_REGFILE|mux_4_to_1:muxB|output[12]~2634
+J2L50 = D1_IR[0] & (D1_IR[1]) # !D1_IR[0] & (D1_IR[1] & G3_q_output[12] # !D1_IR[1] & (G1_q_output[12]));
 
 
---J2L51 is regfile:G_REGFILE|mux_4_to_1:muxB|output[12]~4195
-J2L51 = B1L15 & (J2L50 & (G4_q_output[12]) # !J2L50 & G2_q_output[12]) # !B1L15 & (J2L50);
+--J2L51 is regfile:G_REGFILE|mux_4_to_1:muxB|output[12]~2635
+J2L51 = D1_IR[0] & (J2L50 & (G4_q_output[12]) # !J2L50 & G2_q_output[12]) # !D1_IR[0] & (J2L50);
 
 
---J2L52 is regfile:G_REGFILE|mux_4_to_1:muxB|output[12]~4196
-J2L52 = B1L18 # B1L17 & J2L49 # !B1L17 & (J2L51);
+--J2L52 is regfile:G_REGFILE|mux_4_to_1:muxB|output[12]~2636
+J2L52 = D1_IR[3] # D1_IR[2] & J2L49 # !D1_IR[2] & (J2L51);
 
 
---C1L250 is exe_unit:G_EXE|Mem_Addr[12]~246
-C1L250 = C1L248 & (C1L249) # !C1L248 & (C1L249 & J1L52 # !C1L249 & (J2L52));
+--C1L254 is exe_unit:G_EXE|Mem_Addr[12]~246
+C1L254 = C1L240 & (C1L241) # !C1L240 & (C1L241 & J1L52 # !C1L241 & (J2L52));
 
 
---C1L251 is exe_unit:G_EXE|Mem_Addr[12]~247
-C1L251 = C1L248 & (C1L250 & (D1_pc[12]) # !C1L250 & D1L25) # !C1L248 & (C1L250);
+--C1L255 is exe_unit:G_EXE|Mem_Addr[12]~247
+C1L255 = C1L240 & (C1L254 & (D1_pc[12]) # !C1L254 & D1L25) # !C1L240 & (C1L254);
 
 
 --G5_q_output[13] is regfile:G_REGFILE|reg:Areg04|q_output[13]
@@ -1083,7 +1067,7 @@ G1_q_output[13] = DFFEAS(E1L44, !D1_t3, reset,  , G1L1,  ,  ,  ,  );
 
 
 --J1L53 is regfile:G_REGFILE|mux_4_to_1:muxA|output[13]~2618
-J1L53 = D1_IR[1] & (D1_IR[0]) # !D1_IR[1] & (D1_IR[0] & G2_q_output[13] # !D1_IR[0] & (G1_q_output[13]));
+J1L53 = D1_IR[5] & (D1_IR[4]) # !D1_IR[5] & (D1_IR[4] & G2_q_output[13] # !D1_IR[4] & (G1_q_output[13]));
 
 
 --G4_q_output[13] is regfile:G_REGFILE|reg:Areg03|q_output[13]
@@ -1091,15 +1075,15 @@ G4_q_output[13] = DFFEAS(E1L44, !D1_t3, reset,  , G4L1,  ,  ,  ,  );
 
 
 --J1L54 is regfile:G_REGFILE|mux_4_to_1:muxA|output[13]~2619
-J1L54 = D1_IR[1] & (J1L53 & (G4_q_output[13]) # !J1L53 & G3_q_output[13]) # !D1_IR[1] & (J1L53);
+J1L54 = D1_IR[5] & (J1L53 & (G4_q_output[13]) # !J1L53 & G3_q_output[13]) # !D1_IR[5] & (J1L53);
 
 
 --J1L55 is regfile:G_REGFILE|mux_4_to_1:muxA|output[13]~2620
-J1L55 = D1_IR[2] & (G5_q_output[13] # !G5L2) # !D1_IR[2] & (J1L54);
+J1L55 = D1_IR[6] & (G5_q_output[13] # !G5L2) # !D1_IR[6] & (J1L54);
 
 
 --J1L56 is regfile:G_REGFILE|mux_4_to_1:muxA|output[13]~2621
-J1L56 = D1_IR[3] # J1L55;
+J1L56 = D1_IR[7] # J1L55;
 
 
 --D1_pc[13] is instru_fetch:G_INSTRU_FETCH|pc[13]
@@ -1113,28 +1097,28 @@ D1L27 = D1_pc[13] & !D1L26 # !D1_pc[13] & (D1L26 # GND);
 D1L28 = CARRY(!D1L26 # !D1_pc[13]);
 
 
---J2L53 is regfile:G_REGFILE|mux_4_to_1:muxB|output[13]~4197
-J2L53 = B1L15 # B1L16 # G5_q_output[13];
+--J2L53 is regfile:G_REGFILE|mux_4_to_1:muxB|output[13]~2637
+J2L53 = D1_IR[0] # D1_IR[1] # G5_q_output[13];
 
 
---J2L54 is regfile:G_REGFILE|mux_4_to_1:muxB|output[13]~4198
-J2L54 = B1L16 & (B1L15) # !B1L16 & (B1L15 & G2_q_output[13] # !B1L15 & (G1_q_output[13]));
+--J2L54 is regfile:G_REGFILE|mux_4_to_1:muxB|output[13]~2638
+J2L54 = D1_IR[1] & (D1_IR[0]) # !D1_IR[1] & (D1_IR[0] & G2_q_output[13] # !D1_IR[0] & (G1_q_output[13]));
 
 
---J2L55 is regfile:G_REGFILE|mux_4_to_1:muxB|output[13]~4199
-J2L55 = B1L16 & (J2L54 & (G4_q_output[13]) # !J2L54 & G3_q_output[13]) # !B1L16 & (J2L54);
+--J2L55 is regfile:G_REGFILE|mux_4_to_1:muxB|output[13]~2639
+J2L55 = D1_IR[1] & (J2L54 & (G4_q_output[13]) # !J2L54 & G3_q_output[13]) # !D1_IR[1] & (J2L54);
 
 
---J2L56 is regfile:G_REGFILE|mux_4_to_1:muxB|output[13]~4200
-J2L56 = B1L18 # B1L17 & J2L53 # !B1L17 & (J2L55);
+--J2L56 is regfile:G_REGFILE|mux_4_to_1:muxB|output[13]~2640
+J2L56 = D1_IR[3] # D1_IR[2] & J2L53 # !D1_IR[2] & (J2L55);
 
 
---C1L252 is exe_unit:G_EXE|Mem_Addr[13]~248
-C1L252 = C1L249 & (C1L248) # !C1L249 & (C1L248 & D1L27 # !C1L248 & (J2L56));
+--C1L256 is exe_unit:G_EXE|Mem_Addr[13]~248
+C1L256 = C1L241 & (C1L240) # !C1L241 & (C1L240 & D1L27 # !C1L240 & (J2L56));
 
 
---C1L253 is exe_unit:G_EXE|Mem_Addr[13]~249
-C1L253 = C1L249 & (C1L252 & (D1_pc[13]) # !C1L252 & J1L56) # !C1L249 & (C1L252);
+--C1L257 is exe_unit:G_EXE|Mem_Addr[13]~249
+C1L257 = C1L241 & (C1L256 & (D1_pc[13]) # !C1L256 & J1L56) # !C1L241 & (C1L256);
 
 
 --D1_pc[14] is instru_fetch:G_INSTRU_FETCH|pc[14]
@@ -1165,7 +1149,7 @@ G1_q_output[14] = DFFEAS(E1L46, !D1_t3, reset,  , G1L1,  ,  ,  ,  );
 
 
 --J1L57 is regfile:G_REGFILE|mux_4_to_1:muxA|output[14]~2622
-J1L57 = D1_IR[0] & (D1_IR[1]) # !D1_IR[0] & (D1_IR[1] & G3_q_output[14] # !D1_IR[1] & (G1_q_output[14]));
+J1L57 = D1_IR[4] & (D1_IR[5]) # !D1_IR[4] & (D1_IR[5] & G3_q_output[14] # !D1_IR[5] & (G1_q_output[14]));
 
 
 --G4_q_output[14] is regfile:G_REGFILE|reg:Areg03|q_output[14]
@@ -1173,39 +1157,39 @@ G4_q_output[14] = DFFEAS(E1L46, !D1_t3, reset,  , G4L1,  ,  ,  ,  );
 
 
 --J1L58 is regfile:G_REGFILE|mux_4_to_1:muxA|output[14]~2623
-J1L58 = D1_IR[0] & (J1L57 & (G4_q_output[14]) # !J1L57 & G2_q_output[14]) # !D1_IR[0] & (J1L57);
+J1L58 = D1_IR[4] & (J1L57 & (G4_q_output[14]) # !J1L57 & G2_q_output[14]) # !D1_IR[4] & (J1L57);
 
 
 --J1L59 is regfile:G_REGFILE|mux_4_to_1:muxA|output[14]~2624
-J1L59 = D1_IR[2] & (G5_q_output[14] # !G5L2) # !D1_IR[2] & (J1L58);
+J1L59 = D1_IR[6] & (G5_q_output[14] # !G5L2) # !D1_IR[6] & (J1L58);
 
 
 --J1L60 is regfile:G_REGFILE|mux_4_to_1:muxA|output[14]~2625
-J1L60 = D1_IR[3] # J1L59;
+J1L60 = D1_IR[7] # J1L59;
 
 
---J2L57 is regfile:G_REGFILE|mux_4_to_1:muxB|output[14]~4201
-J2L57 = B1L15 # B1L16 # G5_q_output[14];
+--J2L57 is regfile:G_REGFILE|mux_4_to_1:muxB|output[14]~2641
+J2L57 = D1_IR[0] # D1_IR[1] # G5_q_output[14];
 
 
---J2L58 is regfile:G_REGFILE|mux_4_to_1:muxB|output[14]~4202
-J2L58 = B1L15 & (B1L16) # !B1L15 & (B1L16 & G3_q_output[14] # !B1L16 & (G1_q_output[14]));
+--J2L58 is regfile:G_REGFILE|mux_4_to_1:muxB|output[14]~2642
+J2L58 = D1_IR[0] & (D1_IR[1]) # !D1_IR[0] & (D1_IR[1] & G3_q_output[14] # !D1_IR[1] & (G1_q_output[14]));
 
 
---J2L59 is regfile:G_REGFILE|mux_4_to_1:muxB|output[14]~4203
-J2L59 = B1L15 & (J2L58 & (G4_q_output[14]) # !J2L58 & G2_q_output[14]) # !B1L15 & (J2L58);
+--J2L59 is regfile:G_REGFILE|mux_4_to_1:muxB|output[14]~2643
+J2L59 = D1_IR[0] & (J2L58 & (G4_q_output[14]) # !J2L58 & G2_q_output[14]) # !D1_IR[0] & (J2L58);
 
 
---J2L60 is regfile:G_REGFILE|mux_4_to_1:muxB|output[14]~4204
-J2L60 = B1L18 # B1L17 & J2L57 # !B1L17 & (J2L59);
+--J2L60 is regfile:G_REGFILE|mux_4_to_1:muxB|output[14]~2644
+J2L60 = D1_IR[3] # D1_IR[2] & J2L57 # !D1_IR[2] & (J2L59);
 
 
---C1L254 is exe_unit:G_EXE|Mem_Addr[14]~250
-C1L254 = C1L248 & (C1L249) # !C1L248 & (C1L249 & J1L60 # !C1L249 & (J2L60));
+--C1L258 is exe_unit:G_EXE|Mem_Addr[14]~250
+C1L258 = C1L240 & (C1L241) # !C1L240 & (C1L241 & J1L60 # !C1L241 & (J2L60));
 
 
---C1L255 is exe_unit:G_EXE|Mem_Addr[14]~251
-C1L255 = C1L248 & (C1L254 & (D1_pc[14]) # !C1L254 & D1L29) # !C1L248 & (C1L254);
+--C1L259 is exe_unit:G_EXE|Mem_Addr[14]~251
+C1L259 = C1L240 & (C1L258 & (D1_pc[14]) # !C1L258 & D1L29) # !C1L240 & (C1L258);
 
 
 --G5_q_output[15] is regfile:G_REGFILE|reg:Areg04|q_output[15]
@@ -1225,7 +1209,7 @@ G1_q_output[15] = DFFEAS(E1L48, !D1_t3, reset,  , G1L1,  ,  ,  ,  );
 
 
 --J1L61 is regfile:G_REGFILE|mux_4_to_1:muxA|output[15]~2626
-J1L61 = D1_IR[1] & (D1_IR[0]) # !D1_IR[1] & (D1_IR[0] & G2_q_output[15] # !D1_IR[0] & (G1_q_output[15]));
+J1L61 = D1_IR[5] & (D1_IR[4]) # !D1_IR[5] & (D1_IR[4] & G2_q_output[15] # !D1_IR[4] & (G1_q_output[15]));
 
 
 --G4_q_output[15] is regfile:G_REGFILE|reg:Areg03|q_output[15]
@@ -1233,15 +1217,15 @@ G4_q_output[15] = DFFEAS(E1L48, !D1_t3, reset,  , G4L1,  ,  ,  ,  );
 
 
 --J1L62 is regfile:G_REGFILE|mux_4_to_1:muxA|output[15]~2627
-J1L62 = D1_IR[1] & (J1L61 & (G4_q_output[15]) # !J1L61 & G3_q_output[15]) # !D1_IR[1] & (J1L61);
+J1L62 = D1_IR[5] & (J1L61 & (G4_q_output[15]) # !J1L61 & G3_q_output[15]) # !D1_IR[5] & (J1L61);
 
 
 --J1L63 is regfile:G_REGFILE|mux_4_to_1:muxA|output[15]~2628
-J1L63 = D1_IR[2] & (G5_q_output[15] # !G5L2) # !D1_IR[2] & (J1L62);
+J1L63 = D1_IR[6] & (G5_q_output[15] # !G5L2) # !D1_IR[6] & (J1L62);
 
 
 --J1L64 is regfile:G_REGFILE|mux_4_to_1:muxA|output[15]~2629
-J1L64 = D1_IR[3] # J1L63;
+J1L64 = D1_IR[7] # J1L63;
 
 
 --D1_pc[15] is instru_fetch:G_INSTRU_FETCH|pc[15]
@@ -1252,28 +1236,28 @@ D1_pc[15] = DFFEAS(D1L135, !D1_t3, reset,  ,  ,  ,  ,  ,  );
 D1L31 = D1_pc[15] $ D1L30;
 
 
---J2L61 is regfile:G_REGFILE|mux_4_to_1:muxB|output[15]~4205
-J2L61 = B1L15 # B1L16 # G5_q_output[15];
+--J2L61 is regfile:G_REGFILE|mux_4_to_1:muxB|output[15]~2645
+J2L61 = D1_IR[0] # D1_IR[1] # G5_q_output[15];
 
 
---J2L62 is regfile:G_REGFILE|mux_4_to_1:muxB|output[15]~4206
-J2L62 = B1L16 & (B1L15) # !B1L16 & (B1L15 & G2_q_output[15] # !B1L15 & (G1_q_output[15]));
+--J2L62 is regfile:G_REGFILE|mux_4_to_1:muxB|output[15]~2646
+J2L62 = D1_IR[1] & (D1_IR[0]) # !D1_IR[1] & (D1_IR[0] & G2_q_output[15] # !D1_IR[0] & (G1_q_output[15]));
 
 
---J2L63 is regfile:G_REGFILE|mux_4_to_1:muxB|output[15]~4207
-J2L63 = B1L16 & (J2L62 & (G4_q_output[15]) # !J2L62 & G3_q_output[15]) # !B1L16 & (J2L62);
+--J2L63 is regfile:G_REGFILE|mux_4_to_1:muxB|output[15]~2647
+J2L63 = D1_IR[1] & (J2L62 & (G4_q_output[15]) # !J2L62 & G3_q_output[15]) # !D1_IR[1] & (J2L62);
 
 
---J2L64 is regfile:G_REGFILE|mux_4_to_1:muxB|output[15]~4208
-J2L64 = B1L18 # B1L17 & J2L61 # !B1L17 & (J2L63);
+--J2L64 is regfile:G_REGFILE|mux_4_to_1:muxB|output[15]~2648
+J2L64 = D1_IR[3] # D1_IR[2] & J2L61 # !D1_IR[2] & (J2L63);
 
 
---C1L256 is exe_unit:G_EXE|Mem_Addr[15]~252
-C1L256 = C1L249 & (C1L248) # !C1L249 & (C1L248 & D1L31 # !C1L248 & (J2L64));
+--C1L260 is exe_unit:G_EXE|Mem_Addr[15]~252
+C1L260 = C1L241 & (C1L240) # !C1L241 & (C1L240 & D1L31 # !C1L240 & (J2L64));
 
 
---C1L257 is exe_unit:G_EXE|Mem_Addr[15]~253
-C1L257 = C1L249 & (C1L256 & (D1_pc[15]) # !C1L256 & J1L64) # !C1L249 & (C1L256);
+--C1L261 is exe_unit:G_EXE|Mem_Addr[15]~253
+C1L261 = C1L241 & (C1L260 & (D1_pc[15]) # !C1L260 & J1L64) # !C1L241 & (C1L260);
 
 
 --A1L20 is Mux~3185
@@ -1760,10 +1744,10 @@ F1_c_flag = DFFEAS(F1L2, !D1_t3,  ,  ,  ,  ,  ,  ,  );
 F1_z_flag = DFFEAS(F1L6, !D1_t3,  ,  ,  ,  ,  ,  ,  );
 
 
---C1L1 is exe_unit:G_EXE|add~5686
+--C1L1 is exe_unit:G_EXE|add~5658
 C1L1 = D1L1 & (D1_IR[0] $ VCC) # !D1L1 & D1_IR[0] & VCC;
 
---C1L2 is exe_unit:G_EXE|add~5687
+--C1L2 is exe_unit:G_EXE|add~5659
 C1L2 = CARRY(D1L1 & D1_IR[0]);
 
 
@@ -1775,24 +1759,24 @@ D1L103 = B1L8 & D1_pc[0] # !B1L8 & (D1L1);
 F1_c_out = DFFEAS(F1L4, !D1_t3, reset,  ,  ,  ,  ,  ,  );
 
 
---C1L221 is exe_unit:G_EXE|c_z_j_flag~489
-C1L221 = D1_IR[11] & (D1_IR[8] $ (D1_IR[10] & !F1_c_out));
+--C1L225 is exe_unit:G_EXE|c_z_j_flag~489
+C1L225 = D1_IR[11] & (D1_IR[8] $ (D1_IR[10] & !F1_c_out));
 
 
 --F1_z_out is regfile:G_REGFILE|z_out
 F1_z_out = DFFEAS(F1L16, !D1_t3, reset,  ,  ,  ,  ,  ,  );
 
 
---C1L222 is exe_unit:G_EXE|c_z_j_flag~490
-C1L222 = F1_z_out & (D1_IR[10] # !C1L221) # !F1_z_out & B1L10;
+--C1L226 is exe_unit:G_EXE|c_z_j_flag~490
+C1L226 = F1_z_out & (D1_IR[10] # !C1L225) # !F1_z_out & B1L10;
 
 
---C1L223 is exe_unit:G_EXE|c_z_j_flag~491
-C1L223 = A1L196 & (D1_IR[9] & C1L221 # !C1L222);
+--C1L227 is exe_unit:G_EXE|c_z_j_flag~491
+C1L227 = A1L196 & (D1_IR[9] & C1L225 # !C1L226);
 
 
 --D1L104 is instru_fetch:G_INSTRU_FETCH|pc~849
-D1L104 = C1L223 & C1L1 # !C1L223 & (D1L103);
+D1L104 = C1L227 & C1L1 # !C1L227 & (D1L103);
 
 
 --D1L105 is instru_fetch:G_INSTRU_FETCH|pc~850
@@ -1803,13 +1787,6 @@ D1L105 = B1L9 & (D1_IR[8] & D1L104 # !D1_IR[8] & (E1_data_read[0])) # !B1L9 & D1
 D1L138 = D1_t3 # !D1_start;
 
 
---C1L3 is exe_unit:G_EXE|add~5688
-C1L3 = J1L4 & (J2L4 $ VCC) # !J1L4 & J2L4 & VCC;
-
---C1L4 is exe_unit:G_EXE|add~5689
-C1L4 = CARRY(J1L4 & J2L4);
-
-
 --B1L14 is decoder_unit:G_DECODER|op_code[3]~100
 B1L14 = D1_IR[11] & !D1_IR[14] & !D1_IR[13] & !D1_IR[15];
 
@@ -1818,113 +1795,132 @@ B1L14 = D1_IR[11] & !D1_IR[14] & !D1_IR[13] & !D1_IR[15];
 B1L12 = D1_IR[14] # D1_IR[13] # D1_IR[15] # !D1_IR[9];
 
 
---C1L5 is exe_unit:G_EXE|add~5690
-C1L5 = F1_c_out & (!B1L12) # !F1_c_out & (B1L12 # !B1L14);
+--C1L3 is exe_unit:G_EXE|add~5660
+C1L3 = F1_c_out & (!B1L12) # !F1_c_out & (B1L12 # !B1L14);
 
 
---C1L6 is exe_unit:G_EXE|add~5691
-C1L6 = J1L4 & (GND # !J2L4) # !J1L4 & (J2L4 $ GND);
+--C1L4 is exe_unit:G_EXE|add~5661
+C1L4 = J1L4 & (GND # !J2L4) # !J1L4 & (J2L4 $ GND);
 
---C1L7 is exe_unit:G_EXE|add~5692
-C1L7 = CARRY(J1L4 # !J2L4);
-
-
---C1L8 is exe_unit:G_EXE|add~5693
-C1L8 = B1L14 & C1L3 # !B1L14 & (D1_IR[3] # J1L3);
+--C1L5 is exe_unit:G_EXE|add~5662
+C1L5 = CARRY(J1L4 # !J2L4);
 
 
---C1L9 is exe_unit:G_EXE|add~5694
-C1L9 = B1L12 & C1L6 # !B1L12 & (C1L8);
+--C1L6 is exe_unit:G_EXE|add~5663
+C1L6 = J1L4 & (J2L4 $ VCC) # !J1L4 & J2L4 & VCC;
+
+--C1L7 is exe_unit:G_EXE|add~5664
+C1L7 = CARRY(J1L4 & J2L4);
+
+
+--C1L8 is exe_unit:G_EXE|add~5665
+C1L8 = B1L14 & C1L6 # !B1L14 & (D1_IR[7] # J1L3);
+
+
+--C1L9 is exe_unit:G_EXE|add~5666
+C1L9 = B1L12 & C1L4 # !B1L12 & (C1L8);
 
 
 --B1L11 is decoder_unit:G_DECODER|op_code[0]~102
 B1L11 = D1_IR[8] & !D1_IR[14] & !D1_IR[13] & !D1_IR[15];
 
 
---C1L11 is exe_unit:G_EXE|add~5696
+--C1L11 is exe_unit:G_EXE|add~5668
 C1L11 = CARRY(B1L12 & B1L11);
 
 
---C1L12 is exe_unit:G_EXE|add~5697
-C1L12 = C1L5 & (C1L9 & C1L11 & VCC # !C1L9 & !C1L11) # !C1L5 & (C1L9 & !C1L11 # !C1L9 & (C1L11 # GND));
+--C1L12 is exe_unit:G_EXE|add~5669
+C1L12 = C1L3 & (C1L9 & C1L11 & VCC # !C1L9 & !C1L11) # !C1L3 & (C1L9 & !C1L11 # !C1L9 & (C1L11 # GND));
 
---C1L13 is exe_unit:G_EXE|add~5698
-C1L13 = CARRY(C1L5 & !C1L9 & !C1L11 # !C1L5 & (!C1L11 # !C1L9));
+--C1L13 is exe_unit:G_EXE|add~5670
+C1L13 = CARRY(C1L3 & !C1L9 & !C1L11 # !C1L3 & (!C1L11 # !C1L9));
 
 
 --B1L13 is decoder_unit:G_DECODER|op_code[2]~103
 B1L13 = D1_IR[14] # D1_IR[13] # D1_IR[15] # D1_IR[10];
 
 
---C1L258 is exe_unit:G_EXE|result[0]~3315
-C1L258 = B1L11 & C1L6 # !B1L11 & (J2L4);
+--C1L14 is exe_unit:G_EXE|add~5671
+C1L14 = B1L13 & C1L12 # !B1L13 & (C1L4);
 
 
---C1L259 is exe_unit:G_EXE|result[0]~3316
-C1L259 = B1L11 & (B1L13 # B1L12 & C1L258) # !B1L11 & (B1L12 & (!B1L13) # !B1L12 & C1L258);
+--C1L15 is exe_unit:G_EXE|add~5672
+C1L15 = J2L4 & (D1_IR[7] # J1L3 # B1L13);
 
 
---C1L260 is exe_unit:G_EXE|result[0]~3317
-C1L260 = B1L13 & !B1L11 & (B1L12 # C1L258) # !B1L13 & (B1L12 & (C1L258) # !B1L12 & B1L11);
+--C1L16 is exe_unit:G_EXE|add~5673
+C1L16 = B1L13 & C1L12 # !B1L13 & (C1L6);
 
 
---C1L261 is exe_unit:G_EXE|result[0]~3318
-C1L261 = C1L259 & (C1L268 # C1L260) # !C1L259 & C1L3 & (C1L260);
+--C1L262 is exe_unit:G_EXE|result[0]~3351
+C1L262 = B1L12 & (!B1L11) # !B1L12 & (B1L11 & (C1L16) # !B1L11 & C1L15);
 
 
---C1L293 is exe_unit:G_EXE|result[5]~3319
-C1L293 = D1_IR[12] & !D1_IR[14] & !D1_IR[13] & !D1_IR[15];
+--C1L17 is exe_unit:G_EXE|add~5674
+C1L17 = B1L13 & C1L6 # !B1L13 & (J1L4 # J2L4);
 
 
---C1L262 is exe_unit:G_EXE|result[0]~3320
-C1L262 = B1L13 & !B1L12 # !B1L13 & (B1L11 # !B1L12 & J1L4);
+--C1L263 is exe_unit:G_EXE|result[0]~3352
+C1L263 = B1L12 & (C1L262 & (C1L17) # !C1L262 & C1L14) # !B1L12 & (C1L262);
 
 
---C1L263 is exe_unit:G_EXE|result[0]~3321
-C1L263 = B1L12 & (C1L262 & (C1L6) # !C1L262 & J2L4) # !B1L12 & J2L4 & (C1L262);
+--C1L283 is exe_unit:G_EXE|result[3]~3353
+C1L283 = D1_IR[12] & !D1_IR[14] & !D1_IR[13] & !D1_IR[15];
 
 
---C1L264 is exe_unit:G_EXE|result[0]~3322
-C1L264 = C1L293 & (B1L14 & (C1L263) # !B1L14 & J2L4) # !C1L293 & (!B1L14);
+--C1L264 is exe_unit:G_EXE|result[0]~3354
+C1L264 = B1L13 # !B1L12 & D1_IR[7];
 
 
---C1L14 is exe_unit:G_EXE|add~5699
-C1L14 = (D1_IR[3] # J1L3);
-
---C1L15 is exe_unit:G_EXE|add~5700
-C1L15 = CARRY(D1_IR[3] # J1L3);
+--C1L265 is exe_unit:G_EXE|result[0]~3355
+C1L265 = C1L264 & !B1L11 # !C1L264 & (B1L12 # !B1L11 & J1L3);
 
 
---C1L16 is exe_unit:G_EXE|add~5701
-C1L16 = B1L13 & (D1_IR[3] # J1L7) # !B1L13 & C1L14;
+--C1L266 is exe_unit:G_EXE|result[0]~3356
+C1L266 = B1L11 & (C1L265 & (C1L4) # !C1L265 & J2L4) # !B1L11 & J2L4 & (C1L265);
+
+
+--C1L267 is exe_unit:G_EXE|result[0]~3357
+C1L267 = C1L283 & (B1L14 & (C1L266) # !B1L14 & J2L4) # !C1L283 & (!B1L14);
+
+
+--C1L18 is exe_unit:G_EXE|add~5675
+C1L18 = (D1_IR[7] # J1L3);
+
+--C1L19 is exe_unit:G_EXE|add~5676
+C1L19 = CARRY(D1_IR[7] # J1L3);
+
+
+--C1L20 is exe_unit:G_EXE|add~5677
+C1L20 = B1L13 & (D1_IR[7] # J1L7) # !B1L13 & C1L18;
 
 
 --A1L197 is rtl~135
 A1L197 = !D1_IR[14] & !D1_IR[13] & !D1_IR[15];
 
 
---C1L17 is exe_unit:G_EXE|add~5702
-C1L17 = D1_IR[10] # D1_IR[3] # J1L3 # !A1L197;
+--C1L21 is exe_unit:G_EXE|add~5678
+C1L21 = D1_IR[10] # D1_IR[7] # J1L3 # !A1L197;
 
 
---C1L18 is exe_unit:G_EXE|add~5703
-C1L18 = B1L13 & J2L4 # !B1L13 & (C1L12);
+--C1L22 is exe_unit:G_EXE|add~5679
+C1L22 = B1L13 & J2L4 # !B1L13 & (C1L12);
 
 
---C1L265 is exe_unit:G_EXE|result[0]~3323
-C1L265 = B1L12 & (!B1L11) # !B1L12 & (B1L11 & (C1L18) # !B1L11 & !C1L17);
+--C1L268 is exe_unit:G_EXE|result[0]~3358
+C1L268 = B1L12 & (!B1L11) # !B1L12 & (B1L11 & (C1L22) # !B1L11 & !C1L21);
 
 
---C1L266 is exe_unit:G_EXE|result[0]~3324
-C1L266 = B1L12 & (C1L265 & (J2L4) # !C1L265 & C1L16) # !B1L12 & (C1L265);
+--C1L269 is exe_unit:G_EXE|result[0]~3359
+C1L269 = B1L12 & (C1L268 & (J2L4) # !C1L268 & C1L20) # !B1L12 & (C1L268);
 
 
---C1L267 is exe_unit:G_EXE|result[0]~3325
-C1L267 = C1L293 & (C1L264) # !C1L293 & (C1L264 & (C1L266) # !C1L264 & C1L261);
+--C1L270 is exe_unit:G_EXE|result[0]~3360
+C1L270 = C1L283 & (C1L267) # !C1L283 & (C1L267 & (C1L269) # !C1L267 & C1L263);
 
 
 --E1L18 is memory_unit:G_MEMORY|DR_data_out[0]~1235
-E1L18 = A1L195 & E1_data_read[0] # !A1L195 & (C1L267);
+E1L18 = A1L195 & E1_data_read[0] # !A1L195 & (C1L270);
 
 
 --B1L6 is decoder_unit:G_DECODER|DRWr~78
@@ -1932,123 +1928,123 @@ B1L6 = A1L197 & (!D1_IR[12]) # !A1L197 & A1L195 & B1L10;
 
 
 --G5L1 is regfile:G_REGFILE|reg:Areg04|process0~0
-G5L1 = D1_IR[2] & G5L2 & B1L6 & !D1_IR[3];
+G5L1 = D1_IR[6] & G5L2 & B1L6 & !D1_IR[7];
 
 
 --G2L1 is regfile:G_REGFILE|reg:Areg01|process0~42
-G2L1 = B1L6 & !D1_IR[3];
+G2L1 = B1L6 & !D1_IR[7];
 
 
 --G3L1 is regfile:G_REGFILE|reg:Areg02|process0~46
-G3L1 = D1_IR[1] & G2L1 & !D1_IR[2] & !D1_IR[0];
+G3L1 = D1_IR[5] & G2L1 & !D1_IR[6] & !D1_IR[4];
 
 
 --G2L2 is regfile:G_REGFILE|reg:Areg01|process0~43
-G2L2 = D1_IR[0] & G2L1 & !D1_IR[2] & !D1_IR[1];
+G2L2 = D1_IR[4] & G2L1 & !D1_IR[6] & !D1_IR[5];
 
 
 --G1L1 is regfile:G_REGFILE|reg:Areg00|process0~37
-G1L1 = G5L2 & B1L6 & !D1_IR[3] & !D1_IR[2];
+G1L1 = G5L2 & B1L6 & !D1_IR[7] & !D1_IR[6];
 
 
 --G4L1 is regfile:G_REGFILE|reg:Areg03|process0~37
-G4L1 = D1_IR[1] & D1_IR[0] & G2L1 & !D1_IR[2];
+G4L1 = D1_IR[5] & D1_IR[4] & G2L1 & !D1_IR[6];
 
 
---C1L19 is exe_unit:G_EXE|add~5704
-C1L19 = J1L8 & (J2L8 & !C1L7 # !J2L8 & C1L7 & VCC) # !J1L8 & (J2L8 & (C1L7 # GND) # !J2L8 & !C1L7);
+--C1L23 is exe_unit:G_EXE|add~5680
+C1L23 = J1L8 & (J2L8 & !C1L5 # !J2L8 & C1L5 & VCC) # !J1L8 & (J2L8 & (C1L5 # GND) # !J2L8 & !C1L5);
 
---C1L20 is exe_unit:G_EXE|add~5705
-C1L20 = CARRY(J1L8 & J2L8 & !C1L7 # !J1L8 & (J2L8 # !C1L7));
-
-
---C1L294 is exe_unit:G_EXE|result[5]~3326
-C1L294 = D1_IR[9] # !D1_IR[12];
+--C1L24 is exe_unit:G_EXE|add~5681
+C1L24 = CARRY(J1L8 & J2L8 & !C1L5 # !J1L8 & (J2L8 # !C1L5));
 
 
---C1L295 is exe_unit:G_EXE|result[5]~3327
-C1L295 = B1L14 & D1_IR[10] & C1L294 # !B1L14 & (!B1L12);
+--C1L284 is exe_unit:G_EXE|result[3]~3361
+C1L284 = D1_IR[9] # !D1_IR[12];
 
 
---C1L296 is exe_unit:G_EXE|result[5]~3328
-C1L296 = B1L11 & (C1L295 # B1L12 & B1L14);
+--C1L285 is exe_unit:G_EXE|result[3]~3362
+C1L285 = B1L14 & D1_IR[10] & C1L284 # !B1L14 & (!B1L12);
 
 
---C1L21 is exe_unit:G_EXE|add~5706
-C1L21 = C1L15 & (D1_IR[3] # J1L7) # !C1L15 & !D1_IR[3] & !J1L7;
-
---C1L22 is exe_unit:G_EXE|add~5707
-C1L22 = CARRY(!D1_IR[3] & !J1L7 & !C1L15);
+--C1L286 is exe_unit:G_EXE|result[3]~3363
+C1L286 = B1L11 & (C1L285 # B1L12 & B1L14);
 
 
---C1L269 is exe_unit:G_EXE|result[1]~3329
-C1L269 = B1L11 & (B1L13 & J1L12 # !B1L13 & (C1L21)) # !B1L11 & (B1L13);
+--C1L25 is exe_unit:G_EXE|add~5682
+C1L25 = C1L19 & (D1_IR[7] # J1L7) # !C1L19 & !D1_IR[7] & !J1L7;
+
+--C1L26 is exe_unit:G_EXE|add~5683
+C1L26 = CARRY(!D1_IR[7] & !J1L7 & !C1L19);
 
 
---C1L270 is exe_unit:G_EXE|result[1]~3330
-C1L270 = B1L11 & (C1L269) # !B1L11 & (C1L269 & (J1L4) # !C1L269 & !J1L8);
+--C1L271 is exe_unit:G_EXE|result[1]~3364
+C1L271 = B1L11 & (B1L13 & J1L12 # !B1L13 & (C1L25)) # !B1L11 & (B1L13);
 
 
---C1L297 is exe_unit:G_EXE|result[5]~3331
-C1L297 = B1L11 & C1L295 # !B1L14;
+--C1L272 is exe_unit:G_EXE|result[1]~3365
+C1L272 = B1L11 & (C1L271) # !B1L11 & (C1L271 & (J1L4) # !C1L271 & !J1L8);
 
 
---C1L298 is exe_unit:G_EXE|result[5]~3332
-C1L298 = !D1_IR[8] & (D1_IR[9] # D1_IR[10]) # !A1L197;
+--C1L287 is exe_unit:G_EXE|result[3]~3366
+C1L287 = B1L11 & C1L285 # !B1L14;
 
 
---C1L376 is exe_unit:G_EXE|result_t~17
-C1L376 = D1_IR[3] # J1L7 # J2L8;
+--C1L288 is exe_unit:G_EXE|result[3]~3367
+C1L288 = !D1_IR[8] & (D1_IR[9] # D1_IR[10]) # !A1L197;
 
 
---C1L299 is exe_unit:G_EXE|result[5]~3333
-C1L299 = A1L197 & (D1_IR[8] # D1_IR[9]);
+--C1L378 is exe_unit:G_EXE|result_t~17
+C1L378 = D1_IR[7] # J1L7 # J2L8;
 
 
---C1L23 is exe_unit:G_EXE|add~5708
-C1L23 = J1L8 & (J2L8 & C1L4 & VCC # !J2L8 & !C1L4) # !J1L8 & (J2L8 & !C1L4 # !J2L8 & (C1L4 # GND));
-
---C1L24 is exe_unit:G_EXE|add~5709
-C1L24 = CARRY(J1L8 & !J2L8 & !C1L4 # !J1L8 & (!C1L4 # !J2L8));
+--C1L289 is exe_unit:G_EXE|result[3]~3368
+C1L289 = A1L197 & (D1_IR[8] # D1_IR[9]);
 
 
---C1L271 is exe_unit:G_EXE|result[1]~3334
-C1L271 = C1L298 & (!C1L299) # !C1L298 & (C1L299 & (C1L23) # !C1L299 & C1L376);
+--C1L27 is exe_unit:G_EXE|add~5684
+C1L27 = J1L8 & (J2L8 & C1L7 & VCC # !J2L8 & !C1L7) # !J1L8 & (J2L8 & !C1L7 # !J2L8 & (C1L7 # GND));
+
+--C1L28 is exe_unit:G_EXE|add~5685
+C1L28 = CARRY(J1L8 & !J2L8 & !C1L7 # !J1L8 & (!C1L7 # !J2L8));
 
 
---C1L272 is exe_unit:G_EXE|result[1]~3335
-C1L272 = J2L8 & (C1L271 $ (J1L8 & C1L298)) # !J2L8 & C1L271 & (J1L8 # !C1L298);
+--C1L273 is exe_unit:G_EXE|result[1]~3369
+C1L273 = C1L288 & (!C1L289) # !C1L288 & (C1L289 & (C1L27) # !C1L289 & C1L378);
 
 
---C1L273 is exe_unit:G_EXE|result[1]~3336
-C1L273 = C1L296 & (C1L297) # !C1L296 & (C1L297 & C1L270 # !C1L297 & (C1L272));
+--C1L274 is exe_unit:G_EXE|result[1]~3370
+C1L274 = J2L8 & (C1L273 $ (J1L8 & C1L288)) # !J2L8 & C1L273 & (J1L8 # !C1L288);
 
 
---C1L25 is exe_unit:G_EXE|add~5710
-C1L25 = !B1L11 # !B1L12;
+--C1L275 is exe_unit:G_EXE|result[1]~3371
+C1L275 = C1L286 & (C1L287) # !C1L286 & (C1L287 & C1L272 # !C1L287 & (C1L274));
 
 
---C1L26 is exe_unit:G_EXE|add~5711
-C1L26 = B1L14 & C1L23 # !B1L14 & (D1_IR[3] # J1L7);
+--C1L29 is exe_unit:G_EXE|add~5686
+C1L29 = !B1L11 # !B1L12;
 
 
---C1L27 is exe_unit:G_EXE|add~5712
-C1L27 = B1L12 & C1L19 # !B1L12 & (C1L26);
+--C1L30 is exe_unit:G_EXE|add~5687
+C1L30 = B1L14 & C1L27 # !B1L14 & (D1_IR[7] # J1L7);
 
 
---C1L28 is exe_unit:G_EXE|add~5713
-C1L28 = (C1L25 $ C1L27 $ C1L13) # GND;
-
---C1L29 is exe_unit:G_EXE|add~5714
-C1L29 = CARRY(C1L25 & C1L27 & !C1L13 # !C1L25 & (C1L27 # !C1L13));
+--C1L31 is exe_unit:G_EXE|add~5688
+C1L31 = B1L12 & C1L23 # !B1L12 & (C1L30);
 
 
---C1L274 is exe_unit:G_EXE|result[1]~3337
-C1L274 = C1L296 & (C1L273 & (C1L28) # !C1L273 & C1L19) # !C1L296 & (C1L273);
+--C1L32 is exe_unit:G_EXE|add~5689
+C1L32 = (C1L29 $ C1L31 $ C1L13) # GND;
+
+--C1L33 is exe_unit:G_EXE|add~5690
+C1L33 = CARRY(C1L29 & C1L31 & !C1L13 # !C1L29 & (C1L31 # !C1L13));
+
+
+--C1L276 is exe_unit:G_EXE|result[1]~3372
+C1L276 = C1L286 & (C1L275 & (C1L32) # !C1L275 & C1L23) # !C1L286 & (C1L275);
 
 
 --E1L19 is memory_unit:G_MEMORY|DR_data_out[1]~1236
-E1L19 = !A1L195 & (C1L306 & J2L8 # !C1L306 & (C1L274));
+E1L19 = !A1L195 & (C1L296 & J2L8 # !C1L296 & (C1L276));
 
 
 --E1L20 is memory_unit:G_MEMORY|DR_data_out[1]~1237
@@ -2063,33 +2059,33 @@ D1L34 = CARRY(D1_pc[1]);
 
 
 --D1L87 is instru_fetch:G_INSTRU_FETCH|pc[1]~851
-D1L87 = !D1_IR[8] & (B1L9 # B1L7 & !C1L223);
+D1L87 = !D1_IR[8] & (B1L9 # B1L7 & !C1L227);
 
 
---C1L30 is exe_unit:G_EXE|add~5715
-C1L30 = D1L3 & (D1_IR[1] & C1L2 & VCC # !D1_IR[1] & !C1L2) # !D1L3 & (D1_IR[1] & !C1L2 # !D1_IR[1] & (C1L2 # GND));
+--C1L34 is exe_unit:G_EXE|add~5691
+C1L34 = D1L3 & (D1_IR[1] & C1L2 & VCC # !D1_IR[1] & !C1L2) # !D1L3 & (D1_IR[1] & !C1L2 # !D1_IR[1] & (C1L2 # GND));
 
---C1L31 is exe_unit:G_EXE|add~5716
-C1L31 = CARRY(D1L3 & !D1_IR[1] & !C1L2 # !D1L3 & (!C1L2 # !D1_IR[1]));
+--C1L35 is exe_unit:G_EXE|add~5692
+C1L35 = CARRY(D1L3 & !D1_IR[1] & !C1L2 # !D1L3 & (!C1L2 # !D1_IR[1]));
 
 
 --D1L88 is instru_fetch:G_INSTRU_FETCH|pc[1]~852
-D1L88 = C1L223 $ (!D1_IR[8] & B1L9);
+D1L88 = C1L227 $ (!D1_IR[8] & B1L9);
 
 
 --D1L106 is instru_fetch:G_INSTRU_FETCH|pc~853
-D1L106 = D1L87 & (D1L88) # !D1L87 & (D1L88 & C1L30 # !D1L88 & (D1L3));
+D1L106 = D1L87 & (D1L88) # !D1L87 & (D1L88 & C1L34 # !D1L88 & (D1L3));
 
 
 --D1L107 is instru_fetch:G_INSTRU_FETCH|pc~854
 D1L107 = D1L87 & (D1L106 & (E1_data_read[1]) # !D1L106 & D1L33) # !D1L87 & (D1L106);
 
 
---C1L32 is exe_unit:G_EXE|add~5717
-C1L32 = (D1L5 $ D1_IR[2] $ !C1L31) # GND;
+--C1L36 is exe_unit:G_EXE|add~5693
+C1L36 = (D1L5 $ D1_IR[2] $ !C1L35) # GND;
 
---C1L33 is exe_unit:G_EXE|add~5718
-C1L33 = CARRY(D1L5 & (D1_IR[2] # !C1L31) # !D1L5 & D1_IR[2] & !C1L31);
+--C1L37 is exe_unit:G_EXE|add~5694
+C1L37 = CARRY(D1L5 & (D1_IR[2] # !C1L35) # !D1L5 & D1_IR[2] & !C1L35);
 
 
 --D1L35 is instru_fetch:G_INSTRU_FETCH|add~503
@@ -2104,147 +2100,147 @@ D1L108 = D1L88 & (D1L87) # !D1L88 & (D1L87 & D1L35 # !D1L87 & (D1L5));
 
 
 --D1L109 is instru_fetch:G_INSTRU_FETCH|pc~856
-D1L109 = D1L88 & (D1L108 & (E1_data_read[2]) # !D1L108 & C1L32) # !D1L88 & (D1L108);
+D1L109 = D1L88 & (D1L108 & (E1_data_read[2]) # !D1L108 & C1L36) # !D1L88 & (D1L108);
 
 
---C1L34 is exe_unit:G_EXE|add~5719
-C1L34 = C1L22 & ((D1_IR[3] # J1L11)) # !C1L22 & (D1_IR[3] # J1L11 # GND);
+--C1L38 is exe_unit:G_EXE|add~5695
+C1L38 = C1L26 & ((D1_IR[7] # J1L11)) # !C1L26 & (D1_IR[7] # J1L11 # GND);
 
---C1L35 is exe_unit:G_EXE|add~5720
-C1L35 = CARRY(D1_IR[3] # J1L11 # !C1L22);
-
-
---C1L275 is exe_unit:G_EXE|result[2]~3338
-C1L275 = B1L11 & (B1L13 & J1L16 # !B1L13 & (C1L34)) # !B1L11 & (B1L13);
+--C1L39 is exe_unit:G_EXE|add~5696
+C1L39 = CARRY(D1_IR[7] # J1L11 # !C1L26);
 
 
---C1L276 is exe_unit:G_EXE|result[2]~3339
-C1L276 = B1L11 & (C1L275) # !B1L11 & (C1L275 & (J1L8) # !C1L275 & !J1L12);
+--C1L277 is exe_unit:G_EXE|result[2]~3373
+C1L277 = B1L11 & (B1L13 & J1L16 # !B1L13 & (C1L38)) # !B1L11 & (B1L13);
 
 
---C1L36 is exe_unit:G_EXE|add~5721
-C1L36 = (J1L12 $ J2L12 $ C1L20) # GND;
-
---C1L37 is exe_unit:G_EXE|add~5722
-C1L37 = CARRY(J1L12 & (!C1L20 # !J2L12) # !J1L12 & !J2L12 & !C1L20);
+--C1L278 is exe_unit:G_EXE|result[2]~3374
+C1L278 = B1L11 & (C1L277) # !B1L11 & (C1L277 & (J1L8) # !C1L277 & !J1L12);
 
 
---C1L369 is exe_unit:G_EXE|result_t~2
-C1L369 = J2L12 & (D1_IR[3] # J1L11);
+--C1L40 is exe_unit:G_EXE|add~5697
+C1L40 = (J1L12 $ J2L12 $ C1L24) # GND;
+
+--C1L41 is exe_unit:G_EXE|add~5698
+C1L41 = CARRY(J1L12 & (!C1L24 # !J2L12) # !J1L12 & !J2L12 & !C1L24);
 
 
---C1L38 is exe_unit:G_EXE|add~5723
-C1L38 = (J1L12 $ J2L12 $ !C1L24) # GND;
-
---C1L39 is exe_unit:G_EXE|add~5724
-C1L39 = CARRY(J1L12 & (J2L12 # !C1L24) # !J1L12 & J2L12 & !C1L24);
+--C1L371 is exe_unit:G_EXE|result_t~2
+C1L371 = J2L12 & (D1_IR[7] # J1L11);
 
 
---C1L277 is exe_unit:G_EXE|result[2]~3340
-C1L277 = C1L299 & (C1L298 & C1L369 # !C1L298 & (C1L38)) # !C1L299 & (C1L298);
+--C1L42 is exe_unit:G_EXE|add~5699
+C1L42 = (J1L12 $ J2L12 $ !C1L28) # GND;
+
+--C1L43 is exe_unit:G_EXE|add~5700
+C1L43 = CARRY(J1L12 & (J2L12 # !C1L28) # !J1L12 & J2L12 & !C1L28);
 
 
---C1L278 is exe_unit:G_EXE|result[2]~3341
-C1L278 = C1L299 & (C1L277) # !C1L299 & (J2L12 & (!C1L277 # !J1L12) # !J2L12 & J1L12);
+--C1L279 is exe_unit:G_EXE|result[2]~3375
+C1L279 = C1L289 & (C1L288 & C1L371 # !C1L288 & (C1L42)) # !C1L289 & (C1L288);
 
 
---C1L279 is exe_unit:G_EXE|result[2]~3342
-C1L279 = C1L297 & (C1L296) # !C1L297 & (C1L296 & C1L36 # !C1L296 & (C1L278));
+--C1L280 is exe_unit:G_EXE|result[2]~3376
+C1L280 = C1L289 & (C1L279) # !C1L289 & (J2L12 & (!C1L279 # !J1L12) # !J2L12 & J1L12);
 
 
---C1L40 is exe_unit:G_EXE|add~5725
-C1L40 = B1L14 & C1L38 # !B1L14 & (D1_IR[3] # J1L11);
+--C1L281 is exe_unit:G_EXE|result[2]~3377
+C1L281 = C1L287 & (C1L286) # !C1L287 & (C1L286 & C1L40 # !C1L286 & (C1L280));
 
 
---C1L41 is exe_unit:G_EXE|add~5726
-C1L41 = B1L12 & C1L36 # !B1L12 & (C1L40);
+--C1L44 is exe_unit:G_EXE|add~5701
+C1L44 = B1L14 & C1L42 # !B1L14 & (D1_IR[7] # J1L11);
 
 
---C1L42 is exe_unit:G_EXE|add~5727
-C1L42 = C1L25 & (C1L41 & !C1L29 # !C1L41 & (C1L29 # GND)) # !C1L25 & (C1L41 & C1L29 & VCC # !C1L41 & !C1L29);
-
---C1L43 is exe_unit:G_EXE|add~5728
-C1L43 = CARRY(C1L25 & (!C1L29 # !C1L41) # !C1L25 & !C1L41 & !C1L29);
+--C1L45 is exe_unit:G_EXE|add~5702
+C1L45 = B1L12 & C1L40 # !B1L12 & (C1L44);
 
 
---C1L280 is exe_unit:G_EXE|result[2]~3343
-C1L280 = C1L297 & (C1L279 & (C1L42) # !C1L279 & C1L276) # !C1L297 & (C1L279);
+--C1L46 is exe_unit:G_EXE|add~5703
+C1L46 = C1L29 & (C1L45 & !C1L33 # !C1L45 & (C1L33 # GND)) # !C1L29 & (C1L45 & C1L33 & VCC # !C1L45 & !C1L33);
+
+--C1L47 is exe_unit:G_EXE|add~5704
+C1L47 = CARRY(C1L29 & (!C1L33 # !C1L45) # !C1L29 & !C1L45 & !C1L33);
+
+
+--C1L282 is exe_unit:G_EXE|result[2]~3378
+C1L282 = C1L287 & (C1L281 & (C1L46) # !C1L281 & C1L278) # !C1L287 & (C1L281);
 
 
 --E1L21 is memory_unit:G_MEMORY|DR_data_out[2]~1238
-E1L21 = !A1L195 & (C1L306 & J2L12 # !C1L306 & (C1L280));
+E1L21 = !A1L195 & (C1L296 & J2L12 # !C1L296 & (C1L282));
 
 
 --E1L22 is memory_unit:G_MEMORY|DR_data_out[2]~1239
 E1L22 = E1L21 # A1L195 & E1_data_read[2];
 
 
---C1L44 is exe_unit:G_EXE|add~5729
-C1L44 = J1L16 & (J2L16 & !C1L37 # !J2L16 & C1L37 & VCC) # !J1L16 & (J2L16 & (C1L37 # GND) # !J2L16 & !C1L37);
+--C1L48 is exe_unit:G_EXE|add~5705
+C1L48 = J1L16 & (J2L16 & !C1L41 # !J2L16 & C1L41 & VCC) # !J1L16 & (J2L16 & (C1L41 # GND) # !J2L16 & !C1L41);
 
---C1L45 is exe_unit:G_EXE|add~5730
-C1L45 = CARRY(J1L16 & J2L16 & !C1L37 # !J1L16 & (J2L16 # !C1L37));
-
-
---C1L46 is exe_unit:G_EXE|add~5731
-C1L46 = C1L35 & (D1_IR[3] # J1L15) # !C1L35 & !D1_IR[3] & !J1L15;
-
---C1L47 is exe_unit:G_EXE|add~5732
-C1L47 = CARRY(!D1_IR[3] & !J1L15 & !C1L35);
+--C1L49 is exe_unit:G_EXE|add~5706
+C1L49 = CARRY(J1L16 & J2L16 & !C1L41 # !J1L16 & (J2L16 # !C1L41));
 
 
---C1L281 is exe_unit:G_EXE|result[3]~3344
-C1L281 = B1L11 & (B1L13 & J1L20 # !B1L13 & (C1L46)) # !B1L11 & (B1L13);
+--C1L50 is exe_unit:G_EXE|add~5707
+C1L50 = C1L39 & (D1_IR[7] # J1L15) # !C1L39 & !D1_IR[7] & !J1L15;
+
+--C1L51 is exe_unit:G_EXE|add~5708
+C1L51 = CARRY(!D1_IR[7] & !J1L15 & !C1L39);
 
 
---C1L282 is exe_unit:G_EXE|result[3]~3345
-C1L282 = B1L11 & (C1L281) # !B1L11 & (C1L281 & (J1L12) # !C1L281 & !J1L16);
+--C1L290 is exe_unit:G_EXE|result[3]~3379
+C1L290 = B1L11 & (B1L13 & J1L20 # !B1L13 & (C1L50)) # !B1L11 & (B1L13);
 
 
---C1L377 is exe_unit:G_EXE|result_t~19
-C1L377 = D1_IR[3] # J1L15 # J2L16;
+--C1L291 is exe_unit:G_EXE|result[3]~3380
+C1L291 = B1L11 & (C1L290) # !B1L11 & (C1L290 & (J1L12) # !C1L290 & !J1L16);
 
 
---C1L48 is exe_unit:G_EXE|add~5733
-C1L48 = J1L16 & (J2L16 & C1L39 & VCC # !J2L16 & !C1L39) # !J1L16 & (J2L16 & !C1L39 # !J2L16 & (C1L39 # GND));
-
---C1L49 is exe_unit:G_EXE|add~5734
-C1L49 = CARRY(J1L16 & !J2L16 & !C1L39 # !J1L16 & (!C1L39 # !J2L16));
+--C1L379 is exe_unit:G_EXE|result_t~19
+C1L379 = D1_IR[7] # J1L15 # J2L16;
 
 
---C1L283 is exe_unit:G_EXE|result[3]~3346
-C1L283 = C1L298 & (!C1L299) # !C1L298 & (C1L299 & (C1L48) # !C1L299 & C1L377);
+--C1L52 is exe_unit:G_EXE|add~5709
+C1L52 = J1L16 & (J2L16 & C1L43 & VCC # !J2L16 & !C1L43) # !J1L16 & (J2L16 & !C1L43 # !J2L16 & (C1L43 # GND));
+
+--C1L53 is exe_unit:G_EXE|add~5710
+C1L53 = CARRY(J1L16 & !J2L16 & !C1L43 # !J1L16 & (!C1L43 # !J2L16));
 
 
---C1L284 is exe_unit:G_EXE|result[3]~3347
-C1L284 = J2L16 & (C1L283 $ (J1L16 & C1L298)) # !J2L16 & C1L283 & (J1L16 # !C1L298);
+--C1L292 is exe_unit:G_EXE|result[3]~3381
+C1L292 = C1L288 & (!C1L289) # !C1L288 & (C1L289 & (C1L52) # !C1L289 & C1L379);
 
 
---C1L285 is exe_unit:G_EXE|result[3]~3348
-C1L285 = C1L296 & (C1L297) # !C1L296 & (C1L297 & C1L282 # !C1L297 & (C1L284));
+--C1L293 is exe_unit:G_EXE|result[3]~3382
+C1L293 = J2L16 & (C1L292 $ (J1L16 & C1L288)) # !J2L16 & C1L292 & (J1L16 # !C1L288);
 
 
---C1L50 is exe_unit:G_EXE|add~5735
-C1L50 = B1L14 & C1L48 # !B1L14 & (D1_IR[3] # J1L15);
+--C1L294 is exe_unit:G_EXE|result[3]~3383
+C1L294 = C1L286 & (C1L287) # !C1L286 & (C1L287 & C1L291 # !C1L287 & (C1L293));
 
 
---C1L51 is exe_unit:G_EXE|add~5736
-C1L51 = B1L12 & C1L44 # !B1L12 & (C1L50);
+--C1L54 is exe_unit:G_EXE|add~5711
+C1L54 = B1L14 & C1L52 # !B1L14 & (D1_IR[7] # J1L15);
 
 
---C1L52 is exe_unit:G_EXE|add~5737
-C1L52 = (C1L25 $ C1L51 $ C1L43) # GND;
-
---C1L53 is exe_unit:G_EXE|add~5738
-C1L53 = CARRY(C1L25 & C1L51 & !C1L43 # !C1L25 & (C1L51 # !C1L43));
+--C1L55 is exe_unit:G_EXE|add~5712
+C1L55 = B1L12 & C1L48 # !B1L12 & (C1L54);
 
 
---C1L286 is exe_unit:G_EXE|result[3]~3349
-C1L286 = C1L296 & (C1L285 & (C1L52) # !C1L285 & C1L44) # !C1L296 & (C1L285);
+--C1L56 is exe_unit:G_EXE|add~5713
+C1L56 = (C1L29 $ C1L55 $ C1L47) # GND;
+
+--C1L57 is exe_unit:G_EXE|add~5714
+C1L57 = CARRY(C1L29 & C1L55 & !C1L47 # !C1L29 & (C1L55 # !C1L47));
+
+
+--C1L295 is exe_unit:G_EXE|result[3]~3384
+C1L295 = C1L286 & (C1L294 & (C1L56) # !C1L294 & C1L48) # !C1L286 & (C1L294);
 
 
 --E1L23 is memory_unit:G_MEMORY|DR_data_out[3]~1240
-E1L23 = !A1L195 & (C1L306 & J2L16 # !C1L306 & (C1L286));
+E1L23 = !A1L195 & (C1L296 & J2L16 # !C1L296 & (C1L295));
 
 
 --E1L24 is memory_unit:G_MEMORY|DR_data_out[3]~1241
@@ -2258,26 +2254,26 @@ D1L37 = D1_pc[3] & (D1L36 $ GND) # !D1_pc[3] & !D1L36 & VCC;
 D1L38 = CARRY(D1_pc[3] & !D1L36);
 
 
---C1L54 is exe_unit:G_EXE|add~5739
-C1L54 = D1L7 & (D1_IR[3] & C1L33 & VCC # !D1_IR[3] & !C1L33) # !D1L7 & (D1_IR[3] & !C1L33 # !D1_IR[3] & (C1L33 # GND));
+--C1L58 is exe_unit:G_EXE|add~5715
+C1L58 = D1L7 & (D1_IR[3] & C1L37 & VCC # !D1_IR[3] & !C1L37) # !D1L7 & (D1_IR[3] & !C1L37 # !D1_IR[3] & (C1L37 # GND));
 
---C1L55 is exe_unit:G_EXE|add~5740
-C1L55 = CARRY(D1L7 & !D1_IR[3] & !C1L33 # !D1L7 & (!C1L33 # !D1_IR[3]));
+--C1L59 is exe_unit:G_EXE|add~5716
+C1L59 = CARRY(D1L7 & !D1_IR[3] & !C1L37 # !D1L7 & (!C1L37 # !D1_IR[3]));
 
 
 --D1L110 is instru_fetch:G_INSTRU_FETCH|pc~857
-D1L110 = D1L87 & (D1L88) # !D1L87 & (D1L88 & C1L54 # !D1L88 & (D1L7));
+D1L110 = D1L87 & (D1L88) # !D1L87 & (D1L88 & C1L58 # !D1L88 & (D1L7));
 
 
 --D1L111 is instru_fetch:G_INSTRU_FETCH|pc~858
 D1L111 = D1L87 & (D1L110 & (E1_data_read[3]) # !D1L110 & D1L37) # !D1L87 & (D1L110);
 
 
---C1L56 is exe_unit:G_EXE|add~5741
-C1L56 = (D1L9 $ D1_IR[4] $ !C1L55) # GND;
+--C1L60 is exe_unit:G_EXE|add~5717
+C1L60 = (D1L9 $ D1_IR[4] $ !C1L59) # GND;
 
---C1L57 is exe_unit:G_EXE|add~5742
-C1L57 = CARRY(D1L9 & (D1_IR[4] # !C1L55) # !D1L9 & D1_IR[4] & !C1L55);
+--C1L61 is exe_unit:G_EXE|add~5718
+C1L61 = CARRY(D1L9 & (D1_IR[4] # !C1L59) # !D1L9 & D1_IR[4] & !C1L59);
 
 
 --D1L39 is instru_fetch:G_INSTRU_FETCH|add~507
@@ -2292,147 +2288,147 @@ D1L112 = D1L88 & (D1L87) # !D1L88 & (D1L87 & D1L39 # !D1L87 & (D1L9));
 
 
 --D1L113 is instru_fetch:G_INSTRU_FETCH|pc~860
-D1L113 = D1L88 & (D1L112 & (E1_data_read[4]) # !D1L112 & C1L56) # !D1L88 & (D1L112);
+D1L113 = D1L88 & (D1L112 & (E1_data_read[4]) # !D1L112 & C1L60) # !D1L88 & (D1L112);
 
 
---C1L58 is exe_unit:G_EXE|add~5743
-C1L58 = C1L47 & ((D1_IR[3] # J1L19)) # !C1L47 & (D1_IR[3] # J1L19 # GND);
+--C1L62 is exe_unit:G_EXE|add~5719
+C1L62 = C1L51 & ((D1_IR[7] # J1L19)) # !C1L51 & (D1_IR[7] # J1L19 # GND);
 
---C1L59 is exe_unit:G_EXE|add~5744
-C1L59 = CARRY(D1_IR[3] # J1L19 # !C1L47);
-
-
---C1L287 is exe_unit:G_EXE|result[4]~3350
-C1L287 = B1L11 & (B1L13 & J1L24 # !B1L13 & (C1L58)) # !B1L11 & (B1L13);
+--C1L63 is exe_unit:G_EXE|add~5720
+C1L63 = CARRY(D1_IR[7] # J1L19 # !C1L51);
 
 
---C1L288 is exe_unit:G_EXE|result[4]~3351
-C1L288 = B1L11 & (C1L287) # !B1L11 & (C1L287 & (J1L16) # !C1L287 & !J1L20);
+--C1L299 is exe_unit:G_EXE|result[4]~3385
+C1L299 = B1L11 & (B1L13 & J1L24 # !B1L13 & (C1L62)) # !B1L11 & (B1L13);
 
 
---C1L60 is exe_unit:G_EXE|add~5745
-C1L60 = (J1L20 $ J2L20 $ C1L45) # GND;
-
---C1L61 is exe_unit:G_EXE|add~5746
-C1L61 = CARRY(J1L20 & (!C1L45 # !J2L20) # !J1L20 & !J2L20 & !C1L45);
+--C1L300 is exe_unit:G_EXE|result[4]~3386
+C1L300 = B1L11 & (C1L299) # !B1L11 & (C1L299 & (J1L16) # !C1L299 & !J1L20);
 
 
---C1L370 is exe_unit:G_EXE|result_t~4
-C1L370 = J2L20 & (D1_IR[3] # J1L19);
+--C1L64 is exe_unit:G_EXE|add~5721
+C1L64 = (J1L20 $ J2L20 $ C1L49) # GND;
+
+--C1L65 is exe_unit:G_EXE|add~5722
+C1L65 = CARRY(J1L20 & (!C1L49 # !J2L20) # !J1L20 & !J2L20 & !C1L49);
 
 
---C1L62 is exe_unit:G_EXE|add~5747
-C1L62 = (J1L20 $ J2L20 $ !C1L49) # GND;
-
---C1L63 is exe_unit:G_EXE|add~5748
-C1L63 = CARRY(J1L20 & (J2L20 # !C1L49) # !J1L20 & J2L20 & !C1L49);
+--C1L372 is exe_unit:G_EXE|result_t~4
+C1L372 = J2L20 & (D1_IR[7] # J1L19);
 
 
---C1L289 is exe_unit:G_EXE|result[4]~3352
-C1L289 = C1L299 & (C1L298 & C1L370 # !C1L298 & (C1L62)) # !C1L299 & (C1L298);
+--C1L66 is exe_unit:G_EXE|add~5723
+C1L66 = (J1L20 $ J2L20 $ !C1L53) # GND;
+
+--C1L67 is exe_unit:G_EXE|add~5724
+C1L67 = CARRY(J1L20 & (J2L20 # !C1L53) # !J1L20 & J2L20 & !C1L53);
 
 
---C1L290 is exe_unit:G_EXE|result[4]~3353
-C1L290 = C1L299 & (C1L289) # !C1L299 & (J2L20 & (!C1L289 # !J1L20) # !J2L20 & J1L20);
+--C1L301 is exe_unit:G_EXE|result[4]~3387
+C1L301 = C1L289 & (C1L288 & C1L372 # !C1L288 & (C1L66)) # !C1L289 & (C1L288);
 
 
---C1L291 is exe_unit:G_EXE|result[4]~3354
-C1L291 = C1L297 & (C1L296) # !C1L297 & (C1L296 & C1L60 # !C1L296 & (C1L290));
+--C1L302 is exe_unit:G_EXE|result[4]~3388
+C1L302 = C1L289 & (C1L301) # !C1L289 & (J2L20 & (!C1L301 # !J1L20) # !J2L20 & J1L20);
 
 
---C1L64 is exe_unit:G_EXE|add~5749
-C1L64 = B1L14 & C1L62 # !B1L14 & (D1_IR[3] # J1L19);
+--C1L303 is exe_unit:G_EXE|result[4]~3389
+C1L303 = C1L287 & (C1L286) # !C1L287 & (C1L286 & C1L64 # !C1L286 & (C1L302));
 
 
---C1L65 is exe_unit:G_EXE|add~5750
-C1L65 = B1L12 & C1L60 # !B1L12 & (C1L64);
+--C1L68 is exe_unit:G_EXE|add~5725
+C1L68 = B1L14 & C1L66 # !B1L14 & (D1_IR[7] # J1L19);
 
 
---C1L66 is exe_unit:G_EXE|add~5751
-C1L66 = C1L25 & (C1L65 & !C1L53 # !C1L65 & (C1L53 # GND)) # !C1L25 & (C1L65 & C1L53 & VCC # !C1L65 & !C1L53);
-
---C1L67 is exe_unit:G_EXE|add~5752
-C1L67 = CARRY(C1L25 & (!C1L53 # !C1L65) # !C1L25 & !C1L65 & !C1L53);
+--C1L69 is exe_unit:G_EXE|add~5726
+C1L69 = B1L12 & C1L64 # !B1L12 & (C1L68);
 
 
---C1L292 is exe_unit:G_EXE|result[4]~3355
-C1L292 = C1L297 & (C1L291 & (C1L66) # !C1L291 & C1L288) # !C1L297 & (C1L291);
+--C1L70 is exe_unit:G_EXE|add~5727
+C1L70 = C1L29 & (C1L69 & !C1L57 # !C1L69 & (C1L57 # GND)) # !C1L29 & (C1L69 & C1L57 & VCC # !C1L69 & !C1L57);
+
+--C1L71 is exe_unit:G_EXE|add~5728
+C1L71 = CARRY(C1L29 & (!C1L57 # !C1L69) # !C1L29 & !C1L69 & !C1L57);
+
+
+--C1L304 is exe_unit:G_EXE|result[4]~3390
+C1L304 = C1L287 & (C1L303 & (C1L70) # !C1L303 & C1L300) # !C1L287 & (C1L303);
 
 
 --E1L25 is memory_unit:G_MEMORY|DR_data_out[4]~1242
-E1L25 = !A1L195 & (C1L306 & J2L20 # !C1L306 & (C1L292));
+E1L25 = !A1L195 & (C1L296 & J2L20 # !C1L296 & (C1L304));
 
 
 --E1L26 is memory_unit:G_MEMORY|DR_data_out[4]~1243
 E1L26 = E1L25 # A1L195 & E1_data_read[4];
 
 
---C1L68 is exe_unit:G_EXE|add~5753
-C1L68 = J1L24 & (J2L24 & !C1L61 # !J2L24 & C1L61 & VCC) # !J1L24 & (J2L24 & (C1L61 # GND) # !J2L24 & !C1L61);
+--C1L72 is exe_unit:G_EXE|add~5729
+C1L72 = J1L24 & (J2L24 & !C1L65 # !J2L24 & C1L65 & VCC) # !J1L24 & (J2L24 & (C1L65 # GND) # !J2L24 & !C1L65);
 
---C1L69 is exe_unit:G_EXE|add~5754
-C1L69 = CARRY(J1L24 & J2L24 & !C1L61 # !J1L24 & (J2L24 # !C1L61));
-
-
---C1L70 is exe_unit:G_EXE|add~5755
-C1L70 = C1L59 & (D1_IR[3] # J1L23) # !C1L59 & !D1_IR[3] & !J1L23;
-
---C1L71 is exe_unit:G_EXE|add~5756
-C1L71 = CARRY(!D1_IR[3] & !J1L23 & !C1L59);
+--C1L73 is exe_unit:G_EXE|add~5730
+C1L73 = CARRY(J1L24 & J2L24 & !C1L65 # !J1L24 & (J2L24 # !C1L65));
 
 
---C1L300 is exe_unit:G_EXE|result[5]~3356
-C1L300 = B1L11 & (B1L13 & J1L28 # !B1L13 & (C1L70)) # !B1L11 & (B1L13);
+--C1L74 is exe_unit:G_EXE|add~5731
+C1L74 = C1L63 & (D1_IR[7] # J1L23) # !C1L63 & !D1_IR[7] & !J1L23;
+
+--C1L75 is exe_unit:G_EXE|add~5732
+C1L75 = CARRY(!D1_IR[7] & !J1L23 & !C1L63);
 
 
---C1L301 is exe_unit:G_EXE|result[5]~3357
-C1L301 = B1L11 & (C1L300) # !B1L11 & (C1L300 & (J1L20) # !C1L300 & !J1L24);
+--C1L305 is exe_unit:G_EXE|result[5]~3391
+C1L305 = B1L11 & (B1L13 & J1L28 # !B1L13 & (C1L74)) # !B1L11 & (B1L13);
 
 
---C1L378 is exe_unit:G_EXE|result_t~21
-C1L378 = D1_IR[3] # J1L23 # J2L24;
+--C1L306 is exe_unit:G_EXE|result[5]~3392
+C1L306 = B1L11 & (C1L305) # !B1L11 & (C1L305 & (J1L20) # !C1L305 & !J1L24);
 
 
---C1L72 is exe_unit:G_EXE|add~5757
-C1L72 = J1L24 & (J2L24 & C1L63 & VCC # !J2L24 & !C1L63) # !J1L24 & (J2L24 & !C1L63 # !J2L24 & (C1L63 # GND));
-
---C1L73 is exe_unit:G_EXE|add~5758
-C1L73 = CARRY(J1L24 & !J2L24 & !C1L63 # !J1L24 & (!C1L63 # !J2L24));
+--C1L380 is exe_unit:G_EXE|result_t~21
+C1L380 = D1_IR[7] # J1L23 # J2L24;
 
 
---C1L302 is exe_unit:G_EXE|result[5]~3358
-C1L302 = C1L298 & (!C1L299) # !C1L298 & (C1L299 & (C1L72) # !C1L299 & C1L378);
+--C1L76 is exe_unit:G_EXE|add~5733
+C1L76 = J1L24 & (J2L24 & C1L67 & VCC # !J2L24 & !C1L67) # !J1L24 & (J2L24 & !C1L67 # !J2L24 & (C1L67 # GND));
+
+--C1L77 is exe_unit:G_EXE|add~5734
+C1L77 = CARRY(J1L24 & !J2L24 & !C1L67 # !J1L24 & (!C1L67 # !J2L24));
 
 
---C1L303 is exe_unit:G_EXE|result[5]~3359
-C1L303 = J2L24 & (C1L302 $ (J1L24 & C1L298)) # !J2L24 & C1L302 & (J1L24 # !C1L298);
+--C1L307 is exe_unit:G_EXE|result[5]~3393
+C1L307 = C1L288 & (!C1L289) # !C1L288 & (C1L289 & (C1L76) # !C1L289 & C1L380);
 
 
---C1L304 is exe_unit:G_EXE|result[5]~3360
-C1L304 = C1L296 & (C1L297) # !C1L296 & (C1L297 & C1L301 # !C1L297 & (C1L303));
+--C1L308 is exe_unit:G_EXE|result[5]~3394
+C1L308 = J2L24 & (C1L307 $ (J1L24 & C1L288)) # !J2L24 & C1L307 & (J1L24 # !C1L288);
 
 
---C1L74 is exe_unit:G_EXE|add~5759
-C1L74 = B1L14 & C1L72 # !B1L14 & (D1_IR[3] # J1L23);
+--C1L309 is exe_unit:G_EXE|result[5]~3395
+C1L309 = C1L286 & (C1L287) # !C1L286 & (C1L287 & C1L306 # !C1L287 & (C1L308));
 
 
---C1L75 is exe_unit:G_EXE|add~5760
-C1L75 = B1L12 & C1L68 # !B1L12 & (C1L74);
+--C1L78 is exe_unit:G_EXE|add~5735
+C1L78 = B1L14 & C1L76 # !B1L14 & (D1_IR[7] # J1L23);
 
 
---C1L76 is exe_unit:G_EXE|add~5761
-C1L76 = (C1L25 $ C1L75 $ C1L67) # GND;
-
---C1L77 is exe_unit:G_EXE|add~5762
-C1L77 = CARRY(C1L25 & C1L75 & !C1L67 # !C1L25 & (C1L75 # !C1L67));
+--C1L79 is exe_unit:G_EXE|add~5736
+C1L79 = B1L12 & C1L72 # !B1L12 & (C1L78);
 
 
---C1L305 is exe_unit:G_EXE|result[5]~3361
-C1L305 = C1L296 & (C1L304 & (C1L76) # !C1L304 & C1L68) # !C1L296 & (C1L304);
+--C1L80 is exe_unit:G_EXE|add~5737
+C1L80 = (C1L29 $ C1L79 $ C1L71) # GND;
+
+--C1L81 is exe_unit:G_EXE|add~5738
+C1L81 = CARRY(C1L29 & C1L79 & !C1L71 # !C1L29 & (C1L79 # !C1L71));
+
+
+--C1L310 is exe_unit:G_EXE|result[5]~3396
+C1L310 = C1L286 & (C1L309 & (C1L80) # !C1L309 & C1L72) # !C1L286 & (C1L309);
 
 
 --E1L27 is memory_unit:G_MEMORY|DR_data_out[5]~1244
-E1L27 = !A1L195 & (C1L306 & J2L24 # !C1L306 & (C1L305));
+E1L27 = !A1L195 & (C1L296 & J2L24 # !C1L296 & (C1L310));
 
 
 --E1L28 is memory_unit:G_MEMORY|DR_data_out[5]~1245
@@ -2446,26 +2442,26 @@ D1L41 = D1_pc[5] & (D1L40 $ GND) # !D1_pc[5] & !D1L40 & VCC;
 D1L42 = CARRY(D1_pc[5] & !D1L40);
 
 
---C1L78 is exe_unit:G_EXE|add~5763
-C1L78 = D1L11 & (D1_IR[5] & C1L57 & VCC # !D1_IR[5] & !C1L57) # !D1L11 & (D1_IR[5] & !C1L57 # !D1_IR[5] & (C1L57 # GND));
+--C1L82 is exe_unit:G_EXE|add~5739
+C1L82 = D1L11 & (D1_IR[5] & C1L61 & VCC # !D1_IR[5] & !C1L61) # !D1L11 & (D1_IR[5] & !C1L61 # !D1_IR[5] & (C1L61 # GND));
 
---C1L79 is exe_unit:G_EXE|add~5764
-C1L79 = CARRY(D1L11 & !D1_IR[5] & !C1L57 # !D1L11 & (!C1L57 # !D1_IR[5]));
+--C1L83 is exe_unit:G_EXE|add~5740
+C1L83 = CARRY(D1L11 & !D1_IR[5] & !C1L61 # !D1L11 & (!C1L61 # !D1_IR[5]));
 
 
 --D1L114 is instru_fetch:G_INSTRU_FETCH|pc~861
-D1L114 = D1L87 & (D1L88) # !D1L87 & (D1L88 & C1L78 # !D1L88 & (D1L11));
+D1L114 = D1L87 & (D1L88) # !D1L87 & (D1L88 & C1L82 # !D1L88 & (D1L11));
 
 
 --D1L115 is instru_fetch:G_INSTRU_FETCH|pc~862
 D1L115 = D1L87 & (D1L114 & (E1_data_read[5]) # !D1L114 & D1L41) # !D1L87 & (D1L114);
 
 
---C1L80 is exe_unit:G_EXE|add~5765
-C1L80 = (D1L13 $ D1_IR[6] $ !C1L79) # GND;
+--C1L84 is exe_unit:G_EXE|add~5741
+C1L84 = (D1L13 $ D1_IR[6] $ !C1L83) # GND;
 
---C1L81 is exe_unit:G_EXE|add~5766
-C1L81 = CARRY(D1L13 & (D1_IR[6] # !C1L79) # !D1L13 & D1_IR[6] & !C1L79);
+--C1L85 is exe_unit:G_EXE|add~5742
+C1L85 = CARRY(D1L13 & (D1_IR[6] # !C1L83) # !D1L13 & D1_IR[6] & !C1L83);
 
 
 --D1L43 is instru_fetch:G_INSTRU_FETCH|add~511
@@ -2480,147 +2476,147 @@ D1L116 = D1L88 & (D1L87) # !D1L88 & (D1L87 & D1L43 # !D1L87 & (D1L13));
 
 
 --D1L117 is instru_fetch:G_INSTRU_FETCH|pc~864
-D1L117 = D1L88 & (D1L116 & (E1_data_read[6]) # !D1L116 & C1L80) # !D1L88 & (D1L116);
+D1L117 = D1L88 & (D1L116 & (E1_data_read[6]) # !D1L116 & C1L84) # !D1L88 & (D1L116);
 
 
---C1L82 is exe_unit:G_EXE|add~5767
-C1L82 = C1L71 & ((D1_IR[3] # J1L27)) # !C1L71 & (D1_IR[3] # J1L27 # GND);
+--C1L86 is exe_unit:G_EXE|add~5743
+C1L86 = C1L75 & ((D1_IR[7] # J1L27)) # !C1L75 & (D1_IR[7] # J1L27 # GND);
 
---C1L83 is exe_unit:G_EXE|add~5768
-C1L83 = CARRY(D1_IR[3] # J1L27 # !C1L71);
-
-
---C1L309 is exe_unit:G_EXE|result[6]~3362
-C1L309 = B1L11 & (B1L13 & J1L32 # !B1L13 & (C1L82)) # !B1L11 & (B1L13);
+--C1L87 is exe_unit:G_EXE|add~5744
+C1L87 = CARRY(D1_IR[7] # J1L27 # !C1L75);
 
 
---C1L310 is exe_unit:G_EXE|result[6]~3363
-C1L310 = B1L11 & (C1L309) # !B1L11 & (C1L309 & (J1L24) # !C1L309 & !J1L28);
+--C1L311 is exe_unit:G_EXE|result[6]~3397
+C1L311 = B1L11 & (B1L13 & J1L32 # !B1L13 & (C1L86)) # !B1L11 & (B1L13);
 
 
---C1L84 is exe_unit:G_EXE|add~5769
-C1L84 = (J1L28 $ J2L28 $ C1L69) # GND;
-
---C1L85 is exe_unit:G_EXE|add~5770
-C1L85 = CARRY(J1L28 & (!C1L69 # !J2L28) # !J1L28 & !J2L28 & !C1L69);
+--C1L312 is exe_unit:G_EXE|result[6]~3398
+C1L312 = B1L11 & (C1L311) # !B1L11 & (C1L311 & (J1L24) # !C1L311 & !J1L28);
 
 
---C1L371 is exe_unit:G_EXE|result_t~6
-C1L371 = J2L28 & (D1_IR[3] # J1L27);
+--C1L88 is exe_unit:G_EXE|add~5745
+C1L88 = (J1L28 $ J2L28 $ C1L73) # GND;
+
+--C1L89 is exe_unit:G_EXE|add~5746
+C1L89 = CARRY(J1L28 & (!C1L73 # !J2L28) # !J1L28 & !J2L28 & !C1L73);
 
 
---C1L86 is exe_unit:G_EXE|add~5771
-C1L86 = (J1L28 $ J2L28 $ !C1L73) # GND;
-
---C1L87 is exe_unit:G_EXE|add~5772
-C1L87 = CARRY(J1L28 & (J2L28 # !C1L73) # !J1L28 & J2L28 & !C1L73);
+--C1L373 is exe_unit:G_EXE|result_t~6
+C1L373 = J2L28 & (D1_IR[7] # J1L27);
 
 
---C1L311 is exe_unit:G_EXE|result[6]~3364
-C1L311 = C1L299 & (C1L298 & C1L371 # !C1L298 & (C1L86)) # !C1L299 & (C1L298);
+--C1L90 is exe_unit:G_EXE|add~5747
+C1L90 = (J1L28 $ J2L28 $ !C1L77) # GND;
+
+--C1L91 is exe_unit:G_EXE|add~5748
+C1L91 = CARRY(J1L28 & (J2L28 # !C1L77) # !J1L28 & J2L28 & !C1L77);
 
 
---C1L312 is exe_unit:G_EXE|result[6]~3365
-C1L312 = C1L299 & (C1L311) # !C1L299 & (J2L28 & (!C1L311 # !J1L28) # !J2L28 & J1L28);
+--C1L313 is exe_unit:G_EXE|result[6]~3399
+C1L313 = C1L289 & (C1L288 & C1L373 # !C1L288 & (C1L90)) # !C1L289 & (C1L288);
 
 
---C1L313 is exe_unit:G_EXE|result[6]~3366
-C1L313 = C1L297 & (C1L296) # !C1L297 & (C1L296 & C1L84 # !C1L296 & (C1L312));
+--C1L314 is exe_unit:G_EXE|result[6]~3400
+C1L314 = C1L289 & (C1L313) # !C1L289 & (J2L28 & (!C1L313 # !J1L28) # !J2L28 & J1L28);
 
 
---C1L88 is exe_unit:G_EXE|add~5773
-C1L88 = B1L14 & C1L86 # !B1L14 & (D1_IR[3] # J1L27);
+--C1L315 is exe_unit:G_EXE|result[6]~3401
+C1L315 = C1L287 & (C1L286) # !C1L287 & (C1L286 & C1L88 # !C1L286 & (C1L314));
 
 
---C1L89 is exe_unit:G_EXE|add~5774
-C1L89 = B1L12 & C1L84 # !B1L12 & (C1L88);
+--C1L92 is exe_unit:G_EXE|add~5749
+C1L92 = B1L14 & C1L90 # !B1L14 & (D1_IR[7] # J1L27);
 
 
---C1L90 is exe_unit:G_EXE|add~5775
-C1L90 = C1L25 & (C1L89 & !C1L77 # !C1L89 & (C1L77 # GND)) # !C1L25 & (C1L89 & C1L77 & VCC # !C1L89 & !C1L77);
-
---C1L91 is exe_unit:G_EXE|add~5776
-C1L91 = CARRY(C1L25 & (!C1L77 # !C1L89) # !C1L25 & !C1L89 & !C1L77);
+--C1L93 is exe_unit:G_EXE|add~5750
+C1L93 = B1L12 & C1L88 # !B1L12 & (C1L92);
 
 
---C1L314 is exe_unit:G_EXE|result[6]~3367
-C1L314 = C1L297 & (C1L313 & (C1L90) # !C1L313 & C1L310) # !C1L297 & (C1L313);
+--C1L94 is exe_unit:G_EXE|add~5751
+C1L94 = C1L29 & (C1L93 & !C1L81 # !C1L93 & (C1L81 # GND)) # !C1L29 & (C1L93 & C1L81 & VCC # !C1L93 & !C1L81);
+
+--C1L95 is exe_unit:G_EXE|add~5752
+C1L95 = CARRY(C1L29 & (!C1L81 # !C1L93) # !C1L29 & !C1L93 & !C1L81);
+
+
+--C1L316 is exe_unit:G_EXE|result[6]~3402
+C1L316 = C1L287 & (C1L315 & (C1L94) # !C1L315 & C1L312) # !C1L287 & (C1L315);
 
 
 --E1L29 is memory_unit:G_MEMORY|DR_data_out[6]~1246
-E1L29 = !A1L195 & (C1L306 & J2L28 # !C1L306 & (C1L314));
+E1L29 = !A1L195 & (C1L296 & J2L28 # !C1L296 & (C1L316));
 
 
 --E1L30 is memory_unit:G_MEMORY|DR_data_out[6]~1247
 E1L30 = E1L29 # A1L195 & E1_data_read[6];
 
 
---C1L92 is exe_unit:G_EXE|add~5777
-C1L92 = J1L32 & (J2L32 & !C1L85 # !J2L32 & C1L85 & VCC) # !J1L32 & (J2L32 & (C1L85 # GND) # !J2L32 & !C1L85);
+--C1L96 is exe_unit:G_EXE|add~5753
+C1L96 = J1L32 & (J2L32 & !C1L89 # !J2L32 & C1L89 & VCC) # !J1L32 & (J2L32 & (C1L89 # GND) # !J2L32 & !C1L89);
 
---C1L93 is exe_unit:G_EXE|add~5778
-C1L93 = CARRY(J1L32 & J2L32 & !C1L85 # !J1L32 & (J2L32 # !C1L85));
-
-
---C1L94 is exe_unit:G_EXE|add~5779
-C1L94 = C1L83 & (D1_IR[3] # J1L31) # !C1L83 & !D1_IR[3] & !J1L31;
-
---C1L95 is exe_unit:G_EXE|add~5780
-C1L95 = CARRY(!D1_IR[3] & !J1L31 & !C1L83);
+--C1L97 is exe_unit:G_EXE|add~5754
+C1L97 = CARRY(J1L32 & J2L32 & !C1L89 # !J1L32 & (J2L32 # !C1L89));
 
 
---C1L315 is exe_unit:G_EXE|result[7]~3368
-C1L315 = B1L11 & (B1L13 & J1L36 # !B1L13 & (C1L94)) # !B1L11 & (B1L13);
+--C1L98 is exe_unit:G_EXE|add~5755
+C1L98 = C1L87 & (D1_IR[7] # J1L31) # !C1L87 & !D1_IR[7] & !J1L31;
+
+--C1L99 is exe_unit:G_EXE|add~5756
+C1L99 = CARRY(!D1_IR[7] & !J1L31 & !C1L87);
 
 
---C1L316 is exe_unit:G_EXE|result[7]~3369
-C1L316 = B1L11 & (C1L315) # !B1L11 & (C1L315 & (J1L28) # !C1L315 & !J1L32);
+--C1L317 is exe_unit:G_EXE|result[7]~3403
+C1L317 = B1L11 & (B1L13 & J1L36 # !B1L13 & (C1L98)) # !B1L11 & (B1L13);
 
 
---C1L379 is exe_unit:G_EXE|result_t~23
-C1L379 = D1_IR[3] # J1L31 # J2L32;
+--C1L318 is exe_unit:G_EXE|result[7]~3404
+C1L318 = B1L11 & (C1L317) # !B1L11 & (C1L317 & (J1L28) # !C1L317 & !J1L32);
 
 
---C1L96 is exe_unit:G_EXE|add~5781
-C1L96 = J1L32 & (J2L32 & C1L87 & VCC # !J2L32 & !C1L87) # !J1L32 & (J2L32 & !C1L87 # !J2L32 & (C1L87 # GND));
-
---C1L97 is exe_unit:G_EXE|add~5782
-C1L97 = CARRY(J1L32 & !J2L32 & !C1L87 # !J1L32 & (!C1L87 # !J2L32));
+--C1L381 is exe_unit:G_EXE|result_t~23
+C1L381 = D1_IR[7] # J1L31 # J2L32;
 
 
---C1L317 is exe_unit:G_EXE|result[7]~3370
-C1L317 = C1L298 & (!C1L299) # !C1L298 & (C1L299 & (C1L96) # !C1L299 & C1L379);
+--C1L100 is exe_unit:G_EXE|add~5757
+C1L100 = J1L32 & (J2L32 & C1L91 & VCC # !J2L32 & !C1L91) # !J1L32 & (J2L32 & !C1L91 # !J2L32 & (C1L91 # GND));
+
+--C1L101 is exe_unit:G_EXE|add~5758
+C1L101 = CARRY(J1L32 & !J2L32 & !C1L91 # !J1L32 & (!C1L91 # !J2L32));
 
 
---C1L318 is exe_unit:G_EXE|result[7]~3371
-C1L318 = J2L32 & (C1L317 $ (J1L32 & C1L298)) # !J2L32 & C1L317 & (J1L32 # !C1L298);
+--C1L319 is exe_unit:G_EXE|result[7]~3405
+C1L319 = C1L288 & (!C1L289) # !C1L288 & (C1L289 & (C1L100) # !C1L289 & C1L381);
 
 
---C1L319 is exe_unit:G_EXE|result[7]~3372
-C1L319 = C1L296 & (C1L297) # !C1L296 & (C1L297 & C1L316 # !C1L297 & (C1L318));
+--C1L320 is exe_unit:G_EXE|result[7]~3406
+C1L320 = J2L32 & (C1L319 $ (J1L32 & C1L288)) # !J2L32 & C1L319 & (J1L32 # !C1L288);
 
 
---C1L98 is exe_unit:G_EXE|add~5783
-C1L98 = B1L14 & C1L96 # !B1L14 & (D1_IR[3] # J1L31);
+--C1L321 is exe_unit:G_EXE|result[7]~3407
+C1L321 = C1L286 & (C1L287) # !C1L286 & (C1L287 & C1L318 # !C1L287 & (C1L320));
 
 
---C1L99 is exe_unit:G_EXE|add~5784
-C1L99 = B1L12 & C1L92 # !B1L12 & (C1L98);
+--C1L102 is exe_unit:G_EXE|add~5759
+C1L102 = B1L14 & C1L100 # !B1L14 & (D1_IR[7] # J1L31);
 
 
---C1L100 is exe_unit:G_EXE|add~5785
-C1L100 = (C1L25 $ C1L99 $ C1L91) # GND;
-
---C1L101 is exe_unit:G_EXE|add~5786
-C1L101 = CARRY(C1L25 & C1L99 & !C1L91 # !C1L25 & (C1L99 # !C1L91));
+--C1L103 is exe_unit:G_EXE|add~5760
+C1L103 = B1L12 & C1L96 # !B1L12 & (C1L102);
 
 
---C1L320 is exe_unit:G_EXE|result[7]~3373
-C1L320 = C1L296 & (C1L319 & (C1L100) # !C1L319 & C1L92) # !C1L296 & (C1L319);
+--C1L104 is exe_unit:G_EXE|add~5761
+C1L104 = (C1L29 $ C1L103 $ C1L95) # GND;
+
+--C1L105 is exe_unit:G_EXE|add~5762
+C1L105 = CARRY(C1L29 & C1L103 & !C1L95 # !C1L29 & (C1L103 # !C1L95));
+
+
+--C1L322 is exe_unit:G_EXE|result[7]~3408
+C1L322 = C1L286 & (C1L321 & (C1L104) # !C1L321 & C1L96) # !C1L286 & (C1L321);
 
 
 --E1L31 is memory_unit:G_MEMORY|DR_data_out[7]~1248
-E1L31 = !A1L195 & (C1L306 & J2L32 # !C1L306 & (C1L320));
+E1L31 = !A1L195 & (C1L296 & J2L32 # !C1L296 & (C1L322));
 
 
 --E1L32 is memory_unit:G_MEMORY|DR_data_out[7]~1249
@@ -2634,26 +2630,26 @@ D1L45 = D1_pc[7] & (D1L44 $ GND) # !D1_pc[7] & !D1L44 & VCC;
 D1L46 = CARRY(D1_pc[7] & !D1L44);
 
 
---C1L102 is exe_unit:G_EXE|add~5787
-C1L102 = D1L15 & (D1_IR[7] & C1L81 & VCC # !D1_IR[7] & !C1L81) # !D1L15 & (D1_IR[7] & !C1L81 # !D1_IR[7] & (C1L81 # GND));
+--C1L106 is exe_unit:G_EXE|add~5763
+C1L106 = D1L15 & (D1_IR[7] & C1L85 & VCC # !D1_IR[7] & !C1L85) # !D1L15 & (D1_IR[7] & !C1L85 # !D1_IR[7] & (C1L85 # GND));
 
---C1L103 is exe_unit:G_EXE|add~5788
-C1L103 = CARRY(D1L15 & !D1_IR[7] & !C1L81 # !D1L15 & (!C1L81 # !D1_IR[7]));
+--C1L107 is exe_unit:G_EXE|add~5764
+C1L107 = CARRY(D1L15 & !D1_IR[7] & !C1L85 # !D1L15 & (!C1L85 # !D1_IR[7]));
 
 
 --D1L118 is instru_fetch:G_INSTRU_FETCH|pc~865
-D1L118 = D1L87 & (D1L88) # !D1L87 & (D1L88 & C1L102 # !D1L88 & (D1L15));
+D1L118 = D1L87 & (D1L88) # !D1L87 & (D1L88 & C1L106 # !D1L88 & (D1L15));
 
 
 --D1L119 is instru_fetch:G_INSTRU_FETCH|pc~866
 D1L119 = D1L87 & (D1L118 & (E1_data_read[7]) # !D1L118 & D1L45) # !D1L87 & (D1L118);
 
 
---C1L104 is exe_unit:G_EXE|add~5789
-C1L104 = (D1L17 $ D1_IR[7] $ !C1L103) # GND;
+--C1L108 is exe_unit:G_EXE|add~5765
+C1L108 = (D1L17 $ D1_IR[7] $ !C1L107) # GND;
 
---C1L105 is exe_unit:G_EXE|add~5790
-C1L105 = CARRY(D1L17 & (D1_IR[7] # !C1L103) # !D1L17 & D1_IR[7] & !C1L103);
+--C1L109 is exe_unit:G_EXE|add~5766
+C1L109 = CARRY(D1L17 & (D1_IR[7] # !C1L107) # !D1L17 & D1_IR[7] & !C1L107);
 
 
 --D1L47 is instru_fetch:G_INSTRU_FETCH|add~515
@@ -2668,147 +2664,147 @@ D1L120 = D1L88 & (D1L87) # !D1L88 & (D1L87 & D1L47 # !D1L87 & (D1L17));
 
 
 --D1L121 is instru_fetch:G_INSTRU_FETCH|pc~868
-D1L121 = D1L88 & (D1L120 & (E1_data_read[8]) # !D1L120 & C1L104) # !D1L88 & (D1L120);
+D1L121 = D1L88 & (D1L120 & (E1_data_read[8]) # !D1L120 & C1L108) # !D1L88 & (D1L120);
 
 
---C1L106 is exe_unit:G_EXE|add~5791
-C1L106 = C1L95 & ((D1_IR[3] # J1L35)) # !C1L95 & (D1_IR[3] # J1L35 # GND);
+--C1L110 is exe_unit:G_EXE|add~5767
+C1L110 = C1L99 & ((D1_IR[7] # J1L35)) # !C1L99 & (D1_IR[7] # J1L35 # GND);
 
---C1L107 is exe_unit:G_EXE|add~5792
-C1L107 = CARRY(D1_IR[3] # J1L35 # !C1L95);
-
-
---C1L321 is exe_unit:G_EXE|result[8]~3374
-C1L321 = B1L11 & (B1L13 & J1L40 # !B1L13 & (C1L106)) # !B1L11 & (B1L13);
+--C1L111 is exe_unit:G_EXE|add~5768
+C1L111 = CARRY(D1_IR[7] # J1L35 # !C1L99);
 
 
---C1L322 is exe_unit:G_EXE|result[8]~3375
-C1L322 = B1L11 & (C1L321) # !B1L11 & (C1L321 & (J1L32) # !C1L321 & !J1L36);
+--C1L323 is exe_unit:G_EXE|result[8]~3409
+C1L323 = B1L11 & (B1L13 & J1L40 # !B1L13 & (C1L110)) # !B1L11 & (B1L13);
 
 
---C1L108 is exe_unit:G_EXE|add~5793
-C1L108 = (J1L36 $ J2L36 $ C1L93) # GND;
-
---C1L109 is exe_unit:G_EXE|add~5794
-C1L109 = CARRY(J1L36 & (!C1L93 # !J2L36) # !J1L36 & !J2L36 & !C1L93);
+--C1L324 is exe_unit:G_EXE|result[8]~3410
+C1L324 = B1L11 & (C1L323) # !B1L11 & (C1L323 & (J1L32) # !C1L323 & !J1L36);
 
 
---C1L372 is exe_unit:G_EXE|result_t~8
-C1L372 = J2L36 & (D1_IR[3] # J1L35);
+--C1L112 is exe_unit:G_EXE|add~5769
+C1L112 = (J1L36 $ J2L36 $ C1L97) # GND;
+
+--C1L113 is exe_unit:G_EXE|add~5770
+C1L113 = CARRY(J1L36 & (!C1L97 # !J2L36) # !J1L36 & !J2L36 & !C1L97);
 
 
---C1L110 is exe_unit:G_EXE|add~5795
-C1L110 = (J1L36 $ J2L36 $ !C1L97) # GND;
-
---C1L111 is exe_unit:G_EXE|add~5796
-C1L111 = CARRY(J1L36 & (J2L36 # !C1L97) # !J1L36 & J2L36 & !C1L97);
+--C1L374 is exe_unit:G_EXE|result_t~8
+C1L374 = J2L36 & (D1_IR[7] # J1L35);
 
 
---C1L323 is exe_unit:G_EXE|result[8]~3376
-C1L323 = C1L299 & (C1L298 & C1L372 # !C1L298 & (C1L110)) # !C1L299 & (C1L298);
+--C1L114 is exe_unit:G_EXE|add~5771
+C1L114 = (J1L36 $ J2L36 $ !C1L101) # GND;
+
+--C1L115 is exe_unit:G_EXE|add~5772
+C1L115 = CARRY(J1L36 & (J2L36 # !C1L101) # !J1L36 & J2L36 & !C1L101);
 
 
---C1L324 is exe_unit:G_EXE|result[8]~3377
-C1L324 = C1L299 & (C1L323) # !C1L299 & (J2L36 & (!C1L323 # !J1L36) # !J2L36 & J1L36);
+--C1L325 is exe_unit:G_EXE|result[8]~3411
+C1L325 = C1L289 & (C1L288 & C1L374 # !C1L288 & (C1L114)) # !C1L289 & (C1L288);
 
 
---C1L325 is exe_unit:G_EXE|result[8]~3378
-C1L325 = C1L297 & (C1L296) # !C1L297 & (C1L296 & C1L108 # !C1L296 & (C1L324));
+--C1L326 is exe_unit:G_EXE|result[8]~3412
+C1L326 = C1L289 & (C1L325) # !C1L289 & (J2L36 & (!C1L325 # !J1L36) # !J2L36 & J1L36);
 
 
---C1L112 is exe_unit:G_EXE|add~5797
-C1L112 = B1L14 & C1L110 # !B1L14 & (D1_IR[3] # J1L35);
+--C1L327 is exe_unit:G_EXE|result[8]~3413
+C1L327 = C1L287 & (C1L286) # !C1L287 & (C1L286 & C1L112 # !C1L286 & (C1L326));
 
 
---C1L113 is exe_unit:G_EXE|add~5798
-C1L113 = B1L12 & C1L108 # !B1L12 & (C1L112);
+--C1L116 is exe_unit:G_EXE|add~5773
+C1L116 = B1L14 & C1L114 # !B1L14 & (D1_IR[7] # J1L35);
 
 
---C1L114 is exe_unit:G_EXE|add~5799
-C1L114 = C1L25 & (C1L113 & !C1L101 # !C1L113 & (C1L101 # GND)) # !C1L25 & (C1L113 & C1L101 & VCC # !C1L113 & !C1L101);
-
---C1L115 is exe_unit:G_EXE|add~5800
-C1L115 = CARRY(C1L25 & (!C1L101 # !C1L113) # !C1L25 & !C1L113 & !C1L101);
+--C1L117 is exe_unit:G_EXE|add~5774
+C1L117 = B1L12 & C1L112 # !B1L12 & (C1L116);
 
 
---C1L326 is exe_unit:G_EXE|result[8]~3379
-C1L326 = C1L297 & (C1L325 & (C1L114) # !C1L325 & C1L322) # !C1L297 & (C1L325);
+--C1L118 is exe_unit:G_EXE|add~5775
+C1L118 = C1L29 & (C1L117 & !C1L105 # !C1L117 & (C1L105 # GND)) # !C1L29 & (C1L117 & C1L105 & VCC # !C1L117 & !C1L105);
+
+--C1L119 is exe_unit:G_EXE|add~5776
+C1L119 = CARRY(C1L29 & (!C1L105 # !C1L117) # !C1L29 & !C1L117 & !C1L105);
+
+
+--C1L328 is exe_unit:G_EXE|result[8]~3414
+C1L328 = C1L287 & (C1L327 & (C1L118) # !C1L327 & C1L324) # !C1L287 & (C1L327);
 
 
 --E1L33 is memory_unit:G_MEMORY|DR_data_out[8]~1250
-E1L33 = !A1L195 & (C1L306 & J2L36 # !C1L306 & (C1L326));
+E1L33 = !A1L195 & (C1L296 & J2L36 # !C1L296 & (C1L328));
 
 
 --E1L34 is memory_unit:G_MEMORY|DR_data_out[8]~1251
 E1L34 = E1L33 # A1L195 & E1_data_read[8];
 
 
---C1L116 is exe_unit:G_EXE|add~5801
-C1L116 = J1L40 & (J2L40 & !C1L109 # !J2L40 & C1L109 & VCC) # !J1L40 & (J2L40 & (C1L109 # GND) # !J2L40 & !C1L109);
+--C1L120 is exe_unit:G_EXE|add~5777
+C1L120 = J1L40 & (J2L40 & !C1L113 # !J2L40 & C1L113 & VCC) # !J1L40 & (J2L40 & (C1L113 # GND) # !J2L40 & !C1L113);
 
---C1L117 is exe_unit:G_EXE|add~5802
-C1L117 = CARRY(J1L40 & J2L40 & !C1L109 # !J1L40 & (J2L40 # !C1L109));
-
-
---C1L118 is exe_unit:G_EXE|add~5803
-C1L118 = C1L107 & (D1_IR[3] # J1L39) # !C1L107 & !D1_IR[3] & !J1L39;
-
---C1L119 is exe_unit:G_EXE|add~5804
-C1L119 = CARRY(!D1_IR[3] & !J1L39 & !C1L107);
+--C1L121 is exe_unit:G_EXE|add~5778
+C1L121 = CARRY(J1L40 & J2L40 & !C1L113 # !J1L40 & (J2L40 # !C1L113));
 
 
---C1L327 is exe_unit:G_EXE|result[9]~3380
-C1L327 = B1L11 & (B1L13 & J1L44 # !B1L13 & (C1L118)) # !B1L11 & (B1L13);
+--C1L122 is exe_unit:G_EXE|add~5779
+C1L122 = C1L111 & (D1_IR[7] # J1L39) # !C1L111 & !D1_IR[7] & !J1L39;
+
+--C1L123 is exe_unit:G_EXE|add~5780
+C1L123 = CARRY(!D1_IR[7] & !J1L39 & !C1L111);
 
 
---C1L328 is exe_unit:G_EXE|result[9]~3381
-C1L328 = B1L11 & (C1L327) # !B1L11 & (C1L327 & (J1L36) # !C1L327 & !J1L40);
+--C1L329 is exe_unit:G_EXE|result[9]~3415
+C1L329 = B1L11 & (B1L13 & J1L44 # !B1L13 & (C1L122)) # !B1L11 & (B1L13);
 
 
---C1L380 is exe_unit:G_EXE|result_t~25
-C1L380 = D1_IR[3] # J1L39 # J2L40;
+--C1L330 is exe_unit:G_EXE|result[9]~3416
+C1L330 = B1L11 & (C1L329) # !B1L11 & (C1L329 & (J1L36) # !C1L329 & !J1L40);
 
 
---C1L120 is exe_unit:G_EXE|add~5805
-C1L120 = J1L40 & (J2L40 & C1L111 & VCC # !J2L40 & !C1L111) # !J1L40 & (J2L40 & !C1L111 # !J2L40 & (C1L111 # GND));
-
---C1L121 is exe_unit:G_EXE|add~5806
-C1L121 = CARRY(J1L40 & !J2L40 & !C1L111 # !J1L40 & (!C1L111 # !J2L40));
+--C1L382 is exe_unit:G_EXE|result_t~25
+C1L382 = D1_IR[7] # J1L39 # J2L40;
 
 
---C1L329 is exe_unit:G_EXE|result[9]~3382
-C1L329 = C1L298 & (!C1L299) # !C1L298 & (C1L299 & (C1L120) # !C1L299 & C1L380);
+--C1L124 is exe_unit:G_EXE|add~5781
+C1L124 = J1L40 & (J2L40 & C1L115 & VCC # !J2L40 & !C1L115) # !J1L40 & (J2L40 & !C1L115 # !J2L40 & (C1L115 # GND));
+
+--C1L125 is exe_unit:G_EXE|add~5782
+C1L125 = CARRY(J1L40 & !J2L40 & !C1L115 # !J1L40 & (!C1L115 # !J2L40));
 
 
---C1L330 is exe_unit:G_EXE|result[9]~3383
-C1L330 = J2L40 & (C1L329 $ (J1L40 & C1L298)) # !J2L40 & C1L329 & (J1L40 # !C1L298);
+--C1L331 is exe_unit:G_EXE|result[9]~3417
+C1L331 = C1L288 & (!C1L289) # !C1L288 & (C1L289 & (C1L124) # !C1L289 & C1L382);
 
 
---C1L331 is exe_unit:G_EXE|result[9]~3384
-C1L331 = C1L296 & (C1L297) # !C1L296 & (C1L297 & C1L328 # !C1L297 & (C1L330));
+--C1L332 is exe_unit:G_EXE|result[9]~3418
+C1L332 = J2L40 & (C1L331 $ (J1L40 & C1L288)) # !J2L40 & C1L331 & (J1L40 # !C1L288);
 
 
---C1L122 is exe_unit:G_EXE|add~5807
-C1L122 = B1L14 & C1L120 # !B1L14 & (D1_IR[3] # J1L39);
+--C1L333 is exe_unit:G_EXE|result[9]~3419
+C1L333 = C1L286 & (C1L287) # !C1L286 & (C1L287 & C1L330 # !C1L287 & (C1L332));
 
 
---C1L123 is exe_unit:G_EXE|add~5808
-C1L123 = B1L12 & C1L116 # !B1L12 & (C1L122);
+--C1L126 is exe_unit:G_EXE|add~5783
+C1L126 = B1L14 & C1L124 # !B1L14 & (D1_IR[7] # J1L39);
 
 
---C1L124 is exe_unit:G_EXE|add~5809
-C1L124 = (C1L25 $ C1L123 $ C1L115) # GND;
-
---C1L125 is exe_unit:G_EXE|add~5810
-C1L125 = CARRY(C1L25 & C1L123 & !C1L115 # !C1L25 & (C1L123 # !C1L115));
+--C1L127 is exe_unit:G_EXE|add~5784
+C1L127 = B1L12 & C1L120 # !B1L12 & (C1L126);
 
 
---C1L332 is exe_unit:G_EXE|result[9]~3385
-C1L332 = C1L296 & (C1L331 & (C1L124) # !C1L331 & C1L116) # !C1L296 & (C1L331);
+--C1L128 is exe_unit:G_EXE|add~5785
+C1L128 = (C1L29 $ C1L127 $ C1L119) # GND;
+
+--C1L129 is exe_unit:G_EXE|add~5786
+C1L129 = CARRY(C1L29 & C1L127 & !C1L119 # !C1L29 & (C1L127 # !C1L119));
+
+
+--C1L334 is exe_unit:G_EXE|result[9]~3420
+C1L334 = C1L286 & (C1L333 & (C1L128) # !C1L333 & C1L120) # !C1L286 & (C1L333);
 
 
 --E1L35 is memory_unit:G_MEMORY|DR_data_out[9]~1252
-E1L35 = !A1L195 & (C1L306 & J2L40 # !C1L306 & (C1L332));
+E1L35 = !A1L195 & (C1L296 & J2L40 # !C1L296 & (C1L334));
 
 
 --E1L36 is memory_unit:G_MEMORY|DR_data_out[9]~1253
@@ -2822,26 +2818,26 @@ D1L49 = D1_pc[9] & (D1L48 $ GND) # !D1_pc[9] & !D1L48 & VCC;
 D1L50 = CARRY(D1_pc[9] & !D1L48);
 
 
---C1L126 is exe_unit:G_EXE|add~5811
-C1L126 = D1L19 & (D1_IR[7] & C1L105 & VCC # !D1_IR[7] & !C1L105) # !D1L19 & (D1_IR[7] & !C1L105 # !D1_IR[7] & (C1L105 # GND));
+--C1L130 is exe_unit:G_EXE|add~5787
+C1L130 = D1L19 & (D1_IR[7] & C1L109 & VCC # !D1_IR[7] & !C1L109) # !D1L19 & (D1_IR[7] & !C1L109 # !D1_IR[7] & (C1L109 # GND));
 
---C1L127 is exe_unit:G_EXE|add~5812
-C1L127 = CARRY(D1L19 & !D1_IR[7] & !C1L105 # !D1L19 & (!C1L105 # !D1_IR[7]));
+--C1L131 is exe_unit:G_EXE|add~5788
+C1L131 = CARRY(D1L19 & !D1_IR[7] & !C1L109 # !D1L19 & (!C1L109 # !D1_IR[7]));
 
 
 --D1L122 is instru_fetch:G_INSTRU_FETCH|pc~869
-D1L122 = D1L87 & (D1L88) # !D1L87 & (D1L88 & C1L126 # !D1L88 & (D1L19));
+D1L122 = D1L87 & (D1L88) # !D1L87 & (D1L88 & C1L130 # !D1L88 & (D1L19));
 
 
 --D1L123 is instru_fetch:G_INSTRU_FETCH|pc~870
 D1L123 = D1L87 & (D1L122 & (E1_data_read[9]) # !D1L122 & D1L49) # !D1L87 & (D1L122);
 
 
---C1L128 is exe_unit:G_EXE|add~5813
-C1L128 = (D1L21 $ D1_IR[7] $ !C1L127) # GND;
+--C1L132 is exe_unit:G_EXE|add~5789
+C1L132 = (D1L21 $ D1_IR[7] $ !C1L131) # GND;
 
---C1L129 is exe_unit:G_EXE|add~5814
-C1L129 = CARRY(D1L21 & (D1_IR[7] # !C1L127) # !D1L21 & D1_IR[7] & !C1L127);
+--C1L133 is exe_unit:G_EXE|add~5790
+C1L133 = CARRY(D1L21 & (D1_IR[7] # !C1L131) # !D1L21 & D1_IR[7] & !C1L131);
 
 
 --D1L51 is instru_fetch:G_INSTRU_FETCH|add~519
@@ -2856,147 +2852,147 @@ D1L124 = D1L88 & (D1L87) # !D1L88 & (D1L87 & D1L51 # !D1L87 & (D1L21));
 
 
 --D1L125 is instru_fetch:G_INSTRU_FETCH|pc~872
-D1L125 = D1L88 & (D1L124 & (E1_data_read[10]) # !D1L124 & C1L128) # !D1L88 & (D1L124);
+D1L125 = D1L88 & (D1L124 & (E1_data_read[10]) # !D1L124 & C1L132) # !D1L88 & (D1L124);
 
 
---C1L130 is exe_unit:G_EXE|add~5815
-C1L130 = C1L119 & ((D1_IR[3] # J1L43)) # !C1L119 & (D1_IR[3] # J1L43 # GND);
+--C1L134 is exe_unit:G_EXE|add~5791
+C1L134 = C1L123 & ((D1_IR[7] # J1L43)) # !C1L123 & (D1_IR[7] # J1L43 # GND);
 
---C1L131 is exe_unit:G_EXE|add~5816
-C1L131 = CARRY(D1_IR[3] # J1L43 # !C1L119);
-
-
---C1L333 is exe_unit:G_EXE|result[10]~3386
-C1L333 = B1L13 & (!B1L11) # !B1L13 & (B1L11 & (C1L130) # !B1L11 & !J1L44);
+--C1L135 is exe_unit:G_EXE|add~5792
+C1L135 = CARRY(D1_IR[7] # J1L43 # !C1L123);
 
 
---C1L334 is exe_unit:G_EXE|result[10]~3387
-C1L334 = B1L13 & (C1L333 & (J1L40) # !C1L333 & J1L48) # !B1L13 & (C1L333);
+--C1L335 is exe_unit:G_EXE|result[10]~3421
+C1L335 = B1L13 & (!B1L11) # !B1L13 & (B1L11 & (C1L134) # !B1L11 & !J1L44);
 
 
---C1L132 is exe_unit:G_EXE|add~5817
-C1L132 = (J1L44 $ J2L44 $ C1L117) # GND;
-
---C1L133 is exe_unit:G_EXE|add~5818
-C1L133 = CARRY(J1L44 & (!C1L117 # !J2L44) # !J1L44 & !J2L44 & !C1L117);
+--C1L336 is exe_unit:G_EXE|result[10]~3422
+C1L336 = B1L13 & (C1L335 & (J1L40) # !C1L335 & J1L48) # !B1L13 & (C1L335);
 
 
---C1L373 is exe_unit:G_EXE|result_t~10
-C1L373 = J2L44 & (D1_IR[3] # J1L43);
+--C1L136 is exe_unit:G_EXE|add~5793
+C1L136 = (J1L44 $ J2L44 $ C1L121) # GND;
+
+--C1L137 is exe_unit:G_EXE|add~5794
+C1L137 = CARRY(J1L44 & (!C1L121 # !J2L44) # !J1L44 & !J2L44 & !C1L121);
 
 
---C1L134 is exe_unit:G_EXE|add~5819
-C1L134 = (J1L44 $ J2L44 $ !C1L121) # GND;
-
---C1L135 is exe_unit:G_EXE|add~5820
-C1L135 = CARRY(J1L44 & (J2L44 # !C1L121) # !J1L44 & J2L44 & !C1L121);
+--C1L375 is exe_unit:G_EXE|result_t~10
+C1L375 = J2L44 & (D1_IR[7] # J1L43);
 
 
---C1L335 is exe_unit:G_EXE|result[10]~3388
-C1L335 = C1L299 & (C1L298 & C1L373 # !C1L298 & (C1L134)) # !C1L299 & (C1L298);
+--C1L138 is exe_unit:G_EXE|add~5795
+C1L138 = (J1L44 $ J2L44 $ !C1L125) # GND;
+
+--C1L139 is exe_unit:G_EXE|add~5796
+C1L139 = CARRY(J1L44 & (J2L44 # !C1L125) # !J1L44 & J2L44 & !C1L125);
 
 
---C1L336 is exe_unit:G_EXE|result[10]~3389
-C1L336 = C1L299 & (C1L335) # !C1L299 & (J2L44 & (!C1L335 # !J1L44) # !J2L44 & J1L44);
+--C1L337 is exe_unit:G_EXE|result[10]~3423
+C1L337 = C1L289 & (C1L288 & C1L375 # !C1L288 & (C1L138)) # !C1L289 & (C1L288);
 
 
---C1L337 is exe_unit:G_EXE|result[10]~3390
-C1L337 = C1L297 & (C1L296) # !C1L297 & (C1L296 & C1L132 # !C1L296 & (C1L336));
+--C1L338 is exe_unit:G_EXE|result[10]~3424
+C1L338 = C1L289 & (C1L337) # !C1L289 & (J2L44 & (!C1L337 # !J1L44) # !J2L44 & J1L44);
 
 
---C1L136 is exe_unit:G_EXE|add~5821
-C1L136 = B1L14 & C1L134 # !B1L14 & (D1_IR[3] # J1L43);
+--C1L339 is exe_unit:G_EXE|result[10]~3425
+C1L339 = C1L287 & (C1L286) # !C1L287 & (C1L286 & C1L136 # !C1L286 & (C1L338));
 
 
---C1L137 is exe_unit:G_EXE|add~5822
-C1L137 = B1L12 & C1L132 # !B1L12 & (C1L136);
+--C1L140 is exe_unit:G_EXE|add~5797
+C1L140 = B1L14 & C1L138 # !B1L14 & (D1_IR[7] # J1L43);
 
 
---C1L138 is exe_unit:G_EXE|add~5823
-C1L138 = C1L25 & (C1L137 & !C1L125 # !C1L137 & (C1L125 # GND)) # !C1L25 & (C1L137 & C1L125 & VCC # !C1L137 & !C1L125);
-
---C1L139 is exe_unit:G_EXE|add~5824
-C1L139 = CARRY(C1L25 & (!C1L125 # !C1L137) # !C1L25 & !C1L137 & !C1L125);
+--C1L141 is exe_unit:G_EXE|add~5798
+C1L141 = B1L12 & C1L136 # !B1L12 & (C1L140);
 
 
---C1L338 is exe_unit:G_EXE|result[10]~3391
-C1L338 = C1L297 & (C1L337 & (C1L138) # !C1L337 & C1L334) # !C1L297 & (C1L337);
+--C1L142 is exe_unit:G_EXE|add~5799
+C1L142 = C1L29 & (C1L141 & !C1L129 # !C1L141 & (C1L129 # GND)) # !C1L29 & (C1L141 & C1L129 & VCC # !C1L141 & !C1L129);
+
+--C1L143 is exe_unit:G_EXE|add~5800
+C1L143 = CARRY(C1L29 & (!C1L129 # !C1L141) # !C1L29 & !C1L141 & !C1L129);
+
+
+--C1L340 is exe_unit:G_EXE|result[10]~3426
+C1L340 = C1L287 & (C1L339 & (C1L142) # !C1L339 & C1L336) # !C1L287 & (C1L339);
 
 
 --E1L37 is memory_unit:G_MEMORY|DR_data_out[10]~1254
-E1L37 = !A1L195 & (C1L306 & J2L44 # !C1L306 & (C1L338));
+E1L37 = !A1L195 & (C1L296 & J2L44 # !C1L296 & (C1L340));
 
 
 --E1L38 is memory_unit:G_MEMORY|DR_data_out[10]~1255
 E1L38 = E1L37 # A1L195 & E1_data_read[10];
 
 
---C1L140 is exe_unit:G_EXE|add~5825
-C1L140 = J1L48 & (J2L48 & !C1L133 # !J2L48 & C1L133 & VCC) # !J1L48 & (J2L48 & (C1L133 # GND) # !J2L48 & !C1L133);
+--C1L144 is exe_unit:G_EXE|add~5801
+C1L144 = J1L48 & (J2L48 & !C1L137 # !J2L48 & C1L137 & VCC) # !J1L48 & (J2L48 & (C1L137 # GND) # !J2L48 & !C1L137);
 
---C1L141 is exe_unit:G_EXE|add~5826
-C1L141 = CARRY(J1L48 & J2L48 & !C1L133 # !J1L48 & (J2L48 # !C1L133));
-
-
---C1L142 is exe_unit:G_EXE|add~5827
-C1L142 = C1L131 & (D1_IR[3] # J1L47) # !C1L131 & !D1_IR[3] & !J1L47;
-
---C1L143 is exe_unit:G_EXE|add~5828
-C1L143 = CARRY(!D1_IR[3] & !J1L47 & !C1L131);
+--C1L145 is exe_unit:G_EXE|add~5802
+C1L145 = CARRY(J1L48 & J2L48 & !C1L137 # !J1L48 & (J2L48 # !C1L137));
 
 
---C1L339 is exe_unit:G_EXE|result[11]~3392
-C1L339 = B1L11 & (B1L13 & J1L52 # !B1L13 & (C1L142)) # !B1L11 & (B1L13);
+--C1L146 is exe_unit:G_EXE|add~5803
+C1L146 = C1L135 & (D1_IR[7] # J1L47) # !C1L135 & !D1_IR[7] & !J1L47;
+
+--C1L147 is exe_unit:G_EXE|add~5804
+C1L147 = CARRY(!D1_IR[7] & !J1L47 & !C1L135);
 
 
---C1L340 is exe_unit:G_EXE|result[11]~3393
-C1L340 = B1L11 & (C1L339) # !B1L11 & (C1L339 & (J1L44) # !C1L339 & !J1L48);
+--C1L341 is exe_unit:G_EXE|result[11]~3427
+C1L341 = B1L11 & (B1L13 & J1L52 # !B1L13 & (C1L146)) # !B1L11 & (B1L13);
 
 
---C1L381 is exe_unit:G_EXE|result_t~27
-C1L381 = D1_IR[3] # J1L47 # J2L48;
+--C1L342 is exe_unit:G_EXE|result[11]~3428
+C1L342 = B1L11 & (C1L341) # !B1L11 & (C1L341 & (J1L44) # !C1L341 & !J1L48);
 
 
---C1L144 is exe_unit:G_EXE|add~5829
-C1L144 = J1L48 & (J2L48 & C1L135 & VCC # !J2L48 & !C1L135) # !J1L48 & (J2L48 & !C1L135 # !J2L48 & (C1L135 # GND));
-
---C1L145 is exe_unit:G_EXE|add~5830
-C1L145 = CARRY(J1L48 & !J2L48 & !C1L135 # !J1L48 & (!C1L135 # !J2L48));
+--C1L383 is exe_unit:G_EXE|result_t~27
+C1L383 = D1_IR[7] # J1L47 # J2L48;
 
 
---C1L341 is exe_unit:G_EXE|result[11]~3394
-C1L341 = C1L298 & (!C1L299) # !C1L298 & (C1L299 & (C1L144) # !C1L299 & C1L381);
+--C1L148 is exe_unit:G_EXE|add~5805
+C1L148 = J1L48 & (J2L48 & C1L139 & VCC # !J2L48 & !C1L139) # !J1L48 & (J2L48 & !C1L139 # !J2L48 & (C1L139 # GND));
+
+--C1L149 is exe_unit:G_EXE|add~5806
+C1L149 = CARRY(J1L48 & !J2L48 & !C1L139 # !J1L48 & (!C1L139 # !J2L48));
 
 
---C1L342 is exe_unit:G_EXE|result[11]~3395
-C1L342 = J2L48 & (C1L341 $ (J1L48 & C1L298)) # !J2L48 & C1L341 & (J1L48 # !C1L298);
+--C1L343 is exe_unit:G_EXE|result[11]~3429
+C1L343 = C1L288 & (!C1L289) # !C1L288 & (C1L289 & (C1L148) # !C1L289 & C1L383);
 
 
---C1L343 is exe_unit:G_EXE|result[11]~3396
-C1L343 = C1L296 & (C1L297) # !C1L296 & (C1L297 & C1L340 # !C1L297 & (C1L342));
+--C1L344 is exe_unit:G_EXE|result[11]~3430
+C1L344 = J2L48 & (C1L343 $ (J1L48 & C1L288)) # !J2L48 & C1L343 & (J1L48 # !C1L288);
 
 
---C1L146 is exe_unit:G_EXE|add~5831
-C1L146 = B1L14 & C1L144 # !B1L14 & (D1_IR[3] # J1L47);
+--C1L345 is exe_unit:G_EXE|result[11]~3431
+C1L345 = C1L286 & (C1L287) # !C1L286 & (C1L287 & C1L342 # !C1L287 & (C1L344));
 
 
---C1L147 is exe_unit:G_EXE|add~5832
-C1L147 = B1L12 & C1L140 # !B1L12 & (C1L146);
+--C1L150 is exe_unit:G_EXE|add~5807
+C1L150 = B1L14 & C1L148 # !B1L14 & (D1_IR[7] # J1L47);
 
 
---C1L148 is exe_unit:G_EXE|add~5833
-C1L148 = (C1L25 $ C1L147 $ C1L139) # GND;
-
---C1L149 is exe_unit:G_EXE|add~5834
-C1L149 = CARRY(C1L25 & C1L147 & !C1L139 # !C1L25 & (C1L147 # !C1L139));
+--C1L151 is exe_unit:G_EXE|add~5808
+C1L151 = B1L12 & C1L144 # !B1L12 & (C1L150);
 
 
---C1L344 is exe_unit:G_EXE|result[11]~3397
-C1L344 = C1L296 & (C1L343 & (C1L148) # !C1L343 & C1L140) # !C1L296 & (C1L343);
+--C1L152 is exe_unit:G_EXE|add~5809
+C1L152 = (C1L29 $ C1L151 $ C1L143) # GND;
+
+--C1L153 is exe_unit:G_EXE|add~5810
+C1L153 = CARRY(C1L29 & C1L151 & !C1L143 # !C1L29 & (C1L151 # !C1L143));
+
+
+--C1L346 is exe_unit:G_EXE|result[11]~3432
+C1L346 = C1L286 & (C1L345 & (C1L152) # !C1L345 & C1L144) # !C1L286 & (C1L345);
 
 
 --E1L39 is memory_unit:G_MEMORY|DR_data_out[11]~1256
-E1L39 = !A1L195 & (C1L306 & J2L48 # !C1L306 & (C1L344));
+E1L39 = !A1L195 & (C1L296 & J2L48 # !C1L296 & (C1L346));
 
 
 --E1L40 is memory_unit:G_MEMORY|DR_data_out[11]~1257
@@ -3010,26 +3006,26 @@ D1L53 = D1_pc[11] & (D1L52 $ GND) # !D1_pc[11] & !D1L52 & VCC;
 D1L54 = CARRY(D1_pc[11] & !D1L52);
 
 
---C1L150 is exe_unit:G_EXE|add~5835
-C1L150 = D1L23 & (D1_IR[7] & C1L129 & VCC # !D1_IR[7] & !C1L129) # !D1L23 & (D1_IR[7] & !C1L129 # !D1_IR[7] & (C1L129 # GND));
+--C1L154 is exe_unit:G_EXE|add~5811
+C1L154 = D1L23 & (D1_IR[7] & C1L133 & VCC # !D1_IR[7] & !C1L133) # !D1L23 & (D1_IR[7] & !C1L133 # !D1_IR[7] & (C1L133 # GND));
 
---C1L151 is exe_unit:G_EXE|add~5836
-C1L151 = CARRY(D1L23 & !D1_IR[7] & !C1L129 # !D1L23 & (!C1L129 # !D1_IR[7]));
+--C1L155 is exe_unit:G_EXE|add~5812
+C1L155 = CARRY(D1L23 & !D1_IR[7] & !C1L133 # !D1L23 & (!C1L133 # !D1_IR[7]));
 
 
 --D1L126 is instru_fetch:G_INSTRU_FETCH|pc~873
-D1L126 = D1L87 & (D1L88) # !D1L87 & (D1L88 & C1L150 # !D1L88 & (D1L23));
+D1L126 = D1L87 & (D1L88) # !D1L87 & (D1L88 & C1L154 # !D1L88 & (D1L23));
 
 
 --D1L127 is instru_fetch:G_INSTRU_FETCH|pc~874
 D1L127 = D1L87 & (D1L126 & (E1_data_read[11]) # !D1L126 & D1L53) # !D1L87 & (D1L126);
 
 
---C1L152 is exe_unit:G_EXE|add~5837
-C1L152 = (D1L25 $ D1_IR[7] $ !C1L151) # GND;
+--C1L156 is exe_unit:G_EXE|add~5813
+C1L156 = (D1L25 $ D1_IR[7] $ !C1L155) # GND;
 
---C1L153 is exe_unit:G_EXE|add~5838
-C1L153 = CARRY(D1L25 & (D1_IR[7] # !C1L151) # !D1L25 & D1_IR[7] & !C1L151);
+--C1L157 is exe_unit:G_EXE|add~5814
+C1L157 = CARRY(D1L25 & (D1_IR[7] # !C1L155) # !D1L25 & D1_IR[7] & !C1L155);
 
 
 --D1L55 is instru_fetch:G_INSTRU_FETCH|add~523
@@ -3044,147 +3040,147 @@ D1L128 = D1L88 & (D1L87) # !D1L88 & (D1L87 & D1L55 # !D1L87 & (D1L25));
 
 
 --D1L129 is instru_fetch:G_INSTRU_FETCH|pc~876
-D1L129 = D1L88 & (D1L128 & (E1_data_read[12]) # !D1L128 & C1L152) # !D1L88 & (D1L128);
+D1L129 = D1L88 & (D1L128 & (E1_data_read[12]) # !D1L128 & C1L156) # !D1L88 & (D1L128);
 
 
---C1L154 is exe_unit:G_EXE|add~5839
-C1L154 = C1L143 & ((D1_IR[3] # J1L51)) # !C1L143 & (D1_IR[3] # J1L51 # GND);
+--C1L158 is exe_unit:G_EXE|add~5815
+C1L158 = C1L147 & ((D1_IR[7] # J1L51)) # !C1L147 & (D1_IR[7] # J1L51 # GND);
 
---C1L155 is exe_unit:G_EXE|add~5840
-C1L155 = CARRY(D1_IR[3] # J1L51 # !C1L143);
-
-
---C1L345 is exe_unit:G_EXE|result[12]~3398
-C1L345 = B1L13 & (!B1L11) # !B1L13 & (B1L11 & (C1L154) # !B1L11 & !J1L52);
+--C1L159 is exe_unit:G_EXE|add~5816
+C1L159 = CARRY(D1_IR[7] # J1L51 # !C1L147);
 
 
---C1L346 is exe_unit:G_EXE|result[12]~3399
-C1L346 = B1L13 & (C1L345 & (J1L48) # !C1L345 & J1L56) # !B1L13 & (C1L345);
+--C1L347 is exe_unit:G_EXE|result[12]~3433
+C1L347 = B1L13 & (!B1L11) # !B1L13 & (B1L11 & (C1L158) # !B1L11 & !J1L52);
 
 
---C1L156 is exe_unit:G_EXE|add~5841
-C1L156 = (J1L52 $ J2L52 $ C1L141) # GND;
-
---C1L157 is exe_unit:G_EXE|add~5842
-C1L157 = CARRY(J1L52 & (!C1L141 # !J2L52) # !J1L52 & !J2L52 & !C1L141);
+--C1L348 is exe_unit:G_EXE|result[12]~3434
+C1L348 = B1L13 & (C1L347 & (J1L48) # !C1L347 & J1L56) # !B1L13 & (C1L347);
 
 
---C1L374 is exe_unit:G_EXE|result_t~12
-C1L374 = J2L52 & (D1_IR[3] # J1L51);
+--C1L160 is exe_unit:G_EXE|add~5817
+C1L160 = (J1L52 $ J2L52 $ C1L145) # GND;
+
+--C1L161 is exe_unit:G_EXE|add~5818
+C1L161 = CARRY(J1L52 & (!C1L145 # !J2L52) # !J1L52 & !J2L52 & !C1L145);
 
 
---C1L158 is exe_unit:G_EXE|add~5843
-C1L158 = (J1L52 $ J2L52 $ !C1L145) # GND;
-
---C1L159 is exe_unit:G_EXE|add~5844
-C1L159 = CARRY(J1L52 & (J2L52 # !C1L145) # !J1L52 & J2L52 & !C1L145);
+--C1L376 is exe_unit:G_EXE|result_t~12
+C1L376 = J2L52 & (D1_IR[7] # J1L51);
 
 
---C1L347 is exe_unit:G_EXE|result[12]~3400
-C1L347 = C1L299 & (C1L298 & C1L374 # !C1L298 & (C1L158)) # !C1L299 & (C1L298);
+--C1L162 is exe_unit:G_EXE|add~5819
+C1L162 = (J1L52 $ J2L52 $ !C1L149) # GND;
+
+--C1L163 is exe_unit:G_EXE|add~5820
+C1L163 = CARRY(J1L52 & (J2L52 # !C1L149) # !J1L52 & J2L52 & !C1L149);
 
 
---C1L348 is exe_unit:G_EXE|result[12]~3401
-C1L348 = C1L299 & (C1L347) # !C1L299 & (J2L52 & (!C1L347 # !J1L52) # !J2L52 & J1L52);
+--C1L349 is exe_unit:G_EXE|result[12]~3435
+C1L349 = C1L289 & (C1L288 & C1L376 # !C1L288 & (C1L162)) # !C1L289 & (C1L288);
 
 
---C1L349 is exe_unit:G_EXE|result[12]~3402
-C1L349 = C1L297 & (C1L296) # !C1L297 & (C1L296 & C1L156 # !C1L296 & (C1L348));
+--C1L350 is exe_unit:G_EXE|result[12]~3436
+C1L350 = C1L289 & (C1L349) # !C1L289 & (J2L52 & (!C1L349 # !J1L52) # !J2L52 & J1L52);
 
 
---C1L160 is exe_unit:G_EXE|add~5845
-C1L160 = B1L14 & C1L158 # !B1L14 & (D1_IR[3] # J1L51);
+--C1L351 is exe_unit:G_EXE|result[12]~3437
+C1L351 = C1L287 & (C1L286) # !C1L287 & (C1L286 & C1L160 # !C1L286 & (C1L350));
 
 
---C1L161 is exe_unit:G_EXE|add~5846
-C1L161 = B1L12 & C1L156 # !B1L12 & (C1L160);
+--C1L164 is exe_unit:G_EXE|add~5821
+C1L164 = B1L14 & C1L162 # !B1L14 & (D1_IR[7] # J1L51);
 
 
---C1L162 is exe_unit:G_EXE|add~5847
-C1L162 = C1L25 & (C1L161 & !C1L149 # !C1L161 & (C1L149 # GND)) # !C1L25 & (C1L161 & C1L149 & VCC # !C1L161 & !C1L149);
-
---C1L163 is exe_unit:G_EXE|add~5848
-C1L163 = CARRY(C1L25 & (!C1L149 # !C1L161) # !C1L25 & !C1L161 & !C1L149);
+--C1L165 is exe_unit:G_EXE|add~5822
+C1L165 = B1L12 & C1L160 # !B1L12 & (C1L164);
 
 
---C1L350 is exe_unit:G_EXE|result[12]~3403
-C1L350 = C1L297 & (C1L349 & (C1L162) # !C1L349 & C1L346) # !C1L297 & (C1L349);
+--C1L166 is exe_unit:G_EXE|add~5823
+C1L166 = C1L29 & (C1L165 & !C1L153 # !C1L165 & (C1L153 # GND)) # !C1L29 & (C1L165 & C1L153 & VCC # !C1L165 & !C1L153);
+
+--C1L167 is exe_unit:G_EXE|add~5824
+C1L167 = CARRY(C1L29 & (!C1L153 # !C1L165) # !C1L29 & !C1L165 & !C1L153);
+
+
+--C1L352 is exe_unit:G_EXE|result[12]~3438
+C1L352 = C1L287 & (C1L351 & (C1L166) # !C1L351 & C1L348) # !C1L287 & (C1L351);
 
 
 --E1L41 is memory_unit:G_MEMORY|DR_data_out[12]~1258
-E1L41 = !A1L195 & (C1L306 & J2L52 # !C1L306 & (C1L350));
+E1L41 = !A1L195 & (C1L296 & J2L52 # !C1L296 & (C1L352));
 
 
 --E1L42 is memory_unit:G_MEMORY|DR_data_out[12]~1259
 E1L42 = E1L41 # A1L195 & E1_data_read[12];
 
 
---C1L164 is exe_unit:G_EXE|add~5849
-C1L164 = J1L56 & (J2L56 & !C1L157 # !J2L56 & C1L157 & VCC) # !J1L56 & (J2L56 & (C1L157 # GND) # !J2L56 & !C1L157);
+--C1L168 is exe_unit:G_EXE|add~5825
+C1L168 = J1L56 & (J2L56 & !C1L161 # !J2L56 & C1L161 & VCC) # !J1L56 & (J2L56 & (C1L161 # GND) # !J2L56 & !C1L161);
 
---C1L165 is exe_unit:G_EXE|add~5850
-C1L165 = CARRY(J1L56 & J2L56 & !C1L157 # !J1L56 & (J2L56 # !C1L157));
-
-
---C1L166 is exe_unit:G_EXE|add~5851
-C1L166 = C1L155 & (D1_IR[3] # J1L55) # !C1L155 & !D1_IR[3] & !J1L55;
-
---C1L167 is exe_unit:G_EXE|add~5852
-C1L167 = CARRY(!D1_IR[3] & !J1L55 & !C1L155);
+--C1L169 is exe_unit:G_EXE|add~5826
+C1L169 = CARRY(J1L56 & J2L56 & !C1L161 # !J1L56 & (J2L56 # !C1L161));
 
 
---C1L351 is exe_unit:G_EXE|result[13]~3404
-C1L351 = B1L11 & (B1L13 & J1L60 # !B1L13 & (C1L166)) # !B1L11 & (B1L13);
+--C1L170 is exe_unit:G_EXE|add~5827
+C1L170 = C1L159 & (D1_IR[7] # J1L55) # !C1L159 & !D1_IR[7] & !J1L55;
+
+--C1L171 is exe_unit:G_EXE|add~5828
+C1L171 = CARRY(!D1_IR[7] & !J1L55 & !C1L159);
 
 
---C1L352 is exe_unit:G_EXE|result[13]~3405
-C1L352 = B1L11 & (C1L351) # !B1L11 & (C1L351 & (J1L52) # !C1L351 & !J1L56);
+--C1L353 is exe_unit:G_EXE|result[13]~3439
+C1L353 = B1L11 & (B1L13 & J1L60 # !B1L13 & (C1L170)) # !B1L11 & (B1L13);
 
 
---C1L382 is exe_unit:G_EXE|result_t~29
-C1L382 = D1_IR[3] # J1L55 # J2L56;
+--C1L354 is exe_unit:G_EXE|result[13]~3440
+C1L354 = B1L11 & (C1L353) # !B1L11 & (C1L353 & (J1L52) # !C1L353 & !J1L56);
 
 
---C1L168 is exe_unit:G_EXE|add~5853
-C1L168 = J1L56 & (J2L56 & C1L159 & VCC # !J2L56 & !C1L159) # !J1L56 & (J2L56 & !C1L159 # !J2L56 & (C1L159 # GND));
-
---C1L169 is exe_unit:G_EXE|add~5854
-C1L169 = CARRY(J1L56 & !J2L56 & !C1L159 # !J1L56 & (!C1L159 # !J2L56));
+--C1L384 is exe_unit:G_EXE|result_t~29
+C1L384 = D1_IR[7] # J1L55 # J2L56;
 
 
---C1L353 is exe_unit:G_EXE|result[13]~3406
-C1L353 = C1L298 & (!C1L299) # !C1L298 & (C1L299 & (C1L168) # !C1L299 & C1L382);
+--C1L172 is exe_unit:G_EXE|add~5829
+C1L172 = J1L56 & (J2L56 & C1L163 & VCC # !J2L56 & !C1L163) # !J1L56 & (J2L56 & !C1L163 # !J2L56 & (C1L163 # GND));
+
+--C1L173 is exe_unit:G_EXE|add~5830
+C1L173 = CARRY(J1L56 & !J2L56 & !C1L163 # !J1L56 & (!C1L163 # !J2L56));
 
 
---C1L354 is exe_unit:G_EXE|result[13]~3407
-C1L354 = J2L56 & (C1L353 $ (J1L56 & C1L298)) # !J2L56 & C1L353 & (J1L56 # !C1L298);
+--C1L355 is exe_unit:G_EXE|result[13]~3441
+C1L355 = C1L288 & (!C1L289) # !C1L288 & (C1L289 & (C1L172) # !C1L289 & C1L384);
 
 
---C1L355 is exe_unit:G_EXE|result[13]~3408
-C1L355 = C1L296 & (C1L297) # !C1L296 & (C1L297 & C1L352 # !C1L297 & (C1L354));
+--C1L356 is exe_unit:G_EXE|result[13]~3442
+C1L356 = J2L56 & (C1L355 $ (J1L56 & C1L288)) # !J2L56 & C1L355 & (J1L56 # !C1L288);
 
 
---C1L170 is exe_unit:G_EXE|add~5855
-C1L170 = B1L14 & C1L168 # !B1L14 & (D1_IR[3] # J1L55);
+--C1L357 is exe_unit:G_EXE|result[13]~3443
+C1L357 = C1L286 & (C1L287) # !C1L286 & (C1L287 & C1L354 # !C1L287 & (C1L356));
 
 
---C1L171 is exe_unit:G_EXE|add~5856
-C1L171 = B1L12 & C1L164 # !B1L12 & (C1L170);
+--C1L174 is exe_unit:G_EXE|add~5831
+C1L174 = B1L14 & C1L172 # !B1L14 & (D1_IR[7] # J1L55);
 
 
---C1L172 is exe_unit:G_EXE|add~5857
-C1L172 = (C1L25 $ C1L171 $ C1L163) # GND;
-
---C1L173 is exe_unit:G_EXE|add~5858
-C1L173 = CARRY(C1L25 & C1L171 & !C1L163 # !C1L25 & (C1L171 # !C1L163));
+--C1L175 is exe_unit:G_EXE|add~5832
+C1L175 = B1L12 & C1L168 # !B1L12 & (C1L174);
 
 
---C1L356 is exe_unit:G_EXE|result[13]~3409
-C1L356 = C1L296 & (C1L355 & (C1L172) # !C1L355 & C1L164) # !C1L296 & (C1L355);
+--C1L176 is exe_unit:G_EXE|add~5833
+C1L176 = (C1L29 $ C1L175 $ C1L167) # GND;
+
+--C1L177 is exe_unit:G_EXE|add~5834
+C1L177 = CARRY(C1L29 & C1L175 & !C1L167 # !C1L29 & (C1L175 # !C1L167));
+
+
+--C1L358 is exe_unit:G_EXE|result[13]~3444
+C1L358 = C1L286 & (C1L357 & (C1L176) # !C1L357 & C1L168) # !C1L286 & (C1L357);
 
 
 --E1L43 is memory_unit:G_MEMORY|DR_data_out[13]~1260
-E1L43 = !A1L195 & (C1L306 & J2L56 # !C1L306 & (C1L356));
+E1L43 = !A1L195 & (C1L296 & J2L56 # !C1L296 & (C1L358));
 
 
 --E1L44 is memory_unit:G_MEMORY|DR_data_out[13]~1261
@@ -3198,26 +3194,26 @@ D1L57 = D1_pc[13] & (D1L56 $ GND) # !D1_pc[13] & !D1L56 & VCC;
 D1L58 = CARRY(D1_pc[13] & !D1L56);
 
 
---C1L174 is exe_unit:G_EXE|add~5859
-C1L174 = D1L27 & (D1_IR[7] & C1L153 & VCC # !D1_IR[7] & !C1L153) # !D1L27 & (D1_IR[7] & !C1L153 # !D1_IR[7] & (C1L153 # GND));
+--C1L178 is exe_unit:G_EXE|add~5835
+C1L178 = D1L27 & (D1_IR[7] & C1L157 & VCC # !D1_IR[7] & !C1L157) # !D1L27 & (D1_IR[7] & !C1L157 # !D1_IR[7] & (C1L157 # GND));
 
---C1L175 is exe_unit:G_EXE|add~5860
-C1L175 = CARRY(D1L27 & !D1_IR[7] & !C1L153 # !D1L27 & (!C1L153 # !D1_IR[7]));
+--C1L179 is exe_unit:G_EXE|add~5836
+C1L179 = CARRY(D1L27 & !D1_IR[7] & !C1L157 # !D1L27 & (!C1L157 # !D1_IR[7]));
 
 
 --D1L130 is instru_fetch:G_INSTRU_FETCH|pc~877
-D1L130 = D1L87 & (D1L88) # !D1L87 & (D1L88 & C1L174 # !D1L88 & (D1L27));
+D1L130 = D1L87 & (D1L88) # !D1L87 & (D1L88 & C1L178 # !D1L88 & (D1L27));
 
 
 --D1L131 is instru_fetch:G_INSTRU_FETCH|pc~878
 D1L131 = D1L87 & (D1L130 & (E1_data_read[13]) # !D1L130 & D1L57) # !D1L87 & (D1L130);
 
 
---C1L176 is exe_unit:G_EXE|add~5861
-C1L176 = (D1L29 $ D1_IR[7] $ !C1L175) # GND;
+--C1L180 is exe_unit:G_EXE|add~5837
+C1L180 = (D1L29 $ D1_IR[7] $ !C1L179) # GND;
 
---C1L177 is exe_unit:G_EXE|add~5862
-C1L177 = CARRY(D1L29 & (D1_IR[7] # !C1L175) # !D1L29 & D1_IR[7] & !C1L175);
+--C1L181 is exe_unit:G_EXE|add~5838
+C1L181 = CARRY(D1L29 & (D1_IR[7] # !C1L179) # !D1L29 & D1_IR[7] & !C1L179);
 
 
 --D1L59 is instru_fetch:G_INSTRU_FETCH|add~527
@@ -3232,147 +3228,147 @@ D1L132 = D1L88 & (D1L87) # !D1L88 & (D1L87 & D1L59 # !D1L87 & (D1L29));
 
 
 --D1L133 is instru_fetch:G_INSTRU_FETCH|pc~880
-D1L133 = D1L88 & (D1L132 & (E1_data_read[14]) # !D1L132 & C1L176) # !D1L88 & (D1L132);
+D1L133 = D1L88 & (D1L132 & (E1_data_read[14]) # !D1L132 & C1L180) # !D1L88 & (D1L132);
 
 
---C1L178 is exe_unit:G_EXE|add~5863
-C1L178 = C1L167 & ((D1_IR[3] # J1L59)) # !C1L167 & (D1_IR[3] # J1L59 # GND);
+--C1L182 is exe_unit:G_EXE|add~5839
+C1L182 = C1L171 & ((D1_IR[7] # J1L59)) # !C1L171 & (D1_IR[7] # J1L59 # GND);
 
---C1L179 is exe_unit:G_EXE|add~5864
-C1L179 = CARRY(D1_IR[3] # J1L59 # !C1L167);
-
-
---C1L357 is exe_unit:G_EXE|result[14]~3410
-C1L357 = B1L13 & (!B1L11) # !B1L13 & (B1L11 & (C1L178) # !B1L11 & !J1L60);
+--C1L183 is exe_unit:G_EXE|add~5840
+C1L183 = CARRY(D1_IR[7] # J1L59 # !C1L171);
 
 
---C1L358 is exe_unit:G_EXE|result[14]~3411
-C1L358 = B1L13 & (C1L357 & (J1L56) # !C1L357 & J1L64) # !B1L13 & (C1L357);
+--C1L359 is exe_unit:G_EXE|result[14]~3445
+C1L359 = B1L13 & (!B1L11) # !B1L13 & (B1L11 & (C1L182) # !B1L11 & !J1L60);
 
 
---C1L180 is exe_unit:G_EXE|add~5865
-C1L180 = (J1L60 $ J2L60 $ C1L165) # GND;
-
---C1L181 is exe_unit:G_EXE|add~5866
-C1L181 = CARRY(J1L60 & (!C1L165 # !J2L60) # !J1L60 & !J2L60 & !C1L165);
+--C1L360 is exe_unit:G_EXE|result[14]~3446
+C1L360 = B1L13 & (C1L359 & (J1L56) # !C1L359 & J1L64) # !B1L13 & (C1L359);
 
 
---C1L375 is exe_unit:G_EXE|result_t~14
-C1L375 = J2L60 & (D1_IR[3] # J1L59);
+--C1L184 is exe_unit:G_EXE|add~5841
+C1L184 = (J1L60 $ J2L60 $ C1L169) # GND;
+
+--C1L185 is exe_unit:G_EXE|add~5842
+C1L185 = CARRY(J1L60 & (!C1L169 # !J2L60) # !J1L60 & !J2L60 & !C1L169);
 
 
---C1L182 is exe_unit:G_EXE|add~5867
-C1L182 = (J1L60 $ J2L60 $ !C1L169) # GND;
-
---C1L183 is exe_unit:G_EXE|add~5868
-C1L183 = CARRY(J1L60 & (J2L60 # !C1L169) # !J1L60 & J2L60 & !C1L169);
+--C1L377 is exe_unit:G_EXE|result_t~14
+C1L377 = J2L60 & (D1_IR[7] # J1L59);
 
 
---C1L359 is exe_unit:G_EXE|result[14]~3412
-C1L359 = C1L299 & (C1L298 & C1L375 # !C1L298 & (C1L182)) # !C1L299 & (C1L298);
+--C1L186 is exe_unit:G_EXE|add~5843
+C1L186 = (J1L60 $ J2L60 $ !C1L173) # GND;
+
+--C1L187 is exe_unit:G_EXE|add~5844
+C1L187 = CARRY(J1L60 & (J2L60 # !C1L173) # !J1L60 & J2L60 & !C1L173);
 
 
---C1L360 is exe_unit:G_EXE|result[14]~3413
-C1L360 = C1L299 & (C1L359) # !C1L299 & (J2L60 & (!C1L359 # !J1L60) # !J2L60 & J1L60);
+--C1L361 is exe_unit:G_EXE|result[14]~3447
+C1L361 = C1L289 & (C1L288 & C1L377 # !C1L288 & (C1L186)) # !C1L289 & (C1L288);
 
 
---C1L361 is exe_unit:G_EXE|result[14]~3414
-C1L361 = C1L297 & (C1L296) # !C1L297 & (C1L296 & C1L180 # !C1L296 & (C1L360));
+--C1L362 is exe_unit:G_EXE|result[14]~3448
+C1L362 = C1L289 & (C1L361) # !C1L289 & (J2L60 & (!C1L361 # !J1L60) # !J2L60 & J1L60);
 
 
---C1L184 is exe_unit:G_EXE|add~5869
-C1L184 = B1L14 & C1L182 # !B1L14 & (D1_IR[3] # J1L59);
+--C1L363 is exe_unit:G_EXE|result[14]~3449
+C1L363 = C1L287 & (C1L286) # !C1L287 & (C1L286 & C1L184 # !C1L286 & (C1L362));
 
 
---C1L185 is exe_unit:G_EXE|add~5870
-C1L185 = B1L12 & C1L180 # !B1L12 & (C1L184);
+--C1L188 is exe_unit:G_EXE|add~5845
+C1L188 = B1L14 & C1L186 # !B1L14 & (D1_IR[7] # J1L59);
 
 
---C1L186 is exe_unit:G_EXE|add~5871
-C1L186 = C1L25 & (C1L185 & !C1L173 # !C1L185 & (C1L173 # GND)) # !C1L25 & (C1L185 & C1L173 & VCC # !C1L185 & !C1L173);
-
---C1L187 is exe_unit:G_EXE|add~5872
-C1L187 = CARRY(C1L25 & (!C1L173 # !C1L185) # !C1L25 & !C1L185 & !C1L173);
+--C1L189 is exe_unit:G_EXE|add~5846
+C1L189 = B1L12 & C1L184 # !B1L12 & (C1L188);
 
 
---C1L362 is exe_unit:G_EXE|result[14]~3415
-C1L362 = C1L297 & (C1L361 & (C1L186) # !C1L361 & C1L358) # !C1L297 & (C1L361);
+--C1L190 is exe_unit:G_EXE|add~5847
+C1L190 = C1L29 & (C1L189 & !C1L177 # !C1L189 & (C1L177 # GND)) # !C1L29 & (C1L189 & C1L177 & VCC # !C1L189 & !C1L177);
+
+--C1L191 is exe_unit:G_EXE|add~5848
+C1L191 = CARRY(C1L29 & (!C1L177 # !C1L189) # !C1L29 & !C1L189 & !C1L177);
+
+
+--C1L364 is exe_unit:G_EXE|result[14]~3450
+C1L364 = C1L287 & (C1L363 & (C1L190) # !C1L363 & C1L360) # !C1L287 & (C1L363);
 
 
 --E1L45 is memory_unit:G_MEMORY|DR_data_out[14]~1262
-E1L45 = !A1L195 & (C1L306 & J2L60 # !C1L306 & (C1L362));
+E1L45 = !A1L195 & (C1L296 & J2L60 # !C1L296 & (C1L364));
 
 
 --E1L46 is memory_unit:G_MEMORY|DR_data_out[14]~1263
 E1L46 = E1L45 # A1L195 & E1_data_read[14];
 
 
---C1L188 is exe_unit:G_EXE|add~5873
-C1L188 = J1L64 & (J2L64 & !C1L181 # !J2L64 & C1L181 & VCC) # !J1L64 & (J2L64 & (C1L181 # GND) # !J2L64 & !C1L181);
+--C1L192 is exe_unit:G_EXE|add~5849
+C1L192 = J1L64 & (J2L64 & !C1L185 # !J2L64 & C1L185 & VCC) # !J1L64 & (J2L64 & (C1L185 # GND) # !J2L64 & !C1L185);
 
---C1L189 is exe_unit:G_EXE|add~5874
-C1L189 = CARRY(J1L64 & J2L64 & !C1L181 # !J1L64 & (J2L64 # !C1L181));
-
-
---C1L190 is exe_unit:G_EXE|add~5875
-C1L190 = C1L179 & (D1_IR[3] # J1L63) # !C1L179 & !D1_IR[3] & !J1L63;
-
---C1L191 is exe_unit:G_EXE|add~5876
-C1L191 = CARRY(!D1_IR[3] & !J1L63 & !C1L179);
+--C1L193 is exe_unit:G_EXE|add~5850
+C1L193 = CARRY(J1L64 & J2L64 & !C1L185 # !J1L64 & (J2L64 # !C1L185));
 
 
---C1L363 is exe_unit:G_EXE|result[15]~3416
-C1L363 = B1L11 & (B1L13 & F1_c_out # !B1L13 & (C1L190)) # !B1L11 & (B1L13);
+--C1L194 is exe_unit:G_EXE|add~5851
+C1L194 = C1L183 & (D1_IR[7] # J1L63) # !C1L183 & !D1_IR[7] & !J1L63;
+
+--C1L195 is exe_unit:G_EXE|add~5852
+C1L195 = CARRY(!D1_IR[7] & !J1L63 & !C1L183);
 
 
---C1L364 is exe_unit:G_EXE|result[15]~3417
-C1L364 = B1L11 & (C1L363) # !B1L11 & (C1L363 & (J1L60) # !C1L363 & !J1L64);
+--C1L365 is exe_unit:G_EXE|result[15]~3451
+C1L365 = B1L11 & (B1L13 & F1_c_out # !B1L13 & (C1L194)) # !B1L11 & (B1L13);
 
 
---C1L383 is exe_unit:G_EXE|result_t~31
-C1L383 = D1_IR[3] # J1L63 # J2L64;
+--C1L366 is exe_unit:G_EXE|result[15]~3452
+C1L366 = B1L11 & (C1L365) # !B1L11 & (C1L365 & (J1L60) # !C1L365 & !J1L64);
 
 
---C1L192 is exe_unit:G_EXE|add~5877
-C1L192 = J1L64 & (J2L64 & C1L183 & VCC # !J2L64 & !C1L183) # !J1L64 & (J2L64 & !C1L183 # !J2L64 & (C1L183 # GND));
-
---C1L193 is exe_unit:G_EXE|add~5878
-C1L193 = CARRY(J1L64 & !J2L64 & !C1L183 # !J1L64 & (!C1L183 # !J2L64));
+--C1L385 is exe_unit:G_EXE|result_t~31
+C1L385 = D1_IR[7] # J1L63 # J2L64;
 
 
---C1L365 is exe_unit:G_EXE|result[15]~3418
-C1L365 = C1L298 & (!C1L299) # !C1L298 & (C1L299 & (C1L192) # !C1L299 & C1L383);
+--C1L196 is exe_unit:G_EXE|add~5853
+C1L196 = J1L64 & (J2L64 & C1L187 & VCC # !J2L64 & !C1L187) # !J1L64 & (J2L64 & !C1L187 # !J2L64 & (C1L187 # GND));
+
+--C1L197 is exe_unit:G_EXE|add~5854
+C1L197 = CARRY(J1L64 & !J2L64 & !C1L187 # !J1L64 & (!C1L187 # !J2L64));
 
 
---C1L366 is exe_unit:G_EXE|result[15]~3419
-C1L366 = J2L64 & (C1L365 $ (J1L64 & C1L298)) # !J2L64 & C1L365 & (J1L64 # !C1L298);
+--C1L367 is exe_unit:G_EXE|result[15]~3453
+C1L367 = C1L288 & (!C1L289) # !C1L288 & (C1L289 & (C1L196) # !C1L289 & C1L385);
 
 
---C1L367 is exe_unit:G_EXE|result[15]~3420
-C1L367 = C1L296 & (C1L297) # !C1L296 & (C1L297 & C1L364 # !C1L297 & (C1L366));
+--C1L368 is exe_unit:G_EXE|result[15]~3454
+C1L368 = J2L64 & (C1L367 $ (J1L64 & C1L288)) # !J2L64 & C1L367 & (J1L64 # !C1L288);
 
 
---C1L194 is exe_unit:G_EXE|add~5879
-C1L194 = B1L14 & C1L192 # !B1L14 & (D1_IR[3] # J1L63);
+--C1L369 is exe_unit:G_EXE|result[15]~3455
+C1L369 = C1L286 & (C1L287) # !C1L286 & (C1L287 & C1L366 # !C1L287 & (C1L368));
 
 
---C1L195 is exe_unit:G_EXE|add~5880
-C1L195 = B1L12 & C1L188 # !B1L12 & (C1L194);
+--C1L198 is exe_unit:G_EXE|add~5855
+C1L198 = B1L14 & C1L196 # !B1L14 & (D1_IR[7] # J1L63);
 
 
---C1L196 is exe_unit:G_EXE|add~5881
-C1L196 = (C1L25 $ C1L195 $ C1L187) # GND;
-
---C1L197 is exe_unit:G_EXE|add~5882
-C1L197 = CARRY(C1L25 & C1L195 & !C1L187 # !C1L25 & (C1L195 # !C1L187));
+--C1L199 is exe_unit:G_EXE|add~5856
+C1L199 = B1L12 & C1L192 # !B1L12 & (C1L198);
 
 
---C1L368 is exe_unit:G_EXE|result[15]~3421
-C1L368 = C1L296 & (C1L367 & (C1L196) # !C1L367 & C1L188) # !C1L296 & (C1L367);
+--C1L200 is exe_unit:G_EXE|add~5857
+C1L200 = (C1L29 $ C1L199 $ C1L191) # GND;
+
+--C1L201 is exe_unit:G_EXE|add~5858
+C1L201 = CARRY(C1L29 & C1L199 & !C1L191 # !C1L29 & (C1L199 # !C1L191));
+
+
+--C1L370 is exe_unit:G_EXE|result[15]~3456
+C1L370 = C1L286 & (C1L369 & (C1L200) # !C1L369 & C1L192) # !C1L286 & (C1L369);
 
 
 --E1L47 is memory_unit:G_MEMORY|DR_data_out[15]~1264
-E1L47 = !A1L195 & (C1L306 & J2L64 # !C1L306 & (C1L368));
+E1L47 = !A1L195 & (C1L296 & J2L64 # !C1L296 & (C1L370));
 
 
 --E1L48 is memory_unit:G_MEMORY|DR_data_out[15]~1265
@@ -3383,84 +3379,84 @@ E1L48 = E1L47 # A1L195 & E1_data_read[15];
 D1L61 = D1_pc[15] $ !D1L60;
 
 
---C1L198 is exe_unit:G_EXE|add~5883
-C1L198 = D1L31 $ D1_IR[7] $ C1L177;
+--C1L202 is exe_unit:G_EXE|add~5859
+C1L202 = D1L31 $ D1_IR[7] $ C1L181;
 
 
 --D1L134 is instru_fetch:G_INSTRU_FETCH|pc~881
-D1L134 = D1L87 & (D1L88) # !D1L87 & (D1L88 & C1L198 # !D1L88 & (D1L31));
+D1L134 = D1L87 & (D1L88) # !D1L87 & (D1L88 & C1L202 # !D1L88 & (D1L31));
 
 
 --D1L135 is instru_fetch:G_INSTRU_FETCH|pc~882
 D1L135 = D1L87 & (D1L134 & (E1_data_read[15]) # !D1L134 & D1L61) # !D1L87 & (D1L134);
 
 
---C1L210 is exe_unit:G_EXE|c_tmp~1000
-C1L210 = C1L293 & !B1L13 & (B1L12 $ !B1L11);
+--C1L214 is exe_unit:G_EXE|c_tmp~1000
+C1L214 = C1L283 & !B1L13 & (B1L12 $ !B1L11);
 
 
---C1L200 is exe_unit:G_EXE|add~5885
-C1L200 = C1L189;
+--C1L204 is exe_unit:G_EXE|add~5861
+C1L204 = C1L193;
 
 
---C1L211 is exe_unit:G_EXE|c_tmp~1001
-C1L211 = B1L12 & C1L200 # !B1L12 & (F1_c_out);
+--C1L215 is exe_unit:G_EXE|c_tmp~1001
+C1L215 = B1L12 & C1L204 # !B1L12 & (F1_c_out);
 
 
---C1L202 is exe_unit:G_EXE|add~5887
-C1L202 = !C1L193;
+--C1L206 is exe_unit:G_EXE|add~5863
+C1L206 = !C1L197;
 
 
---C1L204 is exe_unit:G_EXE|add~5889
-C1L204 = B1L12 & C1L200 # !B1L12 & (C1L202 & B1L14);
+--C1L208 is exe_unit:G_EXE|add~5865
+C1L208 = B1L12 & C1L204 # !B1L12 & (C1L206 & B1L14);
 
 
---C1L205 is exe_unit:G_EXE|add~5890
-C1L205 = C1L25 $ C1L204 $ !C1L197;
+--C1L209 is exe_unit:G_EXE|add~5866
+C1L209 = C1L29 $ C1L208 $ !C1L201;
 
 
---C1L207 is exe_unit:G_EXE|add~5892
-C1L207 = B1L13 & C1L205 # !B1L13 & (C1L200);
+--C1L211 is exe_unit:G_EXE|add~5868
+C1L211 = B1L13 & C1L209 # !B1L13 & (C1L204);
 
 
---C1L212 is exe_unit:G_EXE|c_tmp~1002
-C1L212 = B1L13 & (C1L205 # !B1L11) # !B1L13 & (C1L202 & B1L11);
+--C1L216 is exe_unit:G_EXE|c_tmp~1002
+C1L216 = B1L13 & (C1L209 # !B1L11) # !B1L13 & (C1L206 & B1L11);
 
 
---C1L213 is exe_unit:G_EXE|c_tmp~1003
-C1L213 = B1L12 & (!B1L11) # !B1L12 & (B1L11 & (C1L212) # !B1L11 & F1_c_out & !C1L212);
+--C1L217 is exe_unit:G_EXE|c_tmp~1003
+C1L217 = B1L12 & (!B1L11) # !B1L12 & (B1L11 & (C1L216) # !B1L11 & F1_c_out & !C1L216);
 
 
---C1L214 is exe_unit:G_EXE|c_tmp~1004
-C1L214 = B1L12 & (C1L213 & (F1_c_out) # !C1L213 & C1L207) # !B1L12 & (C1L213);
+--C1L218 is exe_unit:G_EXE|c_tmp~1004
+C1L218 = B1L12 & (C1L217 & (F1_c_out) # !C1L217 & C1L211) # !B1L12 & (C1L217);
 
 
---C1L215 is exe_unit:G_EXE|c_tmp~1005
-C1L215 = C1L210 & (C1L211 # C1L214 & !C1L293) # !C1L210 & (C1L214 & !C1L293);
+--C1L219 is exe_unit:G_EXE|c_tmp~1005
+C1L219 = C1L214 & (C1L215 # C1L218 & !C1L283) # !C1L214 & (C1L218 & !C1L283);
 
 
---C1L208 is exe_unit:G_EXE|add~5893
-C1L208 = C1L191;
+--C1L212 is exe_unit:G_EXE|add~5869
+C1L212 = C1L195;
 
 
---C1L216 is exe_unit:G_EXE|c_tmp~1006
-C1L216 = B1L12 & C1L208 # !B1L12 & (C1L205);
+--C1L220 is exe_unit:G_EXE|c_tmp~1006
+C1L220 = B1L12 & C1L212 # !B1L12 & (C1L209);
 
 
---C1L217 is exe_unit:G_EXE|c_tmp~1007
-C1L217 = B1L13 & J1L4 & B1L12 # !B1L13 & (C1L216);
+--C1L221 is exe_unit:G_EXE|c_tmp~1007
+C1L221 = B1L13 & J1L4 & B1L12 # !B1L13 & (C1L220);
 
 
---C1L218 is exe_unit:G_EXE|c_tmp~1008
-C1L218 = B1L13 & (D1_IR[3] # J1L63) # !B1L13 & F1_c_out;
+--C1L222 is exe_unit:G_EXE|c_tmp~1008
+C1L222 = B1L13 & (D1_IR[7] # J1L63) # !B1L13 & F1_c_out;
 
 
---C1L219 is exe_unit:G_EXE|c_tmp~1009
-C1L219 = B1L11 & C1L217 # !B1L11 & (C1L218 & !B1L12);
+--C1L223 is exe_unit:G_EXE|c_tmp~1009
+C1L223 = B1L11 & C1L221 # !B1L11 & (C1L222 & !B1L12);
 
 
---C1L220 is exe_unit:G_EXE|c_tmp~1010
-C1L220 = B1L14 & C1L215 # !B1L14 & (C1L219 & !C1L293);
+--C1L224 is exe_unit:G_EXE|c_tmp~1010
+C1L224 = B1L14 & C1L219 # !B1L14 & (C1L223 & !C1L283);
 
 
 --B1L1 is decoder_unit:G_DECODER|change_c~606
@@ -3472,31 +3468,47 @@ B1L2 = A1L197 & (D1_IR[8] & (D1_IR[12] $ !B1L1) # !D1_IR[8] & !D1_IR[12] & B1L1)
 
 
 --F1L2 is regfile:G_REGFILE|c_flag~126
-F1L2 = reset & (B1L2 & C1L220 # !B1L2 & (F1_c_flag)) # !reset & (F1_c_flag);
+F1L2 = reset & (B1L2 & C1L224 # !B1L2 & (F1_c_flag)) # !reset & (F1_c_flag);
 
 
---F1L8 is regfile:G_REGFILE|z_out~154
-F1L8 = C1L306 # !C1L314 & !C1L326 & !C1L368;
+--F1L8 is regfile:G_REGFILE|z_out~152
+F1L8 = C1L296 # !C1L295 & !C1L328 & !C1L370;
 
 
---F1L9 is regfile:G_REGFILE|z_out~155
-F1L9 = C1L306 # !C1L274 & !C1L286 & !C1L362;
+--C1L386 is exe_unit:G_EXE|z_tmp~141
+C1L386 = J2L8 # J2L12 # J2L16 # J2L20;
 
 
---F1L10 is regfile:G_REGFILE|z_out~156
-F1L10 = C1L306 # !C1L338 & !C1L344 & !C1L356;
+--C1L387 is exe_unit:G_EXE|z_tmp~142
+C1L387 = J2L24 # J2L28 # J2L32 # J2L36;
 
 
---F1L11 is regfile:G_REGFILE|z_out~157
-F1L11 = C1L306 # !C1L280 & !C1L292 & !C1L332;
+--C1L388 is exe_unit:G_EXE|z_tmp~143
+C1L388 = J2L40 # J2L44 # J2L48 # J2L52;
 
 
---F1L12 is regfile:G_REGFILE|z_out~158
-F1L12 = C1L306 # !C1L305 & !C1L320 & !C1L350;
+--C1L389 is exe_unit:G_EXE|z_tmp~144
+C1L389 = J2L56 # J2L60 # J2L64;
 
 
---F1L13 is regfile:G_REGFILE|z_out~159
-F1L13 = F1L9 & F1L10 & F1L11 & F1L12;
+--C1L390 is exe_unit:G_EXE|z_tmp~145
+C1L390 = C1L386 # C1L387 # C1L388 # C1L389;
+
+
+--F1L9 is regfile:G_REGFILE|z_out~153
+F1L9 = F1L8 & (C1L296 & (!C1L390) # !C1L296 & !C1L316);
+
+
+--F1L10 is regfile:G_REGFILE|z_out~154
+F1L10 = C1L296 # !C1L276 & !C1L340 & !C1L364;
+
+
+--F1L11 is regfile:G_REGFILE|z_out~155
+F1L11 = C1L296 # !C1L304 & !C1L346 & !C1L358;
+
+
+--F1L12 is regfile:G_REGFILE|z_out~156
+F1L12 = C1L296 # !C1L282 & !C1L334 & !C1L352;
 
 
 --B1L3 is decoder_unit:G_DECODER|change_z~596
@@ -3511,32 +3523,16 @@ B1L4 = D1_IR[9] & D1_IR[10] & (D1_IR[8] $ D1_IR[11]) # !D1_IR[9] & !D1_IR[8] & (
 B1L5 = A1L197 & (D1_IR[12] & B1L3 # !D1_IR[12] & (!B1L4));
 
 
---F1L14 is regfile:G_REGFILE|z_out~160
-F1L14 = B1L5 & !C1L267;
+--F1L13 is regfile:G_REGFILE|z_out~157
+F1L13 = B1L5 & !C1L270 & (C1L296 # !C1L310);
 
 
---C1L384 is exe_unit:G_EXE|z_tmp~141
-C1L384 = J2L8 # J2L12 # J2L16 # J2L20;
+--F1L14 is regfile:G_REGFILE|z_out~158
+F1L14 = F1L12 & F1L13 & (C1L296 # !C1L322);
 
 
---C1L385 is exe_unit:G_EXE|z_tmp~142
-C1L385 = J2L24 # J2L28 # J2L32 # J2L36;
-
-
---C1L386 is exe_unit:G_EXE|z_tmp~143
-C1L386 = J2L40 # J2L44 # J2L48 # J2L52;
-
-
---C1L387 is exe_unit:G_EXE|z_tmp~144
-C1L387 = J2L56 # J2L60 # J2L64 # C1L386;
-
-
---C1L388 is exe_unit:G_EXE|z_tmp~145
-C1L388 = C1L306 & (C1L384 # C1L385 # C1L387);
-
-
---F1L15 is regfile:G_REGFILE|z_out~161
-F1L15 = F1L8 & F1L13 & F1L14 & !C1L388;
+--F1L15 is regfile:G_REGFILE|z_out~159
+F1L15 = F1L9 & F1L10 & F1L11 & F1L14;
 
 
 --F1L6 is regfile:G_REGFILE|z_flag~90
@@ -3548,42 +3544,38 @@ E1L49 = reset & (B1L10 # !A1L195 # !D1_t3);
 
 
 --F1L4 is regfile:G_REGFILE|c_out~47
-F1L4 = B1L2 & C1L220 # !B1L2 & (F1_c_out);
+F1L4 = B1L2 & C1L224 # !B1L2 & (F1_c_out);
 
 
---F1L16 is regfile:G_REGFILE|z_out~162
+--F1L16 is regfile:G_REGFILE|z_out~160
 F1L16 = F1L15 # F1_z_out & !B1L5;
 
 
---C1L268 is exe_unit:G_EXE|result[0]~3422
-C1L268 = B1L13 & (C1L12) # !B1L13 & (D1_IR[3] # J1L3);
+--C1L296 is exe_unit:G_EXE|result[3]~3457
+C1L296 = C1L298 # D1_IR[15] # D1_IR[13] # D1_IR[14];
 
 
---C1L306 is exe_unit:G_EXE|result[5]~3423
-C1L306 = C1L308 # D1_IR[15] # D1_IR[13] # D1_IR[14];
+--C1L297 is exe_unit:G_EXE|result[3]~3458
+C1L297 = D1_IR[12] & (D1_IR[9] $ !D1_IR[8] # !D1_IR[11]) # !D1_IR[12] & (D1_IR[9] & (D1_IR[8] $ D1_IR[11]) # !D1_IR[9] & !D1_IR[8] & !D1_IR[11]);
 
 
---C1L307 is exe_unit:G_EXE|result[5]~3424
-C1L307 = D1_IR[12] & (D1_IR[9] $ !D1_IR[8] # !D1_IR[11]) # !D1_IR[12] & (D1_IR[9] & (D1_IR[8] $ D1_IR[11]) # !D1_IR[9] & !D1_IR[8] & !D1_IR[11]);
+--C1L298 is exe_unit:G_EXE|result[3]~3459
+C1L298 = D1_IR[12] & (C1L297 # D1_IR[10]) # !D1_IR[12] & C1L297 & (D1_IR[10] # !D1_IR[9]);
 
 
---C1L308 is exe_unit:G_EXE|result[5]~3425
-C1L308 = D1_IR[12] & (C1L307 # D1_IR[10]) # !D1_IR[12] & C1L307 & (D1_IR[10] # !D1_IR[9]);
-
-
---D1L80 is instru_fetch:G_INSTRU_FETCH|IR[12]~357
+--D1L80 is instru_fetch:G_INSTRU_FETCH|IR[12]~483
 D1L80 = !E1_data_read[12];
 
 
---D1L73 is instru_fetch:G_INSTRU_FETCH|IR[8]~358
+--D1L73 is instru_fetch:G_INSTRU_FETCH|IR[8]~484
 D1L73 = !E1_data_read[8];
 
 
---D1L75 is instru_fetch:G_INSTRU_FETCH|IR[9]~359
+--D1L75 is instru_fetch:G_INSTRU_FETCH|IR[9]~485
 D1L75 = !E1_data_read[9];
 
 
---D1L78 is instru_fetch:G_INSTRU_FETCH|IR[11]~360
+--D1L78 is instru_fetch:G_INSTRU_FETCH|IR[11]~486
 D1L78 = !E1_data_read[11];
 
 
@@ -3623,6 +3615,22 @@ E1_data_read[11] = E1L49 & A1L161 # !E1L49 & (E1_data_read[11]);
 E1_data_read[0] = E1L49 & A1L139 # !E1L49 & (E1_data_read[0]);
 
 
+--E1_data_read[7] is memory_unit:G_MEMORY|data_read[7]
+E1_data_read[7] = E1L49 & A1L153 # !E1L49 & (E1_data_read[7]);
+
+
+--E1_data_read[5] is memory_unit:G_MEMORY|data_read[5]
+E1_data_read[5] = E1L49 & A1L149 # !E1L49 & (E1_data_read[5]);
+
+
+--E1_data_read[4] is memory_unit:G_MEMORY|data_read[4]
+E1_data_read[4] = E1L49 & A1L147 # !E1L49 & (E1_data_read[4]);
+
+
+--E1_data_read[6] is memory_unit:G_MEMORY|data_read[6]
+E1_data_read[6] = E1L49 & A1L151 # !E1L49 & (E1_data_read[6]);
+
+
 --E1_data_read[3] is memory_unit:G_MEMORY|data_read[3]
 E1_data_read[3] = E1L49 & A1L145 # !E1L49 & (E1_data_read[3]);
 
@@ -3633,22 +3641,6 @@ E1_data_read[1] = E1L49 & A1L141 # !E1L49 & (E1_data_read[1]);
 
 --E1_data_read[2] is memory_unit:G_MEMORY|data_read[2]
 E1_data_read[2] = E1L49 & A1L143 # !E1L49 & (E1_data_read[2]);
-
-
---E1_data_read[7] is memory_unit:G_MEMORY|data_read[7]
-E1_data_read[7] = E1L49 & A1L153 # !E1L49 & (E1_data_read[7]);
-
-
---E1_data_read[4] is memory_unit:G_MEMORY|data_read[4]
-E1_data_read[4] = E1L49 & A1L147 # !E1L49 & (E1_data_read[4]);
-
-
---E1_data_read[5] is memory_unit:G_MEMORY|data_read[5]
-E1_data_read[5] = E1L49 & A1L149 # !E1L49 & (E1_data_read[5]);
-
-
---E1_data_read[6] is memory_unit:G_MEMORY|data_read[6]
-E1_data_read[6] = E1L49 & A1L151 # !E1L49 & (E1_data_read[6]);
 
 
 --clk is clk
@@ -3708,97 +3700,97 @@ WE = OUTPUT(E1L51);
 --AR[0] is AR[0]
 --operation mode is output
 
-AR[0] = OUTPUT(C1L225);
+AR[0] = OUTPUT(C1L229);
 
 
 --AR[1] is AR[1]
 --operation mode is output
 
-AR[1] = OUTPUT(C1L227);
+AR[1] = OUTPUT(C1L231);
 
 
 --AR[2] is AR[2]
 --operation mode is output
 
-AR[2] = OUTPUT(C1L229);
+AR[2] = OUTPUT(C1L233);
 
 
 --AR[3] is AR[3]
 --operation mode is output
 
-AR[3] = OUTPUT(C1L231);
+AR[3] = OUTPUT(C1L235);
 
 
 --AR[4] is AR[4]
 --operation mode is output
 
-AR[4] = OUTPUT(C1L233);
+AR[4] = OUTPUT(C1L237);
 
 
 --AR[5] is AR[5]
 --operation mode is output
 
-AR[5] = OUTPUT(C1L235);
+AR[5] = OUTPUT(C1L239);
 
 
 --AR[6] is AR[6]
 --operation mode is output
 
-AR[6] = OUTPUT(C1L237);
+AR[6] = OUTPUT(C1L243);
 
 
 --AR[7] is AR[7]
 --operation mode is output
 
-AR[7] = OUTPUT(C1L239);
+AR[7] = OUTPUT(C1L245);
 
 
 --AR[8] is AR[8]
 --operation mode is output
 
-AR[8] = OUTPUT(C1L241);
+AR[8] = OUTPUT(C1L247);
 
 
 --AR[9] is AR[9]
 --operation mode is output
 
-AR[9] = OUTPUT(C1L243);
+AR[9] = OUTPUT(C1L249);
 
 
 --AR[10] is AR[10]
 --operation mode is output
 
-AR[10] = OUTPUT(C1L245);
+AR[10] = OUTPUT(C1L251);
 
 
 --AR[11] is AR[11]
 --operation mode is output
 
-AR[11] = OUTPUT(C1L247);
+AR[11] = OUTPUT(C1L253);
 
 
 --AR[12] is AR[12]
 --operation mode is output
 
-AR[12] = OUTPUT(C1L251);
+AR[12] = OUTPUT(C1L255);
 
 
 --AR[13] is AR[13]
 --operation mode is output
 
-AR[13] = OUTPUT(C1L253);
+AR[13] = OUTPUT(C1L257);
 
 
 --AR[14] is AR[14]
 --operation mode is output
 
-AR[14] = OUTPUT(C1L255);
+AR[14] = OUTPUT(C1L259);
 
 
 --AR[15] is AR[15]
 --operation mode is output
 
-AR[15] = OUTPUT(C1L257);
+AR[15] = OUTPUT(C1L261);
 
 
 --reg_content[0] is reg_content[0]
