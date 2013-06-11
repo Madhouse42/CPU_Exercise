@@ -1,0 +1,100 @@
+# Copyright (C) 1991-2005 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, Altera MegaCore Function License 
+# Agreement, or other applicable license agreement, including, 
+# without limitation, that your use is for the sole purpose of 
+# programming logic devices manufactured by Altera and sold by 
+# Altera or its authorized distributors.  Please refer to the 
+# applicable agreement for further details.
+
+
+# The default values for assignments are stored in the file
+#		exp_cpu_assignment_defaults.qdf
+# If this file doesn't exist, and for assignments not listed, see file
+#		assignment_defaults.qdf
+
+# Altera recommends that you do not modify this file. This
+# file is updated automatically by the Quartus II software
+# and any changes you make may be lost or overwritten.
+
+
+set_global_assignment -name FAMILY "Cyclone II"
+set_global_assignment -name DEVICE EP2C20Q240C8
+set_global_assignment -name TOP_LEVEL_ENTITY exp_cpu
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 5.1
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "10:37:03  JUNE 09, 2012"
+set_global_assignment -name LAST_QUARTUS_VERSION 5.1
+set_global_assignment -name VHDL_FILE decoder_2_to_4.vhd
+set_global_assignment -name VHDL_FILE decoder_unit.vhd
+set_global_assignment -name VHDL_FILE exe_unit.vhd
+set_global_assignment -name VHDL_FILE exp_cpu.vhd
+set_global_assignment -name VHDL_FILE exp_cpu_components.vhd
+set_global_assignment -name VHDL_FILE instru_fetch.vhd
+set_global_assignment -name VHDL_FILE memory_unit.vhd
+set_global_assignment -name VHDL_FILE mux_4_to_1.vhd
+set_global_assignment -name VHDL_FILE reg.vhd
+set_global_assignment -name VHDL_FILE regfile.vhd
+set_location_assignment PIN_51 -to AR[0]
+set_location_assignment PIN_50 -to AR[1]
+set_location_assignment PIN_49 -to AR[2]
+set_location_assignment PIN_47 -to AR[3]
+set_location_assignment PIN_46 -to AR[4]
+set_location_assignment PIN_44 -to AR[5]
+set_location_assignment PIN_42 -to AR[6]
+set_location_assignment PIN_41 -to AR[7]
+set_location_assignment PIN_39 -to AR[8]
+set_location_assignment PIN_38 -to AR[9]
+set_location_assignment PIN_37 -to AR[10]
+set_location_assignment PIN_21 -to AR[11]
+set_location_assignment PIN_20 -to AR[12]
+set_location_assignment PIN_18 -to AR[13]
+set_location_assignment PIN_16 -to AR[14]
+set_location_assignment PIN_15 -to AR[15]
+set_location_assignment PIN_238 -to OB[0]
+set_location_assignment PIN_237 -to OB[1]
+set_location_assignment PIN_236 -to OB[2]
+set_location_assignment PIN_235 -to OB[3]
+set_location_assignment PIN_234 -to OB[4]
+set_location_assignment PIN_233 -to OB[5]
+set_location_assignment PIN_232 -to OB[6]
+set_location_assignment PIN_231 -to OB[7]
+set_location_assignment PIN_230 -to OB[8]
+set_location_assignment PIN_228 -to OB[9]
+set_location_assignment PIN_226 -to OB[10]
+set_location_assignment PIN_223 -to OB[11]
+set_location_assignment PIN_222 -to OB[12]
+set_location_assignment PIN_218 -to OB[13]
+set_location_assignment PIN_216 -to OB[14]
+set_location_assignment PIN_214 -to OB[15]
+set_location_assignment PIN_6 -to WE
+set_location_assignment PIN_131 -to c_flag
+set_location_assignment PIN_130 -to z_flag
+set_location_assignment PIN_95 -to clk
+set_location_assignment PIN_94 -to reset
+set_location_assignment PIN_87 -to reg_content[0]
+set_location_assignment PIN_86 -to reg_content[1]
+set_location_assignment PIN_84 -to reg_content[2]
+set_location_assignment PIN_80 -to reg_content[3]
+set_location_assignment PIN_79 -to reg_content[4]
+set_location_assignment PIN_78 -to reg_content[5]
+set_location_assignment PIN_73 -to reg_content[6]
+set_location_assignment PIN_72 -to reg_content[7]
+set_location_assignment PIN_70 -to reg_content[8]
+set_location_assignment PIN_68 -to reg_content[9]
+set_location_assignment PIN_67 -to reg_content[10]
+set_location_assignment PIN_66 -to reg_content[11]
+set_location_assignment PIN_65 -to reg_content[12]
+set_location_assignment PIN_64 -to reg_content[13]
+set_location_assignment PIN_58 -to reg_content[14]
+set_location_assignment PIN_57 -to reg_content[15]
+set_location_assignment PIN_113 -to reg_sel[0]
+set_location_assignment PIN_114 -to reg_sel[1]
+set_location_assignment PIN_116 -to reg_sel[2]
+set_location_assignment PIN_117 -to reg_sel[3]
+set_location_assignment PIN_118 -to reg_sel[4]
+set_location_assignment PIN_119 -to reg_sel[5]
