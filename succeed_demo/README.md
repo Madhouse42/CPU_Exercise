@@ -1,1 +1,0 @@
-A demo of a easy CPU in VHDL.
